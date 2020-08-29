@@ -8,8 +8,10 @@ categories: 프로그래머스
 
 탐욕 알고리즘은 
 
+탐욕 알고리즘에 대한 더 자세한 설명은 다음 글을 참고하자.
+[탐욕 알고리즘]()
 
-[프로그래머스]( https://programmers.co.kr/learn/courses/30/lessons/42862)
+[문제 링크]( https://programmers.co.kr/learn/courses/30/lessons/42862)
 
 
 <https://programmers.co.kr/learn/courses/30/lessons/42862/>

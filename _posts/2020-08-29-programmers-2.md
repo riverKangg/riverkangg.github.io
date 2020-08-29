@@ -9,7 +9,7 @@ categories: 프로그래머스
 탐욕 알고리즘은 
 
 탐욕 알고리즘에 대한 더 자세한 설명은 다음 글을 참고하자. \
-[탐욕 알고리즘]()
+[탐욕 알고리즘 설명]()
 
 [lv1.체육복](https://riverkangg.github.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/programmers-1/)
 

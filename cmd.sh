@@ -1,1 +1,1 @@
-naverf1ad1525b4d457405a536aa98b14647f.html
+naver-site-verification: naverf1ad1525b4d457405a536aa98b14647f.html

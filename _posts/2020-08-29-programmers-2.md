@@ -14,21 +14,19 @@ categories: 프로그래머스
 [lv1.체육복](https://riverkangg.github.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/programmers-1/)
 
 
+
 ## ▷ 문제설명
-</hr>
 [문제 링크]( https://programmers.co.kr/learn/courses/30/lessons/42862)    
+
 > 1. 이 문제는 max를 쓰면 시간초과가 된다. 
 
 
 
 ## ▷ 아이디어
-</hr>
 > 1. 
 
 
 
-
 ## ▷ 풀이코드
-</hr>
 ```{Python}
 ```

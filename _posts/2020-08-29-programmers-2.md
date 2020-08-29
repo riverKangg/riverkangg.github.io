@@ -18,12 +18,10 @@ categories: 프로그래머스
 ## ▷ 문제설명
 [문제 링크]( https://programmers.co.kr/learn/courses/30/lessons/42862)    
 
-> 1. 이 문제는 max를 쓰면 시간초과가 된다. 
-
 
 
 ## ▷ 아이디어
-> 1. 
+> 1. 이 문제는 max를 쓰면 시간초과가 된다. 따라서 
 
 
 

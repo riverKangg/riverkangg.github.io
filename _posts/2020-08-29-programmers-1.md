@@ -6,7 +6,12 @@ categories: 프로그래머스
 
 탐욕법(Greedy)-lv1.체육복
 
-프로그래머스에서 탐욕법(Greedy) 알고리즘을 연습할 수 있는 가장 쉬운 문제이다. 이 문제의 주소는 다음과 같다.
+탐욕 알고리즘은 
+
+
+[프로그래머스]( https://programmers.co.kr/learn/courses/30/lessons/42862)
+
+
 <https://programmers.co.kr/learn/courses/30/lessons/42862/>
 
 1. 여분의 체육복을 도난받은 학생은 빌려줄 수 없으니, 빌려줄 수 있는 학생 목록에서 가장 먼저 지우자

@@ -18,6 +18,11 @@ categories: 프로그래머스
 ## ▷ 문제설명
 [문제 링크]( https://programmers.co.kr/learn/courses/30/lessons/42862)    
 
+- 테스트 케이스
+    - number, k = '87654321', 3
+    - number, k = '9'*1000000,999999
+    - number, k = '10001',2
+
 
 
 ## ▷ 아이디어

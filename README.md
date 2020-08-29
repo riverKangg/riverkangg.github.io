@@ -1,5 +1,7 @@
 # riverkangg.github.io
 DataScience
 
-- 프로그래머스 문제풀이
+
+### categories
+- 프로그래머스
 - 크롤링

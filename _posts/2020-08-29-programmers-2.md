@@ -35,6 +35,40 @@ categories: 프로그래머스
 
 
 ## ▷ 풀이코드
+
+- 첫번째 시도
+나름 간단하게 짰다고 생각했는데 10번 테스트를 통과하지 못했다. max 함수와 index 함수가 문제인듯하다. 
+
+```{Python}
+def solution(number, k):
+
+    answer=''
+    while k>0 :
+            
+        num = max(number[:k+1])
+        idx = number.index(num)
+
+        answer+=num
+        l = len(number)
+        
+        if l>k :
+            number = number[idx+1:]
+            k-=idx
+            l-=idx+1
+            
+        if k==0 :
+            answer+=number
+            return answer
+        
+        elif k==l :
+            return answer
+```
+
+
+
+- 두번째 시도
+두번째 시도에서는 i번째와 i+1번째 수를 비교하는 방법을 사용했다. 전체 수를 탐색하지 않아서 연산량을 많이 줄일 수 있었다.
+
 ```{Python}
 def solution(number, k):
 

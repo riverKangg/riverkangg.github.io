@@ -16,10 +16,15 @@ categories: 프로그래머스
 
 <https://programmers.co.kr/learn/courses/30/lessons/42862/>
 
+
+# ▷ 아이디어
 1. 여분의 체육복을 도난받은 학생은 빌려줄 수 없으니, 빌려줄 수 있는 학생 목록에서 가장 먼저 지우자
 2. i번째 학생이 체육복이 없다면, i-1번째 학생에게 먼저 물어봐야 더 많은 학생이 체육복을 빌릴 수 있다
 이 두가지 아이디어로 문제를 풀어봤다.
 
+
+
+# ▷ 풀이코드
 ```{Python}
 
 def solution(n, lost, reserve):

@@ -19,7 +19,7 @@ categories: 프로그래머스
 
 number에서 k개의 숫자를 빼서 가장 큰 수를 만드는 문제이다. 자세한 문제설명은 다음 링크를 참고하자.
 
-[문제 링크]( https://programmers.co.kr/learn/courses/30/lessons/42862)
+<https://programmers.co.kr/learn/courses/30/lessons/42862/>
 
 특정 문제만 통과가 안된다면 다음 테스트 케이스를 추가로 시도해보자.
 

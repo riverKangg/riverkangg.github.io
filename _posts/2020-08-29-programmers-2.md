@@ -21,13 +21,37 @@ categories: 프로그래머스
 
 
 ## ▷ 아이디어
-1. 이 문제는 max를 쓰면 시간초과가 된다. 따라서 
-2.
+이 문제는 시간초과 때문에 힘들었다. 세번이나 완전 새로운 로직을 짠 후에나 통과할 수 있었다.
+1. max 함수, string을 리스트로 바꾸는 방법은 연산량이 많아 사용하지 않는 것이 좋다. i번째 숫자를 i+1번째 숫자와 비교하는 방법을 사용해서 연산량을 줄이자.
+- 없애는 숫자의 갯수인 k가 0이 되면 중단한다. 
+- i+1번째 숫자부터 마지막 숫자까지의 갯수가 k라면 알고리즘을 중단한다.
 
-
-- 
 
 
 ## ▷ 풀이코드
 ```{Python}
+def solution(number, k):
+
+    i=0
+    while k>0 and i+1<len(number):
+
+        if number[i] < number[i+1] :
+            number = number[:i] + number[i+1:]
+            k-=1
+            if i>0:
+                i-=1
+        else:
+            i+=1
+
+        if i+1==len(number) and k>0:
+            return number[:-k]
+        elif k==0:
+            return number
+
+    return(number)
 ```
+
+
+
+## ▷ 다른 풀이
+

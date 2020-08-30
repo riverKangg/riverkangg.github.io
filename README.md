@@ -1,6 +1,4 @@
-# riverkangg.github.io
-DataScience
-
+# Kang의 데이터사이언스
 
 ### categories
 - 코딩

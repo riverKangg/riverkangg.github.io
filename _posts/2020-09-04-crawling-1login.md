@@ -21,10 +21,13 @@ tags :
 
 
 # ▷ 네이버 로그인 코드
+### □ 라이브러리 설치
 ```{Python}
-import pyperclip
 import time
+import pyperclip
 from selenium import webdriver
+```
+```{Python}
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 

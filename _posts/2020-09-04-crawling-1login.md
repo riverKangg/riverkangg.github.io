@@ -64,3 +64,4 @@ driver.find_element_by_xpath('//*[@id="log.login"]').click()
 
 time.sleep(10)
 ```
+# ▷ 코드 다운로드

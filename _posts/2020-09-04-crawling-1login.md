@@ -1,5 +1,5 @@
 ---
-title: "[크롤링] 네이버 로그인"
+title: "[Python/Crawling] 네이버 로그인(캡챠 해결)"
 date: 2020-09-04
 categories: 크롤링
 tags : 

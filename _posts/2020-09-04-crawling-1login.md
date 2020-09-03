@@ -8,14 +8,19 @@ tags :
 ---
 
 네이버 로그인이 가능한 크롤러를 만들기 위해서 크롬 드라이버를 설치되어 있어야한다. 설치되어 있지 않다면 다음과 같은 방법으로 설치해보자.
+
+# ▷ 크롬 드라이버 설치
 1. 내 크롬 버전 확인
 
 2. 크롬 버전에 맞는 드라이버 다운로드
-https://chromedriver.chromium.org/downloads
+(https://chromedriver.chromium.org/downloads/)
 
 3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동
 
 
+
+
+# ▷ 네이버 로그인 코드
 ```{Python}
 import pyperclip
 import time

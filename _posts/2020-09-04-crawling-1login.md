@@ -13,7 +13,7 @@ tags :
 1. 내 크롬 버전 확인
 
 2. 크롬 버전에 맞는 드라이버 다운로드
-{https://chromedriver.chromium.org/downloads/}
+[https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
 
 3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동
 

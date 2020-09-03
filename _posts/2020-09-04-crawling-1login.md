@@ -26,11 +26,10 @@ tags :
 import time
 import pyperclip
 from selenium import webdriver
-```
-```{Python}
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-
+```
+```{Python}
 #######################
 ###  네이버 로그인  ###
 #######################

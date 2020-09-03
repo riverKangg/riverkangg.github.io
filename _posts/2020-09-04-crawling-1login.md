@@ -21,7 +21,7 @@ tags :
 
 
 # ▷ 네이버 로그인 코드
-### □ 라이브러리 설치
+### □ 라이브러리 호출
 ```{Python}
 import time
 import pyperclip

@@ -12,7 +12,7 @@ tags :
 
 # ▷ 크롬 드라이버 설치
 1. 내 크롬 버전 확인    
-<img src="/_post/image/2020-09-04-crawling-크롬드라이버확인.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt=""></img><br/>
+<img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-04-crawling-%ED%81%AC%EB%A1%AC%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84%ED%99%95%EC%9D%B8.png" width="600px" title="px(픽셀) 크기 설정" alt=""></img><br/>
 
 2. 크롬 버전에 맞는 드라이버 다운로드    
 [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)

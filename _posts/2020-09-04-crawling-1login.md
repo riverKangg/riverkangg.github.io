@@ -12,7 +12,7 @@ tags :
 
 # ▷ 크롬 드라이버 설치
 1. 내 크롬 버전 확인
-<img src="/image/2020-09-04-crawling-크롬드라이버확인.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+<img src="/_post/image/2020-09-04-crawling-크롬드라이버확인.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt=""></img><br/>
 
 2. 크롬 버전에 맞는 드라이버 다운로드    
 [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)

@@ -1,4 +1,3 @@
-
 ---
 title : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
 date : 2020-09-06

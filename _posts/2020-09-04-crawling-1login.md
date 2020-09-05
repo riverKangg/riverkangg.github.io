@@ -7,6 +7,7 @@ tags :
 - crawling
 ---
 
+수정중
 네이버 로그인이 가능한 크롤러를 만들기 위해서 크롬 드라이버를 설치되어 있어야한다. 설치되어 있지 않다면 다음과 같은 방법으로 설치해보자.
 
 # ▷ 크롬 드라이버 설치
@@ -29,6 +30,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 ```
+### □ 
 ```{Python}
 #######################
 ###  네이버 로그인  ###
@@ -67,3 +69,4 @@ driver.find_element_by_xpath('//*[@id="log.login"]').click()
 time.sleep(10)
 ```
 # ▷ 코드 다운로드
+[코드 다운로드 링크](https://github.com/riverKangg/riverkangg.github.io/blob/master/code/2020-09-04-crawling-1login.py/)

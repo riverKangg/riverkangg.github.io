@@ -12,8 +12,8 @@ tags :
 
 # ▷ 크롬 드라이버 설치
 1. 내 크롬 버전 확인
-
-2. 크롬 버전에 맞는 드라이버 다운로드
+![Alt text](/image/2020-09-04-crawling-크롬드라이버확인.png)
+2. 크롬 버전에 맞는 드라이버 다운로드    
 [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
 
 3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동

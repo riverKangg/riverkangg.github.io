@@ -1,6 +1,6 @@
 
 ---
-titles : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
+title : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
 date : 2020.09.06
 categories : 논문리뷰
 tags :
@@ -15,6 +15,6 @@ tags :
 논문의 전개과정
 1. deep candidate generation model
 2. separate deep ranking model
-** #추천시스템; #딥러닝; #확장성**
+**#추천시스템; #딥러닝; #확장성**
 
 # 1. INTRODUCTION

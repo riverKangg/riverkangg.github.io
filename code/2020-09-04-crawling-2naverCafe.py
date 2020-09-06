@@ -32,7 +32,7 @@ for keyword in cafe.get("keywords"):
     driver.switch_to.frame('cafe_main')
 
     ### 키워드 수집 정보
-    num_per_page = 15 # 페이지당 게시글 갯수 / 기본 15개인듯
+    num_per_page = 15          # 페이지당 게시글 갯수(default: 15개)
 
     address_list=[]
     page = 1
@@ -60,10 +60,9 @@ for keyword in cafe.get("keywords"):
                 temp_dict['date'] = x.find("td", class_="td_date").text.strip()
                 temp_dict['view'] = x.find("td", class_="td_view").text.strip()
                 address_list.append(temp_dict)
-#         print("(현재시각) "+str(datetime.datetime.now())+": "+ str(page) +"page done")
+        print("(현재시각) "+str(datetime.datetime.now())+": "+ str(page) +"page done")
 
         ### 다음 페이지로 넘어가기
-        ##### 여기 애매...
         page+=1
         driver.implicitly_wait(1)
         try:

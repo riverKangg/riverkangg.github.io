@@ -56,13 +56,13 @@ login = {"id" : ""   # 네이버 아이디
 
 # 로그인 정보 입력 함수
 def clipboard_input(user_xpath, user_input):
-    temp_user_input = pyperclip.paste()  # 사용자 클립보드를 따로 저장
+    temp_user_input = pyperclip.paste()
 
     pyperclip.copy(user_input)
     driver.find_element_by_xpath(user_xpath).click()
     ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
 
-    pyperclip.copy(temp_user_input)  # 사용자 클립보드에 저장 된 내용을 다시 가져 옴
+    pyperclip.copy(temp_user_input)
     time.sleep(1)
 ```
 

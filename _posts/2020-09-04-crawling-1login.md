@@ -32,20 +32,21 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 ```
-### □ 
+### □ 네이버 로그인 페이지 접속
+설치한 크롬 드라이버를 통해서 네이버 로그인 페이지에 접속한다. 주석 처리된 *headless* 옵션을 넣어주면 브라우저가 화면 상에 보이지 않는다. 예시를 보여주기 위해 주석처리 해놓았지만 실제 데이터를 크롤링 할 땐 옵션을 넣는 것을 추천한다.
 ```{Python}
-#######################
-###  네이버 로그인  ###
-#######################
-
 # 크롬 웹 드라이버의 경로를 설정
 driverLoc = # 크롬 드라이버 경로 입력
 options = webdriver.ChromeOptions()
+# options.add_argument("--headless")  # 브라우저 숨기기
 driver = webdriver.Chrome(driverLoc, chrome_options=options)
 
 # 네이버 로그인 페이지 접속
 driver.get("https://nid.naver.com/nidlogin.login")
+```
 
+### □ 네이버 id, pw 입력
+```{Python}
 ### 로그인 정보
 login = {"id" : ""   # 네이버 아이디
         ,"pw" : "" # 네이버 비밀번호
@@ -61,8 +62,12 @@ def clipboard_input(user_xpath, user_input):
 
     pyperclip.copy(temp_user_input)  # 사용자 클립보드에 저장 된 내용을 다시 가져 옴
     time.sleep(1)
+```
 
+### □ 네이버 로그인 버튼 클릭
+*xpath*를 이용하여 네이버 로그인 버튼을 클릭한다.    
 
+```{Python}
 # id, pw 입력 후 클릭
 clipboard_input('//*[@id="id"]', login.get("id"))
 clipboard_input('//*[@id="pw"]', login.get("pw"))
@@ -70,5 +75,6 @@ driver.find_element_by_xpath('//*[@id="log.login"]').click()
 
 time.sleep(10)
 ```
+
 # ▷ 코드 다운로드
 [코드 다운로드 링크](https://github.com/riverKangg/riverkangg.github.io/blob/master/code/2020-09-04-crawling-1login.py/)

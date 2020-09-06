@@ -1,5 +1,5 @@
 ---
-title : "[Python/프로그래머스] 동적계획법lv3-정수삼각형"
+title : "[Python/프로그래머스] 동적계획법-정수삼각형"
 date : 2020-08-30
 categroies : 프로그래머스
 tags :

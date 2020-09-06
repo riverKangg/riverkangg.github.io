@@ -16,7 +16,10 @@ tags :
 
 **#추천시스템; #딥러닝; #확장성**
 
+
+
 # 1. INTRODUCTION
+
 유투브는 전 세계에서 가장 많은 사용자들이 이용하는 비디오 공유 플랫폼이다. 20억명이 넘는 사용자들이 사용하고 끊임없이 동영상이 업로드 되고 있다. 따라서 유투브 추천 알고리즘은 세가지 관점에서 도전적인 과제라고 볼 수 있다.
 
 1. 규모(Scale) : 작은 규모에서 작동했던 추천 알고리즘은 유투브에 적용하면 작동하지 않았다. 유투브에 특화된 알고리즘이 필요할 뿐만 아니라 효율적인 서버 시스템이 필요하다.
@@ -29,3 +32,13 @@ tags :
   - Section2) 시스템 overview
   - Section3) candidate generation model
   - Section4) ranking model
+  - Section5) 결론
+
+
+
+# 2. SYSTEM OVERVIEW
+
+시스템은 두가지 용도의 신경망으로 이루어져 있다: *cadidate generation*과 *ranking*. 
+
+- The candidate generation network
+  

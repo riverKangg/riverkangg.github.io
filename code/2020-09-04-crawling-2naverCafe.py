@@ -2,10 +2,10 @@
 ###  설정  ###
 ##############
 
-### 결과 저장 경로
-save_path = "../../data/cafe/"
+# 결과 저장 경로
+save_path = ""
 
-### 카페 정보
+# 카페 정보
 cafe = {'name':                          # 카페 이름
        ,'page_link':                     # 주소
 cafe.update({"keywords" : [""]})         # 검색 키워드

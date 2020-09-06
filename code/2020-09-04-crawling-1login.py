@@ -17,9 +17,9 @@ driver = webdriver.Chrome(driverLoc, chrome_options=options)
 # 네이버 로그인 페이지 접속
 driver.get("https://nid.naver.com/nidlogin.login")
 
-### 로그인 정보
+# 로그인 정보
 login = {"id" : ""   # 네이버 아이디
-        ,"pw" : "" # 네이버 비밀번호
+        ,"pw" : ""   # 네이버 비밀번호
         }
 
 # 로그인 정보 입력 함수

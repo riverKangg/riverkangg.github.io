@@ -11,7 +11,6 @@ tags :
 유투브는 사용자의 이전 기록을 이용하여 사용자 맞춤으로 동영상을 추천해준다. 
 
 # ABSTRACT
-논문의 전개과정
 1. deep candidate generation model
 2. separate deep ranking model
 
@@ -22,4 +21,11 @@ tags :
 
 1. 규모(Scale) : 작은 규모에서 작동했던 추천 알고리즘은 유투브에 적용하면 작동하지 않았다. 유투브에 특화된 알고리즘이 필요할 뿐만 아니라 효율적인 서버 시스템이 필요하다.
 2. (Freshness) : 유투브는 끊임없이 동영상이 업로드 되기 때문에 코퍼스가 일정하지 않다.
-3. 잡음(Noise) : 
+3. 잡음(Noise) : 사용자가 시청한 동영상은 전체 동영상의 극히 일부(sparsity)이고, 사용자가 시청한 동영상을 마음에 들어하는지 알 수 없다.
+
+추천 시스템의 이전 연구들은 대부분 matrix-factorization을 이용했고 딥러닝을 이용한 연구는 상대적으로 적다. 
+
+논문의 전개 과정은 다음과 같다.
+  - Section2) 시스템 overview
+  - Section3) candidate generation model
+  - Section4) ranking model

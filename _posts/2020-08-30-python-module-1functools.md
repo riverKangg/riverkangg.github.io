@@ -1,5 +1,5 @@
 ---
-title : "[파이썬 모듈] functools-lru_cache"
+title : "[Python/모듈] functools-lru_cache"
 date : 2020-08-30
 categories : 파이썬 모듈
 tags :
@@ -7,14 +7,6 @@ tags :
 - 파이썬
 ---
 
-<details markdown="1">
-<summary>접기/펼치기</summary>
-
-
-이거 발견하면 커피사드림
-
-
-</details>
 
 이번 포스팅에서는 DP문제를 푸는데 lru_cache를 소개하고자 한다. "LRU(least recently used) 캐시"는 
 

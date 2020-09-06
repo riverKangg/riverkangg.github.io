@@ -13,13 +13,15 @@ tags :
 
 # ▷ 크롬 드라이버 설치
 1. 내 크롬 버전 확인    
-<img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-04-crawling-%ED%81%AC%EB%A1%AC%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84%ED%99%95%EC%9D%B8.png" width="600px" title="px(픽셀) 크기 설정" alt=""></img><br/>
+크롬의 버전을 먼저 확인해야 한다. 오른쪽 위에 설정버튼을 누르면 버전을 확인할 수 있다.
+<img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-04-crawling-%ED%81%AC%EB%A1%AC%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84%ED%99%95%EC%9D%B8.png" width="500px" title="px(픽셀) 크기 설정" alt=""></img><br/>
 
 2. 크롬 버전에 맞는 드라이버 다운로드    
+확인한 크롬 버전에 맞는 드라이버를 다운해주면 된다.
 [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
 
-3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동
-
+3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동   
+크롤링을 할 때 웹 브라우저의 경로를 입력해야하기 때문에 기억하도록 하자.
 
 
 

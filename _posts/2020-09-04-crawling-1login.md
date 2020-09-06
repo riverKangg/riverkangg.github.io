@@ -49,7 +49,7 @@ driver.get("https://nid.naver.com/nidlogin.login")
 
 ### □ 네이버 id, pw 입력
 ```{Python}
-### 로그인 정보
+# 로그인 정보
 login = {"id" : ""   # 네이버 아이디
         ,"pw" : ""   # 네이버 비밀번호
         }

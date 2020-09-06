@@ -67,9 +67,10 @@ def clipboard_input(user_xpath, user_input):
 ```
 
 ### □ 네이버 로그인 버튼 클릭
-*xpath*를 이용하여 네이버 로그인 버튼을 클릭한다.    
+*xpath*를 이용하여 네이버 로그인 버튼을 클릭한다.
+
 <details markdown="1">
-<summary>*xpath* 확인하는 방법</summary>
+<summary>더보기) xpath확인하는 방법</summary>
 확인방법
 </details>
 

@@ -11,6 +11,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 # 크롬 웹 드라이버의 경로를 설정
 driverLoc = # 크롬 드라이버 경로 입력
 options = webdriver.ChromeOptions()
+# options.add_argument("--headless")  # 브라우저 숨기기
 driver = webdriver.Chrome(driverLoc, chrome_options=options)
 
 # 네이버 로그인 페이지 접속

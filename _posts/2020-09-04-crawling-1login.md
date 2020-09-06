@@ -4,7 +4,7 @@ date: 2020-09-04T08:06:00-05:00
 categories: 크롤링
 tags : 
 - 크롤링
-- crawling
+- 네이버
 ---
 
 수정중

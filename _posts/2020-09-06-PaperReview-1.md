@@ -42,7 +42,7 @@ tags :
 
 - 후보 생성 네트워크 (The candidate generation network)
 
-  는 사용자의 시청 기록을 인풋으로 넣고, 큰 코퍼스에서 작은 서브셋을 검색한다. 후보 생성 네트워크는 협동 필터링(collaborative filtering)을 이용한 광범위한 개인화만을 제공한다. 사용자 간의 유사성은 coarse features 관점에서 표현된다. 여기서 말하는 coarse features는 비디오 시청한 ID, 검색 쿼리 토큰, 인구통계정보를 의미한다.
+  사용자의 시청 기록을 인풋으로 넣고, 큰 코퍼스에서 작은 서브셋을 검색한다. 후보 생성 네트워크는 협동 필터링(collaborative filtering)을 이용한 광범위한 개인화만을 제공한다. 사용자 간의 유사성은 coarse features 관점에서 표현된다. 여기서 말하는 coarse features는 비디오 시청한 ID, 검색 쿼리 토큰, 인구통계정보를 의미한다.
 
 - 랭킹 네트워크 (The ranking network)
   

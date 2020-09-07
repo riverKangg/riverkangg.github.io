@@ -32,11 +32,9 @@ tags :
 
 # ▷ 네이버 카페 크롤링 코드
 
-```
-##############
-###  설정  ###
-##############
 
+### □ 코드 구성
+```ruby
 # 결과 저장 경로
 save_path = ""
 
@@ -44,15 +42,13 @@ save_path = ""
 cafe = {'name':                          # 카페 이름
        ,'page_link':                     # 주소
 cafe.update({"keywords" : [""]})         # 검색 키워드
+```
 
 
 
+### □ 카페 게시글 링크 수집
 
-
-###############################
-###  카페 게시글 링크 수집  ###
-###############################
-
+```ruby
 for keyword in cafe.get("keywords"):
     ### 카페 주소 입력
     driver.get(cafe.get("page_link"))
@@ -121,14 +117,12 @@ if len(set(address_df['no']))!=len(address_df) :
     print("게시글 번호에 중복 존재")
 print("검색게시글수 : ", address_df.shape)
 display(address_df.head())
+```
 
 
+### □ 카페 게시글 내용 수집
 
-
-
-################################
-###  카페 게시글 내용 수집   ###
-################################
+```ruby
 import pickle
 from contextlib import suppress
 
@@ -220,7 +214,11 @@ for keyword in cafe.get("keywords"):
     
 # 크롬 종료 
 driver.quit()
+```
 
+
+### □ 최종 결과 확인
+```ruby
 # 수집한 데이터 : contents_df
 print("수집 데이터 : ", contents_df.shape)
 # 에러 난 게시글 : error_list

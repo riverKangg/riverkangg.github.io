@@ -48,4 +48,8 @@ tags :
   
   후보 중에 상대적인 중요도를 구분하기 위해서 세밀한 표현이 필요하다. 여기에는 재현율(recall, 실제 True 중 True로 예측한 비율)이 사용된다. 
   
-
+모델 성능 측정은 두가지로 한다.<br>
+1. offline metrics
+  - precision, recall, ranking loss
+  - 
+   

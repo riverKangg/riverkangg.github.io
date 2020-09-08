@@ -69,6 +69,13 @@ tags :
 
 ![P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}}](https://latex.codecogs.com/gif.latex?P(w_t=i|U,C)&space;=&space;\frac{e^{v_iu}}{\sum_{j\in&space;V}e^{v_ju}})
 
+\begin{align*}
+\\
+\mathbf{a}^{(l)} = f(W^{(l-1)}\mathbf{a}^{(l-1)}+\mathbf{b}^{(l-1)})
+\\
+\\
+\end{align*}
+
 <math display="block">
 <mrow>
   <mi>x</mi>

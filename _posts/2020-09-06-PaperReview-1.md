@@ -65,4 +65,6 @@ tags :
 
 ## 3.1 Recommendation as Classification
 
+극단적인 다중 분류를 하여 추천한다. 
 
+$ P(w_t=i|U,C) = \freq(e^{v_iu},\Sigma_{j\inV}e^{v_ju} $ 

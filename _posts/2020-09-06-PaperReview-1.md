@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ---
 title : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
 date : 2020-09-06
@@ -67,4 +68,4 @@ tags :
 
 극단적인 다중 분류를 하여 추천한다. 
 
-<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>P</mi><mo>(</mo><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>i</mi><mo>|</mo><mi>U</mi><mo>,</mo><mi>C</mi><mo>)</mo><mo>=</mo><mfrac><msup><mi>e</mi><mrow><msub><mi>v</mi><mi>i</mi></msub><mi>u</mi></mrow></msup><mrow><msub><mo>&#x2211;</mo><mrow><mi>j</mi><mo>&#x2208;</mo><mi>V</mi></mrow></msub><msup><mi>e</mi><mrow><msub><mi>v</mi><mi>j</mi></msub><mi>u</mi></mrow></msup></mrow></mfrac></math>
+(E = mc ^ 2), $$ x_ {1,2} =\frac {-b\pm\sqrt {b ^ 2-4ac}} {2b}. $$

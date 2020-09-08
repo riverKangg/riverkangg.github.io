@@ -1,11 +1,11 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ---
 title : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
-date : 2020-09-06
+date : 2020-09-08
 categories : 논문리뷰
 tags :
 - 추천알고리즘
 - 논문리뷰
+use_math: true
 ---
 수정중
 

@@ -69,4 +69,36 @@ tags :
 
 ![P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}}](https://latex.codecogs.com/gif.latex?P(w_t=i|U,C)&space;=&space;\frac{e^{v_iu}}{\sum_{j\in&space;V}e^{v_ju}})
 
-  
+<math display="block">
+<mrow>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mfrac>
+    <mrow>
+      <mrow>
+        <mo>-</mo>
+        <mi>b</mi>
+      </mrow>
+      <mo>±</mo>
+      <msqrt>
+        <mrow>
+          <msup>
+            <mi>b</mi>
+            <mn>2</mn>
+          </msup>
+          <mo>-</mo>
+          <mrow>
+            <mn>4</mn>
+            <mi>a</mi>
+            <mi>c</mi>
+          </mrow>
+        </mrow>
+      </msqrt>
+    </mrow>
+    <mrow>
+      <mn>2</mn>
+      <mi>a</mi>
+    </mrow>
+  </mfrac>
+</mrow>
+</math>

@@ -67,6 +67,6 @@ tags :
 
 극단적인 다중 분류를 하여 추천한다. 
 
-```math
-P(w_t=i|U,C) = \frec{e^{v_iu}}{\Sigma_{j\inV}e^{v_ju}}
+```{Python}
+$P(w_t=i|U,C) = \frec{e^{v_iu}}{\Sigma_{j\inV}e^{v_ju}}$
 ```

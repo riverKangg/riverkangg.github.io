@@ -67,7 +67,6 @@ tags :
 
 극단적인 다중 분류를 하여 추천한다. 
 
-<center>
-  ![P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}}](https://latex.codecogs.com/gif.latex?P(w_t=i|U,C)&space;=&space;\frac{e^{v_iu}}{\sum_{j\in&space;V}e^{v_ju}})
-</center>
+![P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}}](https://latex.codecogs.com/gif.latex?P(w_t=i|U,C)&space;=&space;\frac{e^{v_iu}}{\sum_{j\in&space;V}e^{v_ju}})
+
   

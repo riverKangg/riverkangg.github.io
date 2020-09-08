@@ -66,48 +66,4 @@ tags :
 ## 3.1 Recommendation as Classification
 
 극단적인 다중 분류를 하여 추천한다. 
-
-![P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}}](https://latex.codecogs.com/gif.latex?P(w_t=i|U,C)&space;=&space;\frac{e^{v_iu}}{\sum_{j\in&space;V}e^{v_ju}})
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;P(w_t=i|U,C) = \frac{e^{v_iu}}{\sum_{j\in V}e^{v_ju}} title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
-
-\begin{align*}
-\\
-\mathbf{a}^{(l)} = f(W^{(l-1)}\mathbf{a}^{(l-1)}+\mathbf{b}^{(l-1)})
-\\
-\\
-\end{align*}
-
-<math display="block">
-<mrow>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mfrac>
-    <mrow>
-      <mrow>
-        <mo>-</mo>
-        <mi>b</mi>
-      </mrow>
-      <mo>±</mo>
-      <msqrt>
-        <mrow>
-          <msup>
-            <mi>b</mi>
-            <mn>2</mn>
-          </msup>
-          <mo>-</mo>
-          <mrow>
-            <mn>4</mn>
-            <mi>a</mi>
-            <mi>c</mi>
-          </mrow>
-        </mrow>
-      </msqrt>
-    </mrow>
-    <mrow>
-      <mn>2</mn>
-      <mi>a</mi>
-    </mrow>
-  </mfrac>
-</mrow>
-</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>P</mi><mo>(</mo><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>i</mi><mo>|</mo><mi>U</mi><mo>,</mo><mi>C</mi><mo>)</mo><mo>=</mo><mfrac><msup><mi>e</mi><mrow><msub><mi>v</mi><mi>i</mi></msub><mi>u</mi></mrow></msup><mrow><msub><mo>&#x2211;</mo><mrow><mi>j</mi><mo>&#x2208;</mo><mi>V</mi></mrow></msub><msup><mi>e</mi><mrow><msub><mi>v</mi><mi>j</mi></msub><mi>u</mi></mrow></msup></mrow></mfrac></math>

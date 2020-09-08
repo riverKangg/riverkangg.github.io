@@ -55,3 +55,14 @@ tags :
 
 두 실험의 결과가 항상 상관관계가 있진 않다. 메트릭으로 나타나지 않는 실제 결과를 A/B 테스트를 통해 알아보고자 두가지 실험을 병행한다.
 
+
+
+
+# 3. CANDIDATE GENERATION
+
+이 모델의 전신은 rank loss로 학습된 matrix factorization 접근법이다. 신경망 모델의 초기 반복은 사용자의 이전 시청기록만 포함하는 얕은 네트워크(shallow networks)로 이러한 분해(factorization)을 모방한다. 이런 관점에서 우리의 접근법이 factorization의 비선형 일반화라고 볼 수 있다.
+
+
+## 3.1 Recommendation as Classification
+
+

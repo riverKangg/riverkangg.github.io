@@ -10,7 +10,7 @@ use_math: true
 
 수정중
 
-[SentencePiece Paper](https://arxiv.org/pdf/1808.06226.pdf)
+[SentencePiece Paper](https://arxiv.org/pdf/1808.06226.pdf)    
 [SentencePiece Github](https://github.com/google/sentencepiece/)
 
 
@@ -85,4 +85,4 @@ Decoder를 Encoder의 역연산으로 이용한다.
 
 ## 3.4 Customizable character normalization
 
-문자 정규화(character normalization)은 
+문자 정규화(character normalization)는 

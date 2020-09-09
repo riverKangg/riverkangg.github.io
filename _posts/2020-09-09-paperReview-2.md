@@ -57,11 +57,19 @@ NMT가 end-to-end 번역을 하더라도 아직 특정 언어에 한정되어 �
 Decoder를 Encoder의 역연산으로 이용한다.
 <center>
    Decode(Encoder(Normalize( *text* ))) = Normalize( *text* )
-</center>
+</center>  
 
-```
-detok = ''.join(tokens).replace('_', ' ')
-```
+정규화 된 텍스트를 재현하기 위한 모든 정보는 인코더의 출력에 보존됩니다. 무손실 토큰화는 유니코드 문자의 시퀀스를 입력 텍스트로 다룬다. 
+
+1. 공백 -> **\_**(U+2581)
+      - detokenize 하는 파이썬 코드이다.
+      ```
+      # detokenize code
+      detok = ''.join(tokens).replace('_', ' ')
+      ```
+
+2. **\@\@** : 단어 경계 간 마커
+
 
 
 ## 3.2 Efficient subword training and segmentation

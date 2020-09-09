@@ -9,4 +9,25 @@ tags :
 use_math: true
 ---
 
-Let's test some inline math $x$, $y$, $x_1$, $y_1$.
+# Abstract
+
+SentencePiece는 언어에 구애받지 않는 subword tokenizer와 detokenizer이다. 신경망기계번역을 포함한 신경망 기반의 텍스트 처리로 구성되어 있다.
+센텐스피스는 C++과 Python을 제공한다. 이전의 서브워드 분할 인풋은 워드시퀀스로 pre-tokenized 되어야 한다. 하지만 센텐스피스는 기존 문장을 바로 서브워드 모델로 학습시킬 수 있다. 따라서 완전한 **end-to-end**와 언어에 구애받지 않는 시스템을 만들 수 있다. 
+
+NMT 모델을 영어-일본어 기계번역으로 검증 실험한다. 
+
+[SentencePiece Github]("https://github.com/google/sentencepiece/)
+
+
+
+
+# Introduction
+
+NMT가 end-to-end 번역을 하더라도 아직 특정 언어에 한정되어 있고, pre-와 postprocessor에 의존한다. 전통적인 통계기계번역(SMT, Statistical machine translation) 시스템은 유럽언어들에 맞춰 만들어져있다. 이는 한국어, 중국어, 일본어 같은 비분할(non-segmented) 언어들에는 단어 분할기를 각각 만들어야 한다. 
+
+- 간단한
+- 효율적
+- 재사용 가능한
+
+1. Byte-pair-encoding(BPE)
+2. uni-gram language model

@@ -31,3 +31,14 @@ NMT가 end-to-end 번역을 하더라도 아직 특정 언어에 한정되어 �
 
 1. Byte-pair-encoding(BPE)
 2. uni-gram language model
+
+
+
+# 2. System Overview
+
+센텐스피스는 네가지 요소로 구성된다.
+
+- **Nomarlizer** 
+   : a 
+- **Trainer**
+    

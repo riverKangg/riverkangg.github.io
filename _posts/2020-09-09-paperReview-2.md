@@ -74,3 +74,16 @@ Decoder를 Encoder의 역연산으로 이용한다.
 
 ## 3.2 Efficient subword training and segmentation
 
+- pre-tokenization : 
+
+
+
+
+## 3.3 Vocabulary id management
+
+
+
+
+## 3.4 Customizable character normalization
+
+문자 정규화(character normalization)은 

@@ -15,7 +15,7 @@ SentencePiece는 언어에 구애받지 않는 subword tokenizer와 detokenizer�
 
 NMT 모델을 영어-일본어 기계번역으로 검증 실험한다. 
 
-[SentencePiece Github]("https://github.com/google/sentencepiece/)
+[SentencePiece Github]("https://github.com/google/sentencepiece/")
 
 
 

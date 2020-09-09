@@ -53,3 +53,11 @@ Decoder를 Encoder의 역연산으로 이용한다.
 <center>
    Decode(Encoder(Normalize( *text* ))) = Normalize( *text* )
 </center>
+
+```
+detok = ''.join(tokens).replace('_', ' ')
+```
+
+
+## 3.2 Efficient subword training and segmentation
+

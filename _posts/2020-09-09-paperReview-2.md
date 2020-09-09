@@ -85,4 +85,4 @@ Decoder를 Encoder의 역연산으로 이용한다.
 
 ## 3.4 Customizable character normalization
 
-문자 정규화(character normalization)는 
+센텐스피스는 **Unicode NFKC normalization** 정규화 방법을 사용한다.

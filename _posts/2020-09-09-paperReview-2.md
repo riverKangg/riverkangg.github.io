@@ -38,7 +38,19 @@ NMT가 end-to-end 번역을 하더라도 아직 특정 언어에 한정되어 �
 
 센텐스피스는 네가지 요소로 구성된다.
 
-- **Nomarlizer** 
-   : a 
+- **Nomarlizer** : a 
 - **Trainer**
-    
+- **Encoder**
+- **Decoder** : 서브워드 시퀀스를 normalized된 텍스트로 바꿈
+
+
+
+
+# 3. Library Design
+
+## 3.1 Lossless Tokenization
+
+Decoder를 Encoder의 역연산으로 이용한다.
+<center>
+   Decode(Encoder(Normalize( *text* ))) = Normalize( *text* )
+</center>

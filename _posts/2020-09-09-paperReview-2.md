@@ -10,9 +10,8 @@ use_math: true
 
 수정중
 
-[SentencePiece Paper]("https://arxiv.org/pdf/1808.06226.pdf/")
-
-[SentencePiece Github]("https://github.com/google/sentencepiece/")
+[SentencePiece Paper](https://arxiv.org/pdf/1808.06226.pdf/)
+[SentencePiece Github](https://github.com/google/sentencepiece/)
 
 
 

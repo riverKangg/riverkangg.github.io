@@ -9,9 +9,10 @@ use_math: true
 ---
 수정중
 
-[논문 링크](https://dl.acm.org/doi/abs/10.1145/2959100.2959190/)
 
-유투브는 사용자의 이전 기록을 이용하여 사용자 맞춤으로 동영상을 추천해준다. 
+2016년 구글 리서치가 공개한 논문이다. 이 논문에서는 YouTube라는 영상 플랫폼의 특징을 고려한 추천시스템을 설명하고 있다.
+
+[논문 링크](http://research.google.com/pubs/pub45530.html?utm_content=bufferf6bbc&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
 
 # ABSTRACT
 1. deep candidate generation model
@@ -77,3 +78,13 @@ $$
 ### *Efficient Extreme Multiclass*
 
 실제 레이블과 샘플링 된 네거티브 클래스에 대해 교차 엔트로피 손실이 최소화 된다.
+
+사용자에게 보여줄 top N개를 뽑는다. 수백만개의 항목들
+
+
+
+## 3.2 Model Architecture
+
+각 영상마다 고정된 단어로 *고차원 임베딩*을 학습시키고 이 임베딩을 *피드포워드 신경망*에 넣는다. 사용자의 시청 기록은 sparse한 영상 ID에 대한 가변길이 시퀀스로 나타낸다. 이 시퀀스는 임베딩으로 된 dense 벡터 표현으로 매핑된 것이다. 
+네트워크는 고정길이 dense를 입력이 필요하고 여러 방법(합, 구성요소별 최대 등) 중에서 가장 잘 수행 된 임베딩의 평균을 구한다. 
+피처들은 첫번째 레이어에 연ㄱ

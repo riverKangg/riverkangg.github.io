@@ -62,6 +62,10 @@ use_math: true
 
 # 3. CANDIDATE GENERATION
 
+<p align="center">
+  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig2.png" width=300>
+</p>
+
 이 모델의 전신은 rank loss로 학습된 matrix factorization 접근법이다. 신경망 모델의 초기 반복은 사용자의 이전 시청기록만 포함하는 얕은 네트워크(shallow networks)로 이러한 분해(factorization)을 모방한다. 이런 관점에서 우리의 접근법이 factorization의 비선형 일반화라고 볼 수 있다.
 
 

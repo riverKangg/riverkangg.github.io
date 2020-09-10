@@ -42,13 +42,29 @@ use_math: true
 
 # 2. SYSTEM OVERVIEW
 
-- 후보 생성 네트워크 (The candidate generation network)
 
-  사용자의 시청 기록을 인풋으로 넣고, 큰 코퍼스에서 작은 서브셋을 검색한다. 후보 생성 네트워크는 협동 필터링(collaborative filtering)을 이용한 광범위한 개인화만을 제공한다. 사용자 간의 유사성은 coarse features 관점에서 표현된다. 여기서 말하는 coarse features는 비디오 시청한 ID, 검색 쿼리 토큰, 인구통계정보를 의미한다.
+<p align="center">
+  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig2.png" width=400>
+</p>
 
-- 랭킹 네트워크 (The ranking network)
-  
-  후보 중에 상대적인 중요도를 구분하기 위해서 세밀한 표현이 필요하다. 여기에는 재현율(recall, 실제 True 중 True로 예측한 비율)이 사용된다. 
+위 그림이 추천시스템의 전체적인 구성이고, 파란색 블럭이 실제 추천을 진행하는 단계이다.
+
+1. video corpus
+    
+    영상 코퍼스는 사용자에게 추천해줄 영상의 후보를 의미한다. 
+
+2. 후보 생성 네트워크 (The candidate generation network)
+
+    - 협동 필터링(collaborative filtering)으로 넓은 의미의 개인화를 제공한다.    
+    - 사용자 간의 유사성은 coarse features 관점에서 표현된다. 여기서 말하는 coarse features는 비디오 시청한 ID, 검색 쿼리 토큰, 인구통계정보를 의미한다.
+    
+3. 랭킹 네트워크 (The ranking network)
+    
+    - 상대적인 중요도를 구분하여 세밀한 추천 목록 생성한다. 
+    - 여기에는 재현율(recall, 실제 True 중 True로 예측한 비율)이 사용된다. 
+    
+이 과정에서 사용자의 시청기록과 맥락을 고려한다.
+
   
   
 모델 성능은 두가지 방법으로 측정한다. 
@@ -62,14 +78,6 @@ use_math: true
 
 # 3. CANDIDATE GENERATION
 
-<p align="center">
-  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig2.png" width=400>
-</p>
-
-추천시스템의 주요 구성은 파란색 블럭이다.
-  > 1. candidate generation : collaborative filtering으로 넓은 의미의 개인화 진행
-  > 2. ranking : 세밀한 추천 목록 생성
-이 과정에서 사용자의 시청기록과 맥락을 고려한다.
 
 
 ## 3.1 Recommendation as Classification

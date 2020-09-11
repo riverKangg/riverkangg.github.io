@@ -88,9 +88,54 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig3.png" width=500>
 </p>
 
-맨 아래 입력부터 맨 위 아웃풋까지의 시스템을 나타낸다. 이 그림에서 신경망 부분을 살펴보면,
+맨 아래 입력부터 맨 위 아웃풋까지의 시스템을 나타낸다. 이 그림에서 시청기록은 파란색을 나타낸다. 이 부분을 자세하게 살펴보자.
 
 1. 각 영상마다 고정된 길이로 *고차원 임베딩*을 학습시킨다.
 2. 이 임베딩을 *피드포워드 신경망*에 넣는다. 사용자의 시청 기록은 sparse한 영상 ID에 대한 가변길이 시퀀스로 나타낸다. 이 시퀀스는 임베딩으로 된 dense 벡터 표현으로 매핑된 것이다. 
 네트워크는 고정길이 dense를 입력이 필요하고 여러 방법(합, 구성요소별 최대 등) 중에서 가장 잘 수행 된 임베딩의 평균을 구한다. 
 3. 피처들은 넓은 첫번째 레이어와 연될되고, 그 다음에는 여러 개의 완전 연결된 ReLU 레이어로 이어진다.
+
+임베딩 된 sparse 피처를 보여주는 심층후보생성모델구조는 dense 피처로 연결된다. 
+임베딩은 연결 전에 평균화 되어 히든레이어에 대한 입력에 적합한 가변 크기의 sparse ID 백을 고정 너비 벡터로 변환한다.
+모든 히든레이어는 완전연결(fully connected)되어 있다. 훈련하면서 생플링 된 소프트맥스 출력에서 경사하강법으로 cross-entropy loss가 최소화된다. 
+실시간으로 수백개의 후보 영상 추천을 생성하기위해 대략적인 최근접이웃 조회가 수행된다.
+
+
+## 3.3 Heterogeneous Signals
+
+- 검색기록도 시청기록과 똑같이 다룰 수 있다. 검색기록은 그림에서 초록색으로 표현되어 있다.
+- 인구통계학적 피처
+
+
+### "Example Age" Feature
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig4.png" width=400>
+</p>
+영상의 나이를 피처로 학습시켰을 때, 정확한 표현이 가능하다. 그래프를 보면 영상나이를 넣지 않은 baseline모델(파란색)은 training window내의 평균 가능성으로만 예측한다. 
+
+
+
+## 3.4 Label and Context Selection
+
+## 3.5 Experiments with Features and Depth
+
+
+
+# 4. RANKING
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
+</p>
+## 4.1 Feature Representation
+### *Feature Engineering*
+### *Embedding Categorical Features*
+### *Normalizing Continuous Features*
+
+## 4.2 Modeling Expected Watch Time
+
+## 4.3 Experiments with Hidden Layers
+
+
+
+# 5. CONCLUSIONS
+
+# 6. ACKNOWLEDGMENTS

@@ -35,9 +35,9 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 
 # 2. SYSTEM OVERVIEW
-<img src="image/2020-09-10-fig2.png" width=500>
+
 <p align="center">
-  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/img/2020-09-10-fig3.png" width=500>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/img/2020-09-10-fig2.png" width=500>
 </p>
 
 위 그림이 추천시스템의 전체적인 구성이고, 파란색 블럭이 실제 추천을 진행하는 단계이다.

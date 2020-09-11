@@ -85,7 +85,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 ## 3.2 Model Architecture
 
 <p align="center">
-  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig3.png" width=500>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig3.png" width=500>
 </p>
 
 맨 아래 입력부터

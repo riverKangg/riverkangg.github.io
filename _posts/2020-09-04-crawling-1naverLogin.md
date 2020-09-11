@@ -6,22 +6,25 @@ tags :
 - 크롤링
 ---
 
-수정중
+네이버 로그인 크롤러를 만들어보자.
 
-네이버 로그인이 가능한 크롤러를 만들기 위해서 크롬 드라이버를 설치되어 있어야한다. 설치되어 있지 않다면 다음과 같은 방법으로 설치해보자.
+한번 만들어 놓으면 네이버 로그인이 필요한 사이트를 크롤링 할 때 유용하게 쓸 수 있다. 
+
+먼저 크롬 드라이버를 설치되어 있어야한다. 설치되어 있지 않다면 다음과 같은 방법으로 설치해보자.
 
 # ▷ 크롬 드라이버 설치
-1. 내 크롬 버전 확인    
+#### 1. 내 크롬 버전 확인    
 크롬의 버전을 먼저 확인해야 한다. 오른쪽 위에 설정버튼을 누르면 버전을 확인할 수 있다.
-<img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-04-crawling-%ED%81%AC%EB%A1%AC%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84%ED%99%95%EC%9D%B8.png" width="500px" title="px(픽셀) 크기 설정" alt=""></img><br/>
+<p align="center">
+        <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-04-crawling-크롬드라이버확인.png" width=500>
+</p>
 
-2. 크롬 버전에 맞는 드라이버 다운로드    
-확인한 크롬 버전에 맞는 드라이버를 다운해주면 된다.
-[https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
+#### 2. 크롬 버전에 맞는 드라이버 다운로드    
+확인한 크롬 버전에 맞는 드라이버를 다운해주면 된다.   
+<https://chromedriver.chromium.org/downloads>
 
-3. 압축 풀고 원하는 경로로 **chromedriver.exe**를 이동   
+#### 3. 압축 풀고 원하는 경로로 *chromedriver.exe*를 이동   
 크롤링을 할 때 웹 브라우저의 경로를 입력해야하기 때문에 기억하도록 하자.
-
 
 
 # ▷ 네이버 로그인 코드

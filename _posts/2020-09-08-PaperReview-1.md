@@ -24,7 +24,7 @@ use_math: true
 
 # 1. INTRODUCTION
 
-유투브는 전 세계에서 가장 많은 사용자들이 이용하는 비디오 공유 플랫폼이다. 20억명이 넘는 사용자들이 사용하고 끊임없이 동영상이 업로드 되고 있다. 따라서 이번 유투브 추천알고리즘은 세가지 관점을 고려해서 만들었다.
+Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 1. 규모(Scale) : 작은 규모에서 작동했던 추천 알고리즘은 유투브에 적용하면 작동하지 않았다. 유투브에 특화된 알고리즘이 필요할 뿐만 아니라 효율적인 서버 시스템이 필요하다.
 2. 새로움(Freshness) : 유투브는 끊임없이 동영상이 업로드 되기 때문에 후보군(코퍼스)이 일정하지 않다.
@@ -38,7 +38,7 @@ use_math: true
 
 
 <p align="center">
-  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig2.png" width=400>
+  <img src="/image/2020-09-10-fig2.png" width=400>
 </p>
 
 위 그림이 추천시스템의 전체적인 구성이고, 파란색 블럭이 실제 추천을 진행하는 단계이다.
@@ -65,7 +65,7 @@ use_math: true
   1. Offline Experiments : precision, recall, ranking loss
   2. Live Experiments : 클릭률, 시청시간   
 
-두 실험의 결과가 항상 상관관계가 있진 않다. 메트릭으로 나타나지 않는 실제 결과를 A/B 테스트를 통해 알아보고자 두가지 실험을 병행한다.
+두 실험의 결과가 항상 똑같진 않다. 1번 방법의 메트릭으로 나타나지 않는 실제 결과를 A/B 테스트를 통해 알아보고자 2번째 방법을 병행한다.
 
 
 

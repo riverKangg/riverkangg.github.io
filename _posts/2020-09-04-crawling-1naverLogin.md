@@ -73,8 +73,19 @@ def clipboard_input(user_xpath, user_input):
 
 <details markdown="1">
 <summary>xpath 확인 방법 클릭!</summary>
-확인방법
+
+크롬에서 ```F12```를 누르면 다음과 같은 화면을 볼 수 있다.  
+<p align="center">
+        <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-04-crawling-1naverLogin-fig2.png" width=900>
+</p>
+1. 페이지 구성요소를 확인할 수 있는 도구를 선택한다.
+2. 클릭하고 싶은 요소을 누른다.
+3. 클릭하고 싶은 요소에 대한 html에서 마우스 우클릭해서 다음과 같이 xpath를 복사할 수 있다.
+<p align="center">
+        <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-04-crawling-1naverLogin-fig3.png" width=400>
+</p>
 </details>
+
 
 
 ```{Python}

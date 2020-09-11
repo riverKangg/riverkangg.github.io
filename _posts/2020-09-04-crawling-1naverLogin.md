@@ -2,7 +2,8 @@
 title: "[Python/Crawling] 네이버 로그인(캡챠 해결)"
 date: 2020-09-04T08:06:00-05:00
 categories: python
-tags : - 크롤링
+tags :
+- 크롤링
 ---
 
 수정중

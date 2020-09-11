@@ -42,16 +42,12 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 위 그림이 추천시스템의 전체적인 구성이고, 파란색 블럭이 실제 추천을 진행하는 단계이다.
 
-1. video corpus
-    
-    영상 코퍼스는 사용자에게 추천해줄 영상의 후보를 의미한다. 
-
-2. 후보 생성 네트워크 (The candidate generation network)
+- 후보 생성 네트워크 (The candidate generation network)
 
     - 협동 필터링(collaborative filtering)으로 넓은 의미의 개인화를 제공한다.    
     - 사용자 간의 유사성은 coarse features 관점에서 표현된다. 여기서 말하는 coarse features는 비디오 시청한 ID, 검색 쿼리 토큰, 인구통계정보를 의미한다.
     
-3. 랭킹 네트워크 (The ranking network)
+- 랭킹 네트워크 (The ranking network)
     
     - 상대적인 중요도를 구분하여 세밀한 추천 목록 생성한다. 
     - 여기에는 재현율(recall, 실제 True 중 True로 예측한 비율)이 사용된다. 

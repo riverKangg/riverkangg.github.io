@@ -35,7 +35,7 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 
 # 2. SYSTEM OVERVIEW
-
+<img src="image/2020-09-10-fig2.png" width=500>
 <p align="center">
   <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/img/2020-09-10-fig3.png" width=500>
 </p>
@@ -88,6 +88,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig3.png" width=500>
 </p>
 
-각 영상마다 고정된 단어로 *고차원 임베딩*을 학습시키고 이 임베딩을 *피드포워드 신경망*에 넣는다. 사용자의 시청 기록은 sparse한 영상 ID에 대한 가변길이 시퀀스로 나타낸다. 이 시퀀스는 임베딩으로 된 dense 벡터 표현으로 매핑된 것이다. 
+맨 아래 입력부터
+1. 각 영상마다 고정된 단어로 *고차원 임베딩*을 학습시키고 이 임베딩을 *피드포워드 신경망*에 넣는다. 사용자의 시청 기록은 sparse한 영상 ID에 대한 가변길이 시퀀스로 나타낸다. 이 시퀀스는 임베딩으로 된 dense 벡터 표현으로 매핑된 것이다. 
 네트워크는 고정길이 dense를 입력이 필요하고 여러 방법(합, 구성요소별 최대 등) 중에서 가장 잘 수행 된 임베딩의 평균을 구한다. 
 피처들은 첫번째 레이어에 연ㄱ

@@ -1,7 +1,7 @@
 ---
 title: "[Python/프로그래머스] 탐욕법-체육복"
 date: 2020-08-29 08:26:28 -0400
-categories: 프로그래머스
+categories: python
 tags : 
 - 프로그래머스
 - 문제풀이

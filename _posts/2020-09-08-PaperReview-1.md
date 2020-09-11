@@ -37,7 +37,7 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 # 2. SYSTEM OVERVIEW
 
 <p align="center">
-  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-09-10-fig2.png" width=500>
+  <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/paper1_fig2.png" width=500>
 </p>
 
 위 그림이 추천시스템의 전체적인 구성이고, 파란색 블럭이 실제 추천을 진행하는 단계이다.
@@ -67,16 +67,11 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 # 3. CANDIDATE GENERATION
 
-
-
 ## 3.1 Recommendation as Classification
 
 극단적인 다중 분류를 하여 추천한다. 
 
-
-$$
-K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar)
-$$
+$$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 
 ### *Efficient Extreme Multiclass*

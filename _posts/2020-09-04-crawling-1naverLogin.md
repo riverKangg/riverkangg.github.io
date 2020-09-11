@@ -73,7 +73,7 @@ def clipboard_input(user_xpath, user_input):
 
 <details markdown="1">
 <summary>xpath 확인 방법 클릭!</summary>
-
+<hr>
 크롬에서 ```F12```를 누르면 다음과 같은 화면을 볼 수 있다.  
 
 <p align="center">
@@ -89,6 +89,7 @@ def clipboard_input(user_xpath, user_input):
 <p align="center">
         <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-04-crawling-1naverLogin-fig3.png" width=400>
 </p>
+<hr>
 </details>
 
 

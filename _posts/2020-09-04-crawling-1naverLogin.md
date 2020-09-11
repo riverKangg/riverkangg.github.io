@@ -29,7 +29,7 @@ tags :
 
 # ▷ 네이버 로그인 코드
 ### □ 라이브러리 호출
-```{Python}
+```
 import time
 import pyperclip
 from selenium import webdriver
@@ -38,7 +38,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 ```
 ### □ 네이버 로그인 페이지 접속
 설치한 크롬 드라이버를 통해서 네이버 로그인 페이지에 접속한다. 주석 처리된 *headless* 옵션을 넣어주면 브라우저가 화면 상에 보이지 않는다. 예시를 보여주기 위해 주석처리 해놓았지만 실제 데이터를 크롤링 할 땐 옵션을 넣는 것을 추천한다.
-```{Python}
+```
 # 크롬 웹 드라이버의 경로를 설정
 driverLoc = # 크롬 드라이버 경로 입력
 options = webdriver.ChromeOptions()
@@ -50,7 +50,7 @@ driver.get("https://nid.naver.com/nidlogin.login")
 ```
 
 ### □ 네이버 id, pw 입력
-```{Python}
+```
 # 로그인 정보
 login = {"id" : ""   # 네이버 아이디
         ,"pw" : ""   # 네이버 비밀번호
@@ -94,7 +94,7 @@ def clipboard_input(user_xpath, user_input):
 
 
 
-```{Python}
+```
 # id, pw 입력 후 클릭
 clipboard_input('//*[@id="id"]', login.get("id"))
 clipboard_input('//*[@id="pw"]', login.get("pw"))

@@ -113,9 +113,12 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 </p>
 영상의 나이를 피처로 학습시켰을 때, 정확한 표현이 가능하다. 그래프를 보면 영상나이를 넣지 않은 baseline모델(파란색)은 training window내의 평균 가능성으로만 예측한다. 
 
+## 3.4 Label and Context Selection 
+- 훈련예제는 모든 YouTube 시청으로부터 생성 
+    : 
+- 사용자 별로 고정된 수의 훈련예제를 생성 
+    : 매우 활발한 소수의 사용자가 loss를 지배하는 것을 막는다.
 
-
-## 3.4 Label and Context Selection
 
 ## 3.5 Experiments with Features and Depth
 

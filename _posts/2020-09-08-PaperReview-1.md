@@ -139,8 +139,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
 </p>
-- 실시간 A/B 테스트를 통해서 
-
+- 이 모델은 실시간 A/B 테스트를 통해서 튜닝되는데, 이때 평가기준은 추천횟수 대비 시청시간이다.
 
 ## 4.1 Feature Representation
 
@@ -159,7 +158,8 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 ### *Feature Engineering*
 
-- 랭킹 모델에는 수백개의 피처를 사용한다. 딥러닝이 feature engineering을 덜 엄밀하게 된다고 생각하지만 raw data를 신경망에 그대로 넣을 수는 없다.
+- 랭킹 모델에는 수백개의 피처를 사용한다. 딥러닝이 feature engineering을 줄여준다고 생각하지만, 이 논문에서는 상당한 엔지니어링 자원을 사용하고 있다.
+- 
 
 ### *Embedding Categorical Features*
 
@@ -168,7 +168,6 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 ## 4.2 Modeling Expected Watch Time
 - wighted logistic regression을 사용한다. cross-entropy loss를 줄이는 방향으로 학습힌다.
-- 
 
 ## 4.3 Experiments with Hidden Layers
 

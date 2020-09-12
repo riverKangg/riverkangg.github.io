@@ -88,7 +88,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig3.png" width=500>
 </p>
 
-맨 아래 입력부터 맨 위 아웃풋까지 모델의 전체적인 구조인 그림이다. 이 그림에서 시청기록에 대한 부분(왼쪽 하단 파란색)을 자세하게 살펴보자.
+맨 아래 입력부터 맨 위 아웃풋까지 모델의 전체적인 구조인 그림이다. 이 그림에서 **시청기록**에 대한 부분(왼쪽 하단 파란색)을 자세하게 살펴보자.
 
 시청기록을 고정된 길이의 *고차원 임베딩 벡터*로 만들어, 학습시키는 방법을 사용하고자 한다. (언어모델의 학습과 유사)
 

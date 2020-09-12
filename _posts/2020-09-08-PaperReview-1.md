@@ -113,6 +113,9 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 
 ### "Example Age" Feature
+- Youtube 입장에서 새로 업로드(fresh) 된 영상을 추천하는 것이 중요하다. 따라서 사용자가 새로운 컨텐츠를 좋아하는지 지속적으로 관찰한다.
+- 머신러닝은 과거를 학습시켜 미래를 예측하기 때문에, 과거 기록에 대한 편향이 존재할 수 밖에 없다.
+- 이를 해결하기 위해, 영상이 업로드 된 후의 시간(Example Age)을 입력으로 넣는다.
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig4.png" width=400>
 </p>

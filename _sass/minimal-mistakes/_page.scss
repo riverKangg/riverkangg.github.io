@@ -1,6 +1,6 @@
 /* ==========================================================================
    SINGLE PAGE/POST
-   ========================================================================== */
+   ========================================================================== 
 
 #main {
   @include clearfix;
@@ -17,6 +17,30 @@
   @include breakpoint($x-large) {
     max-width: $max-width;
   }
+}
+*/
+
+#main {
+    counter-reset: captions;
+    @include container;
+    @include clearfix;
+    clear: both;
+    margin-top: 1em;
+    article {
+        @include container;
+        @include grid(12,10);
+        @include prefix(12,1);
+        @include suffix(12,1);
+        margin-bottom: 2em;
+        @media #{$small} {
+            @include grid(12,6);
+            @include prefix(12,0);
+            @include suffix(12,0);
+        }
+        @media #{$x-large} {
+            @include grid(12,4.5);
+        }
+    }
 }
 
 body {

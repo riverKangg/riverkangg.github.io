@@ -139,21 +139,42 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
 </p>
+- 실시간 A/B 테스트를 통해서 
+
 
 ## 4.1 Feature Representation
 
+데이터를 두가지 관점으로 나누고 있다.
+
+1. 데이터 형태에 다른 분류
+    - Continuous/Ordinal features
+    - Categorical features
+        - univalent : 하나의 값만을 갖는 피처 (ex.스코어링된 영상의 id)
+        - multivalent : 여러 값을 갖는 피처 (ex.지금까지 봤던 영상의 id)
+
+2. 데이터 의미에 다른 분류
+    - Impression features
+    - Query features
+
+
 ### *Feature Engineering*
+
+- 랭킹 모델에는 수백개의 피처를 사용한다. 딥러닝이 feature engineering을 덜 엄밀하게 된다고 생각하지만 raw data를 신경망에 그대로 넣을 수는 없다.
 
 ### *Embedding Categorical Features*
 
 ### *Normalizing Continuous Features*
+- 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다.
 
 ## 4.2 Modeling Expected Watch Time
+- wighted logistic regression을 사용한다. cross-entropy loss를 줄이는 방향으로 학습힌다.
+- 
 
 ## 4.3 Experiments with Hidden Layers
 
 
 
 # 5. CONCLUSIONS
-
-# 6. ACKNOWLEDGMENTS
+YouTube 동영상 추천을 위한 심층신경망 구조를 두가지로 나눠서 구현했다 : 후보생성과 랭킹. 
+feature engineering이 많은 부분을 차지하고 있다. 
+비즈니스 이해를 바탕으로 만든 변수가 

@@ -123,7 +123,6 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 ## 3.4 Label and Context Selection 
 - 훈련예제는 모든 YouTube 시청 데이터로 생성 
-    - 
     - 사용자가 추천 이외의 방법으로 영상을 찾을 때, 이 결과를 빠르게 전달한다.
 - 사용자 별로 고정된 수의 훈련예제를 생성 
     - loss function에 모든 사용자들이 동일한 가중치를 가져가도록 한다.

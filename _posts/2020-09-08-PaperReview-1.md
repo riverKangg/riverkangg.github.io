@@ -69,7 +69,7 @@ Youtube 추천시스템은 세가지 관점을 고려해서 만들었다.
 
 ## 3.1 Recommendation as Classification
 
-극단적인 다중 분류를 하여 추천한다. 
+추천 문제를 엄청나게 많은 클래스로의 다중 분류 문제로 재정의한다.
 
 $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 

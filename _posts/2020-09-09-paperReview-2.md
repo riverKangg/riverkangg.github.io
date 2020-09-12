@@ -62,10 +62,10 @@ Decoder를 Encoder의 역연산으로 이용한다.
 
 1. 공백 -> **\_**(U+2581)
       - detokenize 하는 파이썬 코드이다.
-      ```
+      ~~~python
       # detokenize code
       detok = ''.join(tokens).replace('_', ' ')
-      ```
+      ~~~
 
 2. **\@\@** : 단어 경계 간 마커
 

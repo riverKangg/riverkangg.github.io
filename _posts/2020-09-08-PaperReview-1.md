@@ -114,10 +114,12 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 영상의 나이를 피처로 학습시켰을 때, 정확한 표현이 가능하다. 그래프를 보면 영상나이를 넣지 않은 baseline모델(파란색)은 training window내의 평균 가능성으로만 예측한다. 
 
 ## 3.4 Label and Context Selection 
-- 훈련예제는 모든 YouTube 시청으로부터 생성 
-    : 
+- 훈련예제는 모든 YouTube 시청 데이터로 생성 
+    - 
+    - 사용자가 추천 이외의 방법으로 영상을 찾을 때, 이 결과를 빠르게 전달한다.
 - 사용자 별로 고정된 수의 훈련예제를 생성 
-    : 매우 활발한 소수의 사용자가 loss를 지배하는 것을 막는다.
+    - loss function에 모든 사용자들이 동일한 가중치를 가져가도록 한다.
+    - 이는 매우 활발한 소수의 사용자에게 집중되어 추천시스템이 만들어지는 것을 방지한다.
 
 
 ## 3.5 Experiments with Features and Depth
@@ -128,9 +130,13 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
 </p>
+
 ## 4.1 Feature Representation
+
 ### *Feature Engineering*
+
 ### *Embedding Categorical Features*
+
 ### *Normalizing Continuous Features*
 
 ## 4.2 Modeling Expected Watch Time

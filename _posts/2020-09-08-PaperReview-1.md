@@ -139,7 +139,8 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
 </p>
-- 이 모델은 실시간 A/B 테스트를 통해서 튜닝되는데, 이때 평가기준은 추천횟수 대비 시청시간이다.
+
+- 이 모델은 A/B 테스트를 통해서 실시간으로 튜닝되는데, 이때 평가기준은 추천횟수 대비 시청시간이다.
 
 ## 4.1 Feature Representation
 

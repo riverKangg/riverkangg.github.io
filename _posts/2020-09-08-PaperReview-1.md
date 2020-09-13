@@ -7,8 +7,6 @@ tags :
 - 논문리뷰
 use_math: true
 ---
-수정중
-
 
 2016년 구글 리서치가 공개한 논문이다. 이 논문에서는 YouTube라는 영상 플랫폼의 특징을 고려한 추천시스템을 설명하고 있다.
 
@@ -140,6 +138,9 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-fig7.png" width=500>
 </p>
 
+- 후보생성모델에서 영상의 범위를 많이 줄였기 때문에, 랭킹모델에서는 영상과 영상과 사용자의 관계를 설명해줄 더 많은 피처를 살펴본다.
+- 랭킹모델의 신경망 구조는 후보생성모델과 비슷하다. 로지스틱 회귀를로 각 영상에 대한 스코어를 만든다.
+- 이 스코어로 영상에 순위를 매기고 사용자에게 추천해준다.
 - 이 모델은 A/B 테스트를 통해서 실시간으로 튜닝되는데, 이때 평가기준은 추천횟수 대비 시청시간이다.
 
 ## 4.1 Feature Representation
@@ -165,7 +166,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 ### *Embedding Categorical Features*
 
 ### *Normalizing Continuous Features*
-- 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다.
+- 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다. 
 
 ## 4.2 Modeling Expected Watch Time
 - wighted logistic regression을 사용한다. cross-entropy loss를 줄이는 방향으로 학습힌다.

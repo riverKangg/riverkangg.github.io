@@ -146,19 +146,18 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 데이터를 두가지 관점으로 나누고 있다.
 
-1. 데이터 형태에 다른 분류
+1. 데이터 형태에 따른 분류
     - Continuous/Ordinal features
     - Categorical features
         - univalent : 하나의 값만을 갖는 피처 (ex.스코어링된 영상의 id)
         - multivalent : 여러 값을 갖는 피처 (ex.지금까지 봤던 영상의 id)
 
-2. 데이터 의미에 다른 분류
+2. 데이터 의미에 따른 분류
     - Impression features
     - Query features
 
 
 ### *Feature Engineering*
-
 - 랭킹 모델에는 수백개의 피처를 사용한다. 딥러닝이 feature engineering을 줄여준다고 생각하지만, 이 논문에서는 상당한 엔지니어링 자원을 사용하고 있다.
 - **랭킹모델에서 중요한 피처**
   - 영상에 대한 사용자의 과거 행동
@@ -169,6 +168,7 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
       - 이 영상이 이전까지 몇번이나 노출됐는지(매 추천마다 다른 영상을 추천하기 위해)
 
 ### *Embedding Categorical Features*
+- 후보생성모델과 비슷하게, 임베딩으로 sparse categorical features를 dense representaions로 변환한다.
 
 ### *Normalizing Continuous Features*
 - 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다. 

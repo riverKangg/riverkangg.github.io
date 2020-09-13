@@ -1,6 +1,6 @@
 ---
 title : "[논문리뷰] Deep Neural Networks for YouTube Recommendations"
-date : 2020-09-08
+date : 2020-09-10
 categories : 논문리뷰
 tags :
 - 추천알고리즘

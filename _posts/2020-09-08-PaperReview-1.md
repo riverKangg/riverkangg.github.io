@@ -186,8 +186,12 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 - 지수함수를 마지막 활성함수로 사용한다. 
 
 ## 4.3 Experiments with Hidden Layers
-- Table1은 결과를 보여준다. 
-- 각 구조(weighted, per-user loss)에서 나타난 값은 사용자에서 보여진 하나의 페이지에서 클릭된(positive)영상과 클릭되지 않은(negative) 영상을 모두 고려했다. 두 종류의 영상에 모두 점수를 매긴다. 클릭되지 않은 영상이 클릭된 영상보다 더 높은 점수를 받게 되면, 클릭된 영상의 시청시간을 잘못 예측된 시청시간으로 고려한다. 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-table1.png" width=500>
+</p>
+
+- 각 구조(weighted, per-user loss)는 사용자에서 보여진 하나의 페이지에서 클릭된(positive)영상과 클릭되지 않은(negative) 영상을 모두 고려했다. 
+- 두 종류의 영상에 모두 점수를 매긴다. 클릭되지 않은 영상이 클릭된 영상보다 더 높은 점수를 받게 되면, 클릭된 영상의 시청시간을 잘못 예측된 시청시간으로 고려한다. 
 - 따라서 weighted, per-user loss는 잘못 예측된 시청시간의 합이 된다. 
 - 최종 구조 : 1024 ReLU -> 512 ReLu -> 256 ReLU
   - 표준화만 한 범주형 변수 사용한다. power->loss 0.2% 증가

@@ -10,7 +10,7 @@ puublished : false
 
 - 목적 : 특수한 분야의 용어를 잘 인식할 수 있도록 용어 사전을 구축하기
 - 구축과정
-  1. sentencePiece(#chapter-1)
+  1. [sentencePiece](#chapter-1)
   2. 
   
 <!-- 1 -->

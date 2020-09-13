@@ -190,8 +190,8 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-10-table1.png" width=500>
 </p>
 
-- 각 구조(weighted, per-user loss)는 사용자에서 보여진 하나의 페이지에서 클릭된(positive)영상과 클릭되지 않은(negative) 영상을 모두 고려했다. 
-- 두 종류의 영상에 모두 점수를 매긴다. 클릭되지 않은 영상이 클릭된 영상보다 더 높은 점수를 받게 되면, 클릭된 영상의 시청시간을 잘못 예측된 시청시간으로 고려한다. 
+- 각 구조(weighted, per-user loss)는 하나의 페이지에서 클릭된(positive)영상과 클릭되지 않은(negative) 영상을 모두 고려했다. 
+- 두 종류의 영상에 모두 점수를 매긴다. 클릭되지 않은 영상이 클릭된 영상보다 더 높은 점수를 받게 되면, 클릭된 영상의 시청시간을 잘못 예측된(mispredicted) 시청시간으로 고려한다. 
 - 따라서 weighted, per-user loss는 잘못 예측된 시청시간의 합이 된다. 
 - 최종 구조 : 1024 ReLU -> 512 ReLu -> 256 ReLU
   - 표준화만 한 범주형 변수 사용한다. power->loss 0.2% 증가
@@ -199,5 +199,4 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 
 # 5. CONCLUSIONS
 YouTube 동영상 추천을 위한 심층신경망 구조를 두가지로 나눠서 구현했다 : 후보생성과 랭킹. 
-feature engineering이 많은 부분을 차지하고 있다. 
-비즈니스 이해를 바탕으로 만든 변수가 
+feature engineering이 많은 부분을 차지하고 있고, YouTube의 비즈니스 인사이트를 기반으로 만든 피처들이 중요하게 작용했다.

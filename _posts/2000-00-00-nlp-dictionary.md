@@ -5,6 +5,7 @@ categories : NLP
 tags:
 - NLP
 - dictionary
+puublished : false
 ---
 
 수정중

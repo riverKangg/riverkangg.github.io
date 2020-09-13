@@ -165,10 +165,14 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
   - 후보생성모델에서 알게된 정보
       - e.g. 후보영상을 선정한 소스가 무엇인지 / 후보생성모델에서의 점수가 몇 점이었는지
   - 이전 추천 정보
-      - 이 영상이 이전까지 몇번이나 노출됐는지(매 추천마다 다른 영상을 추천하기 위해)
-
+      - e.g. 이 영상이 이전까지 몇번이나 노출됐는지: 추천을 했는데 보지 않은 영상은 다음에 추천되지 않음(새로고침을 누르면 다른 영상이 나오는 이유)
+      
 ### *Embedding Categorical Features*
-- 후보생성모델과 비슷하게, 임베딩으로 sparse categorical features를 dense representaions로 변환한다.
+- 범주형 피처를 다루는 과정은 후보생성모델과 비슷하다.
+- 임베딩으로 sparse categorical features를 dense representaions로 변환한다.
+  - oov 값들은 0으로 임베딩된다. 
+- 여러 값을 가질 수 있는(multivalent) 범주형 피처 임베딩은 평균내어 입력한다.
+- 공유된 임베딩에도 불구하고, 피처들은 각각 입력된다. 따라서 이후 레이어에서는 각 피처마다 specialized representation으로 학습된다.
 
 ### *Normalizing Continuous Features*
 - 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다. 

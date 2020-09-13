@@ -175,14 +175,23 @@ $$ K(a,b) = \int \mathcal{D}x(t) \exp(2\pi i S[x]/\hbar) $$
 - 공유된 임베딩에도 불구하고, 피처들은 각각 입력된다. 따라서 이후 레이어에서는 각 피처마다 specialized representation으로 학습된다.
 
 ### *Normalizing Continuous Features*
-- 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다. 
+- 신경망은 스케일링에 매우 민감하다. 반면에 의사결정나무의 앙상블 같은 경우는 피처의 스케일에 영향을 받지 않는다.
+- 이 논문의 모델에서는 연속형 피처에 알맞은 정규화를 하는 것이 수렴하는데 매우 중요하다. 
 
 ## 4.2 Modeling Expected Watch Time
-- wighted logistic regression을 사용한다. cross-entropy loss를 줄이는 방향으로 학습힌다.
+- 목표는 주어진 트레이닝 데이터로 시청 시간을 예측하는 것이다. 트레이닝 데이터는 positive(추천된 영상을 클릭함)인/negative(추천된 영상을 클릭하지 않음) 상관이 없다. positive 데이터에는 사용자가 영상을 시청하는데 얼마나 시간을 썼는지도 나타나 있다.
+- wighted logistic regression을 사용한다. cross-entropy loss를 줄이는 방향으로 학습힌다. 
+  - 클릭된(positive) 추천 영상은 시청시간에 따라 가중치가 반영된다. 
+  - 클릭되지 않은(negative) 추천 영상은 unit 가중치를 반영한다.
+- 지수함수를 마지막 활성함수로 사용한다. 
 
 ## 4.3 Experiments with Hidden Layers
-
-
+- Table1은 결과를 보여준다. 
+- 각 구조(weighted, per-user loss)에서 나타난 값은 사용자에서 보여진 하나의 페이지에서 클릭된(positive)영상과 클릭되지 않은(negative) 영상을 모두 고려했다. 두 종류의 영상에 모두 점수를 매긴다. 클릭되지 않은 영상이 클릭된 영상보다 더 높은 점수를 받게 되면, 클릭된 영상의 시청시간을 잘못 예측된 시청시간으로 고려한다. 
+- 따라서 weighted, per-user loss는 잘못 예측된 시청시간의 합이 된다. 
+- 최종 구조 : 1024 ReLU -> 512 ReLu -> 256 ReLU
+  - 표준화만 한 범주형 변수 사용한다. power->loss 0.2% 증가
+  - positive/negative 데이터에 동일하게 가중치를 주면 loss가 4.1%로 급격하게 늘어남
 
 # 5. CONCLUSIONS
 YouTube 동영상 추천을 위한 심층신경망 구조를 두가지로 나눠서 구현했다 : 후보생성과 랭킹. 

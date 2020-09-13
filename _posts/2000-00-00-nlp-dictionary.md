@@ -10,8 +10,13 @@ puublished : false
 
 - 목적 : 특수한 분야의 용어를 잘 인식할 수 있도록 용어 사전을 구축하기
 - 구축과정
-  1. sentencePiece
+  1. sentencePiece(#chapter-1)
   2. 
+  
+<!-- 1 -->
+## 1. sentencePiece  <a id="chapter-1"></a>
+- 구글에서 공개한 학습기반 형태소 분석 패키지이다. 
+- 적절한 vocab 사이즈 설정 중요하다. 
 
 ### BERT - Multilingual
 [BERT multilingual Github](https://github.com/google-research/bert/blob/master/multilingual.md)

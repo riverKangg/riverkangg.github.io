@@ -11,12 +11,18 @@ puublished : false
 - 목적 : 특수한 분야의 용어를 잘 인식할 수 있도록 용어 사전을 구축하기
 - 구축과정
   1. [sentencePiece](#chapter-1)
-  2. 
+  2. [FastText](#chapter-2)
   
 <!-- 1 -->
 ## 1. sentencePiece  <a id="chapter-1"></a>
-- 구글에서 공개한 학습기반 형태소 분석 패키지이다. 
-- 적절한 vocab 사이즈 설정 중요하다. 
+- 구글에서 공개한 학습기반 형태소 분석 패키지이다. 등장하는 단어(어절 등)를 기반으로 vocab을 만들 수 있다.
+- BPE(Byte Pair Encoding) 기법도 지원한다. bert에서는 사전을 구축할 때 사용되는 방법이다. 
+- 적절한 vocab 사이즈 설정 중요하다. : 
+
+<!-- 2 -->
+## 2. FastText <a id='chapter-2'></a>
+- 페이스북에서 공개한 임베딩 기법이다.
+- 각 단어를 문자(character) 단위 n-gram으로 표현한다. 
 
 ### BERT - Multilingual
 [BERT multilingual Github](https://github.com/google-research/bert/blob/master/multilingual.md)

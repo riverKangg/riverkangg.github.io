@@ -1,6 +1,6 @@
 ---
 title : "[Python/NLP] 용어 사전 만들기"
-date : 2020.09.10
+date : 2020-01-01
 categories : NLP
 tags:
 - NLP

@@ -14,8 +14,12 @@ published : false
 [Convolutional Neural Network on a structured bank customer data](https://towardsdatascience.com/convolutional-neural-network-on-a-structured-bank-customer-data-358e6b8aa759)
 ### The problem
 - 캐글의 은행상품추천 대회에 적용해본 모델이다. [캐글링크](https://www.kaggle.com/c/santander-product-recommendation)
-- 패널데이터
-- behavior scorecard model ????
+- 데이터는 고객의 금융상태를 월단위 스냅샷으로 찍은 것과 인구통계정보(성별, 나이, 위치, 소득 등)이다.
+- 은행에서 제공하는 상품은 수표, 저축, 모기지, 신용 카드 등 24 개가 있다.
+- 2015.01~2016.05의 고객 제품 사용량과 2015.01~2016.06의 기타 정보를 기반으로 2016.06의 24 개의 상품 사용량을 예측하는 문제다.(0에서 1로 변경된 상품만 고려)
+- 고객이 특정 월에 상품을 사용하면 1 아니면 0으로 표시한다. 고객이 특정 달에 여러 상품을 사용할 수 있기 때문에 multi-class multi-label classification이다.
+- 전형적인 패널데이터다. 타겟이 default label로만 바뀌면, behavior scorecard model을 위한 전형적인 데이터 셋이다. 
+- 하지만 이를 시간과 공간(상품 사용)이 있다고 볼수도 있다.
 
 ### CNN’s power — Feature Engineering
 - 캐글에서는 feature engineering이 중요한데, CNN을 사용해서 이 단계를 줄인다. 

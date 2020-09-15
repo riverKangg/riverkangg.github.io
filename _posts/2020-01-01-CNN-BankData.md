@@ -34,3 +34,8 @@ published : false
 ### Final thoughts
 - CNN의 컨볼루션이나 풀링 필터 내에서 time dependency 정보가 무시된다는 약점있다.
 - 하지만 CNN이 RNN보다 학습시키기 쉽다.
+
+
+
+## 내 생각
+- 금융 데이터는 RNN이 더 작합할 것 같지만, CNN도 시도해볼만한다.

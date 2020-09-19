@@ -33,3 +33,78 @@ BERT는 Word2Vec과 같은 모델에 비해 문맥을 고려한 임베딩이 된
 Word2Vec은 단어가 나타나는 문맥에 관계없이 각 단어가 고정된 표현을 가지지만, BERT는 주변 단어에 의해 동적으로 변하는 단어 표현을 생성한다. 예를 들어 다음 두 문장이 주어진다면 :
   - 배를 타고 여행을 간다.
   - 추석에 먹은 배가 맛있었다.
+Word2Vec은 두 문장의 "배"라는 단어에 대해 동일한 단어 임베딩을 생성하는 반면 BERT에서는 "배"에 대한 단어 임베딩이 문장마다 다르다.
+다의어를 포착하는 것 외에도 상황에 맞는 단어 임베딩은 더 정확한 feature representation을 생성하는 다른 형태의 정보를 포착하여 더 나은 성능을 낸다. 
+
+
+### 1. Loading Pre-Trained BERT
+Hugging Face로 BERT 용 PyTorch 인터페이스를 설치합니다. 
+(이 라이브러리에는 OpenAI의 GPT 및 GPT-2와 같은 사전 학습된 다른 언어 모델에 대한 인터페이스가 포함되어 있다.)
+
+이 튜토리얼에서는 PyTorch를 사용한다. high-level API는 사용하기 쉽지만 작동 방식에 대한 통찰력을 제공하지 않고, tensorflow는 설정해야할 사항이 많다. 하지만 BERT를 사용하다보면 tensorflow를 사용할 일이 많다.
+
+Google Colab에서 코드를 실행할 때, 다시 연결할 때만다 라이브러리를 설치해야한다.
+```Python
+!pip install transformers
+```
+
+이제 pytorch, pre-trained BERT, BERT tokenizer를 불러와야한다. 
+
+BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서가 10,000 개 이상 포함된 데이터 세트 인 Wikipedia, Book Corpus에서 긴 시간동안 학습된 것이다. 이 모델은 NLP의 여러 과제에서 최고 점수를 달성했다(약간의 모델 수정 필요). Google이 공개한 여러 개의 BERT 중 원문에서는 ```bert-base-uncased```를 사용했지만, 이 포스팅에서는 한국어 처리를 위해 ```bert-base-multilingual-uncased```를 선택했다. 더 다양한 모델을 확인하고 싶다면, [여기](https://huggingface.co/transformers/pretrained_models.html)를 참고하자.
+
+```transformers```는 BERT를 다른 작업(토큰 분류, 텍스트 분류 등)에 적용하기 위해 여러 클래스를 제공한다.
+이번 포스팅에서는 단어 임베딩이 목적이기 때문에, 출력이 없는 기본 ```BertModel```을 사용한다. 
+
+### 2. Input Formatting
+BERT는 특정 형식의 입력 데이터를 필요로 한다.
+1. **special token** ```[sep]``` : 문장의 끝을 표시하거나 두 문장의 분리
+2. **special token** ```[CLS]``` : 
+3. token : 
+
+다행히도 ```transformers``` 인터페이스는 위의 모든 사항을 처리한다(tokenizer.encode_plus 함수 사용).
+하지만 이 포스팅은 BERT 작업을 소개하기 위한 것이므로 (대부분)수동으로 이러한 단계를 진행한다.
+
+```tokenizer.encode_plus```를 사용하는 예는 [여기](http://mccormickml.com/2019/07/22/BERT-fine-tuning/)에서 문장 분류에 대한 게시물을 참조하길 추천한다.
+
+#### 2.1. Special Tokens
+
+
+#### 2.2. Tokenization
+BERT는 자체 토크나이저를 제공한다. 아래 문장을 어떻게 처리하는지 살펴보자.
+```Python
+text = "임베딩을 시도할 문장이다."
+marked_text = "[CLS] " + text + " [SEP]"
+
+# Tokenize our sentence with the BERT tokenizer.
+tokenized_text = tokenizer.tokenize(marked_text)
+
+# Print out the tokens.
+print(tokenized_text)
+```
+```
+['[CLS]', '이', '##ᆷ', '##베', '##디', '##ᆼ을', '시', '##도', '##할', 'ᄆ', '##ᅮᆫ', '##장이', '##다', '.', '[SEP]']
+```
+"임베딩"이란 단어를 제대로 분리하지 못한다. (심지어 "을"이라는 부사격 조사도 붙어있다) :
+```
+'이', '##ᆷ', '##베', '##디', '##ᆼ을'
+```
+이 결과는 BERT 토크나이저가 WordPiece 모델로 생성되었기 때문이다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 이 어휘에는 다음 네 가지가 포함된다. :
+
+#### 2.3. Segment ID
+BERT는 두 문장을 구별하기 위해 1과 0을 사용하여 문장 쌍을 학습하고 예상한다.
+즉, 토큰화된 텍스트의 각 토큰에 대해 어떤 문장에 속하는지 지정해야한다 : 문장 0(0 리스트) 또는 문장 1(1 리스트).
+우리의 목적을 위해 단일 문장 입력에는 1 리스트만 필요하므로 입력 문장의 각 토큰에 대해 1로 구성된 벡터를 생성한다.
+```Python
+# Mark each of the 22 tokens as belonging to sentence "1".
+segments_ids = [1] * len(tokenized_text)
+
+print (segments_ids)
+```
+```
+### --- output --- ###
+```
+
+
+### 3. Extracting Embeddings
+#### 3.1. Running BERT on our text
+데이터를 토치 텐서(torch tensor)로 변환하고 BERT 모델을 호출해야한다. BERT PyTorch 인터페이스에서는 데이터가 Python 리스트 아닌 토치 텐서가 필요하므로 이번 장에서 변환한다. - 이것은 모양이나 데이터를 변경하지 않는다.

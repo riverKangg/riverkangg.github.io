@@ -37,7 +37,7 @@ Word2Vec은 두 문장의 "배"라는 단어에 대해 동일한 단어 임베�
 다의어를 포착하는 것 외에도 상황에 맞는 단어 임베딩은 더 정확한 feature representation을 생성하는 다른 형태의 정보를 포착하여 더 나은 성능을 낸다. 
 
 
-### 1. Loading Pre-Trained BERT
+# 1. Loading Pre-Trained BERT
 Hugging Face로 BERT 용 PyTorch 인터페이스를 설치합니다. 
 (이 라이브러리에는 OpenAI의 GPT 및 GPT-2와 같은 사전 학습된 다른 언어 모델에 대한 인터페이스가 포함되어 있다.)
 
@@ -55,7 +55,7 @@ BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서�
 ```transformers```는 BERT를 다른 작업(토큰 분류, 텍스트 분류 등)에 적용하기 위해 여러 클래스를 제공한다.
 이번 포스팅에서는 단어 임베딩이 목적이기 때문에, 출력이 없는 기본 ```BertModel```을 사용한다. 
 
-### 2. Input Formatting
+# 2. Input Formatting
 BERT는 특정 형식의 입력 데이터를 필요로 한다.
 1. **special token** ```[sep]``` : 문장의 끝을 표시하거나 두 문장의 분리
 2. **special token** ```[CLS]``` : 
@@ -66,10 +66,10 @@ BERT는 특정 형식의 입력 데이터를 필요로 한다.
 
 ```tokenizer.encode_plus```를 사용하는 예는 [여기](http://mccormickml.com/2019/07/22/BERT-fine-tuning/)에서 문장 분류에 대한 게시물을 참조하길 추천한다.
 
-#### 2.1. Special Tokens
+## 2.1. Special Tokens
 
 
-#### 2.2. Tokenization
+## 2.2. Tokenization
 BERT는 자체 토크나이저를 제공한다. 아래 문장을 어떻게 처리하는지 살펴보자.
 ```Python
 text = "임베딩을 시도할 문장이다."
@@ -86,11 +86,12 @@ print(tokenized_text)
 ```
 "임베딩"이란 단어를 제대로 분리하지 못한다. (심지어 "을"이라는 부사격 조사도 붙어있다) :
 ```
+# ------ output ------- #
 '이', '##ᆷ', '##베', '##디', '##ᆼ을'
 ```
 이 결과는 BERT 토크나이저가 WordPiece 모델로 생성되었기 때문이다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 이 어휘에는 다음 네 가지가 포함된다. :
 
-#### 2.3. Segment ID
+## 2.3. Segment ID
 BERT는 두 문장을 구별하기 위해 1과 0을 사용하여 문장 쌍을 학습하고 예상한다.
 즉, 토큰화된 텍스트의 각 토큰에 대해 어떤 문장에 속하는지 지정해야한다 : 문장 0(0 리스트) 또는 문장 1(1 리스트).
 우리의 목적을 위해 단일 문장 입력에는 1 리스트만 필요하므로 입력 문장의 각 토큰에 대해 1로 구성된 벡터를 생성한다.
@@ -101,10 +102,10 @@ segments_ids = [1] * len(tokenized_text)
 print (segments_ids)
 ```
 ```
-### --- output --- ###
+# ------ output ------- #
 ```
 
 
-### 3. Extracting Embeddings
-#### 3.1. Running BERT on our text
+# 3. Extracting Embeddings
+## 3.1. Running BERT on our text
 데이터를 토치 텐서(torch tensor)로 변환하고 BERT 모델을 호출해야한다. BERT PyTorch 인터페이스에서는 데이터가 Python 리스트 아닌 토치 텐서가 필요하므로 이번 장에서 변환한다. - 이것은 모양이나 데이터를 변경하지 않는다.

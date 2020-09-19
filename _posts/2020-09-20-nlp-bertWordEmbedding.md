@@ -82,14 +82,104 @@ tokenized_text = tokenizer.tokenize(marked_text)
 print(tokenized_text)
 ```
 ```
+# ------ output ------- #
 ['[CLS]', '이', '##ᆷ', '##베', '##디', '##ᆼ을', '시', '##도', '##할', 'ᄆ', '##ᅮᆫ', '##장이', '##다', '.', '[SEP]']
 ```
-"임베딩"이란 단어를 제대로 분리하지 못한다. (심지어 "을"이라는 부사격 조사도 붙어있다) :
 ```
-# ------ output ------- #
 '이', '##ᆷ', '##베', '##디', '##ᆼ을'
 ```
-이 결과는 BERT 토크나이저가 WordPiece 모델로 생성되었기 때문이다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 이 어휘에는 다음 네 가지가 포함된다. :
+"임베딩"이란 단어를 제대로 분리하지 못한다(심지어 "을"이라는 부사격 조사도 붙어있다). BERT 토크나이저가 WordPiece 모델로 생성되었기 때문이다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 이 어휘에는 다음 네 가지가 포함된다. :
+
+  1. 전체 단어
+  2. 단어의 앞에 또는 분리되어 발생하는 하위 단어 ( "embeddings"에서와 같이 "em"에는 "go get em"에서와 같이 독립형 문자 "em"시퀀스와 동일한 벡터가 할당 됨)
+  3. 단어 앞에 있지 않은 하위 단어. 이 경우를 나타내기 위해 '##'이 앞에 붙는다.
+  4. 개별 문자(individual character)
+
+이 모델에서 단어를 토큰화하기위해 토크나이저는 먼저 전체 단어가 어휘에 있는지 확인한다. 그렇지 않은 경우 단어를 어휘에 포함 된 가능한 가장 큰 하위 단어로 나누고 마지막 수단으로 단어를 개별 문자로 분해한다. 이 때문에 우리는 항상 최소한 개별 문자의 모음으로 단어를 표현할 수 있다.
+
+결과적으로 'OOV' 또는 'UNK'와 같은 포괄 토큰에 어휘 밖의 단어를 할당하는 대신 어휘에 포함되지 않은 단어는 임베딩을 생성할 수있는 하위 단어 및 문자 토큰으로 분해된다.
+
+따라서 오버로드 된 알 수 없는 어휘 토큰에 "임베딩"및 기타 모든 어휘 단어를 할당하는 대신 하위 단어 토큰 [ 'em', '## bed', '## ding', '## s'로 분할합니다. ] 원본 단어의 문맥상 의미 중 일부를 유지한다. 이러한 하위 단어 임베딩 벡터를 평균하여 원래 단어에 대한 근사 벡터를 생성할 수도 있다. 
+(WordPiece에 대한 자세한 내용은 [원본 논문](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf)과 Google의 [Neural Machine Translation System](https://arxiv.org/pdf/1609.08144.pdf)을 참고)
+
+다음은 어휘에 포함 된 토큰의 몇 가지 예이다. 두 개의 해시로 시작하는 토큰은 하위 단어 또는 개별 문자다.
+```Python
+list(tokenizer.vocab.keys())[20000:20020]
+```
+```
+# ------ output ------- #
+['weltkrieg',
+ '##었다',
+ 'dock',
+ 'maakte',
+ 'бас',
+ 'mannschaft',
+ '##ξη',
+ '##list',
+ 'holy',
+ '##nze',
+ 'dun',
+ 'sien',
+ 'hanet',
+ 'општина',
+ '2015년',
+ 'dice',
+ 'motion',
+ 'ancienne',
+ 'hora',
+ 'lama']
+```
+multilingual 모델이기 때문에 다양한 언어가 포함되어 있다. 종종 한국어도 보인다. 텍스트를 토큰으로 분리한 후 문자열 목록의 문장을 어휘 목록으로 변환해야한다. 
+
+```Python
+# Define a new example sentence with multiple meanings of the word "bank"
+text = "배를 타고 여행을 간다." \
+       "추석에 먹은 배가 맛있었다."
+
+# Add the special tokens.
+marked_text = "[CLS] " + text + " [SEP]"
+
+# Split the sentence into tokens.
+tokenized_text = tokenizer.tokenize(marked_text)
+
+# Map the token strings to their vocabulary indeces.
+indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
+
+# Display the words with their indeces.
+for tup in zip(tokenized_text, indexed_tokens):
+    print('{:<12} {:>6,}'.format(tup[0], tup[1]))
+```
+```
+# ------ output ------- #
+[CLS]           101
+ᄇ             1,170
+##ᅢ를       73,446
+ᄐ             1,179
+##ᅡ고        67,384
+ᄋ             1,174
+##ᅧ          46,069
+##행을     91,480
+가           20,966
+##ᆫ다        32,407
+.               119
+ᄎ             1,177
+##ᅮ          46,188
+##석        40,482
+##에         10,609
+ᄆ             1,169
+##ᅥ          33,645
+##ᆨ은       34,653
+ᄇ             1,170
+##ᅢ          26,179
+##가         11,376
+ᄆ             1,169
+##ᅡ          25,539
+##ᆺ이        80,054
+##ᆻ          97,104
+##었다      20,001
+.               119
+[SEP]           102
+```
 
 ## 2.3. Segment ID
 BERT는 두 문장을 구별하기 위해 1과 0을 사용하여 문장 쌍을 학습하고 예상한다.

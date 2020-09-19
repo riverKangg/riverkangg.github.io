@@ -1,10 +1,9 @@
 ---
-title : "BERT Word Embedding 튜토리얼"
+title : "BERT Word Embedding 튜토리얼 + 한국어처리"
 date : 2020-09-20
 categories : nlp
 ---
-BERT word Embedding 튜토리얼을 소개한다. 
-[원문](https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)
+BERT word Embedding 튜토리얼을 소개한다. 이번 포스팅에서는 [원문](https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)을 번역하고 한국어에 적용해본다.
 
 # Contents
 - Contents

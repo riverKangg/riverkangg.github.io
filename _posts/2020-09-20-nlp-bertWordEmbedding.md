@@ -12,7 +12,7 @@ BERT word Embedding 튜토리얼을 소개한다. 이번 포스팅에서는 [원
 # Introduction
 
 ### History
-2018년, 전이학습(transfer learning)의 등장으로 NLP. Allen AI의 ELMO, OpenAI의 Open-GPT 및 Google의 BERT가 대표적인 모델이다. 
+2018년, 전이학습(transfer learning)의 등장으로 NLP 분야는 크게 발전했다. Allen AI의 ELMO, OpenAI의 Open-GPT 및 Google의 BERT가 대표적인 모델이다. 
 이 모델들은 최소한의 task별 fine-tuning으로 여러 NLP 과제에서 가장 좋은 성능을 냈다. 
 NLP 커뮤니티에 쉽게(데이터와 컴퓨팅 시간을 줄임) 미세조정(fine-tuned) 맟 구현하여 생성할 수 있는 pre-trained 모델을 제공했다. 
 하지만 전이학습에 대한 확실한 이해가 없어서 실무에 제대로 사용되지 않고 있다고 한다.

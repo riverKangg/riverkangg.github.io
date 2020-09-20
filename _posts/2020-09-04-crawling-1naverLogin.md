@@ -104,4 +104,4 @@ time.sleep(10)
 ~~~
 
 # ▷ 코드 다운로드
-[코드 다운로드 링크](https://github.com/riverKangg/riverkangg.github.io/blob/master/code/2020-09-04-crawling-1login.py/)
+[코드 다운로드 링크](https://github.com/riverKangg/riverkangg.github.io/blob/master/code/2020-09-04-crawling-1naverLogin.py)

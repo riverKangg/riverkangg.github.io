@@ -4,6 +4,7 @@ date: 2020-08-29
 categories: python
 tags : 
 - 프로그래머스
+published : false
 ---
 
 탐욕법(Greedy)-lv1.체육복

@@ -116,7 +116,7 @@ tokenized_text = tokenizer.tokenize(marked_text)
 
 # Print out the tokens.
 print(tokenized_text)
-```
+~~~
 ```
 # ------ output ------- #
 ['[CLS]', '이', '##ᆷ', '##베', '##디', '##ᆼ을', '시', '##도', '##할', 'ᄆ', '##ᅮᆫ', '##장이', '##다', '.', '[SEP]']

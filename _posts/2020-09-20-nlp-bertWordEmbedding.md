@@ -67,7 +67,18 @@ BERT는 특정 형식의 입력 데이터를 필요로 한다.
 ```tokenizer.encode_plus```를 사용하는 예는 [여기](http://mccormickml.com/2019/07/22/BERT-fine-tuning/)에서 문장 분류에 대한 게시물을 참조하길 추천한다.
 
 ## 2.1. Special Tokens
+BERT는 하나 또는 두 개의 문장을 입력으로 사용할 수 있으며 특수 토큰 ```[SEP]```을 사용하여 구분한다. ```[CLS]``` 토큰은 항상 텍스트 시작 부분에 나타나며 분류 작업에만 해당된다.
 
+그러나 두 개의 토큰은 항상 필요하다. 그러나 우리가 문장이 하나 뿐이고 분류에 BERT를 사용하지 않더라도 마찬가지다. 이것이 BERT가 사전 훈련된 방법이며 BERT가 기대하는 것이다.
+
+**2 Sentence Input:**
+```
+[CLS] 드디어 내일이 주말이다. [SEP] 날씨가 맑으면 공원에 가야겠다.
+```
+**1 Sentence Input:**
+```
+[CLS] 드디어 내일이 주말이다. [SEP]
+```
 
 ## 2.2. Tokenization
 BERT는 자체 토크나이저를 제공한다. 아래 문장을 어떻게 처리하는지 살펴보자.
@@ -206,6 +217,7 @@ segments_tensors = torch.tensor([segments_ids])
 ```from_pretrained```를 호출하면 웹에서 모델을 다운로드한다. ```bert-base-multilingual-uncased```를 로드하면 로깅에 인쇄된 모델의 정의를 볼 수 있다. 이 모델은 12개의 레이어로 구성된 심층 신경망이다! 레이어와 그 기능에 대한 설명은이 게시물의 범위를 벗어나므로 건너뛴다.
 
 ```model.eval()```은 학습 모드가 아닌 평가 모드로 모델을 설정한다. 이 경우 평가 모드는 훈련에 사용되는 드롭아웃 정규화(dropout regularization)를 해제한다.
+
 *Note : 포스팅이 너무 길어져서 output을 삭제했다. 자세한 결과는 여기 [Colab notebook]()에 있다.*
 
 다음으로 예제 텍스트에서 BERT를 평가하고 네트워크의 숨겨진 상태를 가져온다!
@@ -234,7 +246,7 @@ hidden_states 개체에 저장된이 모델의 전체 숨겨진 상태 집합은
   2. 배치 번호 (1 문장)
   3. 단어 / 토큰 번호 (문장에서 22 개의 토큰)
   4. 숨겨진 유닛 / 기능 번호 (768 개 기능)
-잠깐, 13 층? BERT에는 12 개만 있지 않나요? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12 개 레이어 각각의 출력이므로 13입니다.
+잠깐, 13 층? BERT에는 12 개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 출력이므로 13이다.
 ```Python
 print ("Number of layers:", len(hidden_states), "  (initial embeddings + 12 BERT layers)")
 layer_i = 0
@@ -254,9 +266,9 @@ Number of batches: 1
 Number of tokens: 28
 Number of hidden units: 768
 ```
-주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴 보겠습니다.
+주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴보자.
 
-대부분의 값이 [-2, 2] 사이에 있고 -10 정도의 값이 조금씩 번져서 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있습니다.
+대부분의 값이 [-2, 2] 사이에 있고 -10 정도의 값이 조금씩 번져서 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있다.
 ```Python
 # For the 5th token in our sentence, select its feature values from layer 5.
 token_i = 5
@@ -279,7 +291,7 @@ plt.show()
 ```
 다행히 PyTorch에는 텐서의 차원을 쉽게 재배열 할 수있는 ```permute```함수가 포함되어있다.
 
-그러나 첫 번째 차원은 현재 Python 목록입니다!
+그러나 첫 번째 차원은 현재 Python list 이다!
 ```Python
 # `hidden_states` is a Python list.
 print('      Type of hidden_states: ', type(hidden_states))

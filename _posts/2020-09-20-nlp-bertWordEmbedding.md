@@ -240,13 +240,15 @@ with torch.no_grad():
 
 
 ## 3.2. Understanding the Output
-hidden_states 개체에 저장된이 모델의 전체 숨겨진 상태 집합은 약간 어지럽습니다. 이 개체에는 다음 순서로 4 개의 차원이 있습니다.
+```hidden_states``` 개체에 저장된 이 모델의 전체 은닉층은 약간 복잡하다. 이 개체에는 다음 순서로 4개의 차원이 있다.
 
   1. 레이어 번호 (13 레이어)
   2. 배치 번호 (1 문장)
   3. 단어 / 토큰 번호 (문장에서 22 개의 토큰)
   4. 숨겨진 유닛 / 기능 번호 (768 개 기능)
-잠깐, 13 층? BERT에는 12 개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 출력이므로 13이다.
+  
+잠깐 13 레이어? BERT에는 12 개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 출력이므로 13이다.
+
 ```Python
 print ("Number of layers:", len(hidden_states), "  (initial embeddings + 12 BERT layers)")
 layer_i = 0
@@ -266,9 +268,8 @@ Number of batches: 1
 Number of tokens: 28
 Number of hidden units: 768
 ```
-주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴보자.
 
-대부분의 값이 [-2, 2] 사이에 있고 -10 정도의 값이 조금씩 번져서 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있다.
+주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴보자. 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있다.-대부분의 값이 [-2.5, 2.5] 사이에 있다.
 ```Python
 # For the 5th token in our sentence, select its feature values from layer 5.
 token_i = 5
@@ -280,7 +281,9 @@ plt.figure(figsize=(10,10))
 plt.hist(vec, bins=200)
 plt.show()
 ```
+
 계층별로 값을 그룹화하는 것은 모델에 적합하지만 단어 임베딩을 위해 토큰별로 그룹화하는 것이 좋다.
+
 현재 차원 :
 ```
 [# layers, # batches, # tokens, # features]
@@ -289,9 +292,10 @@ plt.show()
 ```
 [# tokens, # layers, # features]
 ```
-다행히 PyTorch에는 텐서의 차원을 쉽게 재배열 할 수있는 ```permute```함수가 포함되어있다.
 
-그러나 첫 번째 차원은 현재 Python list 이다!
+다행히 PyTorch에는 텐서 차원을 쉽게 재배열 할 수 있는 ```permute```함수가 포함되어있다.
+
+그러나 첫 번째 차원은 현재 Python list이다!
 ```Python
 # `hidden_states` is a Python list.
 print('      Type of hidden_states: ', type(hidden_states))
@@ -304,6 +308,7 @@ print('Tensor shape for each layer: ', hidden_states[0].size())
       Type of hidden_states:  <class 'tuple'>
 Tensor shape for each layer:  torch.Size([1, 28, 768])
 ```
+
 레이어를 결합해서 하나의 큰 텐서를 만든다.
 ```Python
 # Concatenate the tensors for all layers. We use `stack` here to
@@ -315,7 +320,8 @@ token_embeddings.size()
 ```
 torch.Size([13, 1, 28, 768])
 ```
-"batches"차원은 필요하지 않으므로 제거한다.
+
+"batches" 차원은 필요하지 않으므로 제거한다.
 ```Python
 # Remove dimension 1, the "batches".
 token_embeddings = torch.squeeze(token_embeddings, dim=1)
@@ -325,7 +331,8 @@ token_embeddings.size()
 ```
 torch.Size([13, 28, 768])
 ```
-마지막으로 ```permute```를 사용하여 "layers"및 "tokens"차원을 전환할 수 있다.
+
+마지막으로 ```permute```를 사용하여 "layers" 및 "tokens" 차원을 전환할 수 있다.
 ```Python
 # Swap dimensions 0 and 1.
 token_embeddings = token_embeddings.permute(1,0,2)

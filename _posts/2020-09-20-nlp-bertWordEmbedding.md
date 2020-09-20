@@ -208,302 +208,196 @@ segments_tensors = torch.tensor([segments_ids])
 ```from_pretrained```를 호출하면 웹에서 모델을 다운로드한다. ```bert-base-multilingual-uncased```를 로드하면 로깅에 인쇄된 모델의 정의를 볼 수 있다. 이 모델은 12개의 레이어로 구성된 심층 신경망이다! 레이어와 그 기능에 대한 설명은이 게시물의 범위를 벗어나므로 건너뛴다.
 
 ```model.eval()```은 학습 모드가 아닌 평가 모드로 모델을 설정한다. 이 경우 평가 모드는 훈련에 사용되는 드롭아웃 정규화(dropout regularization)를 해제한다.
-<details markdown="1">
-<summary>bert-base-multilingual-uncased 모델 </summary>
-<hr>
-BertModel(
-  (embeddings): BertEmbeddings(
-    (word_embeddings): Embedding(105879, 768, padding_idx=0)
-    (position_embeddings): Embedding(512, 768)
-    (token_type_embeddings): Embedding(2, 768)
-    (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-    (dropout): Dropout(p=0.1, inplace=False)
-  )
-  (encoder): BertEncoder(
-    (layer): ModuleList(
-      (0): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (1): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (2): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (3): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (4): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (5): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (6): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (7): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (8): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (9): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (10): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-      (11): BertLayer(
-        (attention): BertAttention(
-          (self): BertSelfAttention(
-            (query): Linear(in_features=768, out_features=768, bias=True)
-            (key): Linear(in_features=768, out_features=768, bias=True)
-            (value): Linear(in_features=768, out_features=768, bias=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (output): BertSelfOutput(
-            (dense): Linear(in_features=768, out_features=768, bias=True)
-            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-        )
-        (intermediate): BertIntermediate(
-          (dense): Linear(in_features=768, out_features=3072, bias=True)
-        )
-        (output): BertOutput(
-          (dense): Linear(in_features=3072, out_features=768, bias=True)
-          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-    )
-  )
-  (pooler): BertPooler(
-    (dense): Linear(in_features=768, out_features=768, bias=True)
-    (activation): Tanh()
-  )
-)
-<hr>
-</details>
+*Note : 포스팅이 너무 길어져서 output을 삭제했다. 자세한 결과는 여기 [Colab notebook]()에 있다.*
 
+다음으로 예제 텍스트에서 BERT를 평가하고 네트워크의 숨겨진 상태를 가져온다!
+
+```torch.no_grad```는 PyTorch가 순방향 패스(forward pass)동안 컴퓨팅 그래프를 구성하지 않도록 한다.(여기서는 backprop를 실행하지 않기 때문에).-이는 메모리 소비를 줄이고 작업 속도를 약간 높일뿐이다.
+```Python
+# Run the text through BERT, and collect all of the hidden states produced
+# from all 12 layers. 
+with torch.no_grad():
+
+    outputs = model(tokens_tensor, segments_tensors)
+
+    # Evaluating the model will return a different number of objects based on 
+    # how it's  configured in the `from_pretrained` call earlier. In this case, 
+    # becase we set `output_hidden_states = True`, the third item will be the 
+    # hidden states from all layers. See the documentation for more details:
+    # https://huggingface.co/transformers/model_doc/bert.html#bertmodel
+    hidden_states = outputs[2]
+```
+
+
+## 3.2. Understanding the Output
+hidden_states 개체에 저장된이 모델의 전체 숨겨진 상태 집합은 약간 어지럽습니다. 이 개체에는 다음 순서로 4 개의 차원이 있습니다.
+
+  1. 레이어 번호 (13 레이어)
+  2. 배치 번호 (1 문장)
+  3. 단어 / 토큰 번호 (문장에서 22 개의 토큰)
+  4. 숨겨진 유닛 / 기능 번호 (768 개 기능)
+잠깐, 13 층? BERT에는 12 개만 있지 않나요? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12 개 레이어 각각의 출력이므로 13입니다.
+```Python
+print ("Number of layers:", len(hidden_states), "  (initial embeddings + 12 BERT layers)")
+layer_i = 0
+
+print ("Number of batches:", len(hidden_states[layer_i]))
+batch_i = 0
+
+print ("Number of tokens:", len(hidden_states[layer_i][batch_i]))
+token_i = 0
+
+print ("Number of hidden units:", len(hidden_states[layer_i][batch_i][token_i]))
+```
+```
+# ------ output ------- #
+Number of layers: 13   (initial embeddings + 12 BERT layers)
+Number of batches: 1
+Number of tokens: 28
+Number of hidden units: 768
+```
+주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴 보겠습니다.
+
+대부분의 값이 [-2, 2] 사이에 있고 -10 정도의 값이 조금씩 번져서 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있습니다.
+```Python
+# For the 5th token in our sentence, select its feature values from layer 5.
+token_i = 5
+layer_i = 5
+vec = hidden_states[layer_i][batch_i][token_i]
+
+# Plot the values as a histogram to show their distribution.
+plt.figure(figsize=(10,10))
+plt.hist(vec, bins=200)
+plt.show()
+```
+계층별로 값을 그룹화하는 것은 모델에 적합하지만 단어 임베딩을 위해 토큰별로 그룹화하는 것이 좋다.
+현재 차원 :
+```
+[# layers, # batches, # tokens, # features]
+```
+원하는 차원 :
+```
+[# tokens, # layers, # features]
+```
+다행히 PyTorch에는 텐서의 차원을 쉽게 재배열 할 수있는 ```permute```함수가 포함되어있다.
+
+그러나 첫 번째 차원은 현재 Python 목록입니다!
+```Python
+# `hidden_states` is a Python list.
+print('      Type of hidden_states: ', type(hidden_states))
+
+# Each layer in the list is a torch tensor.
+print('Tensor shape for each layer: ', hidden_states[0].size())
+```
+```
+# ------ output ------- #
+      Type of hidden_states:  <class 'tuple'>
+Tensor shape for each layer:  torch.Size([1, 28, 768])
+```
+레이어를 결합해서 하나의 큰 텐서를 만든다.
+```Python
+# Concatenate the tensors for all layers. We use `stack` here to
+# create a new dimension in the tensor.
+token_embeddings = torch.stack(hidden_states, dim=0)
+
+token_embeddings.size()
+```
+```
+torch.Size([13, 1, 28, 768])
+```
+"batches"차원은 필요하지 않으므로 제거한다.
+```Python
+# Remove dimension 1, the "batches".
+token_embeddings = torch.squeeze(token_embeddings, dim=1)
+
+token_embeddings.size()
+```
+```
+torch.Size([13, 28, 768])
+```
+마지막으로 ```permute```를 사용하여 "layers"및 "tokens"차원을 전환할 수 있다.
+```Python
+# Swap dimensions 0 and 1.
+token_embeddings = token_embeddings.permute(1,0,2)
+
+token_embeddings.size()
+```
+```
+torch.Size([28, 13, 768])
+```
+
+## 3.3. Creating word and sentence vectors from hidden states
+은닉층으로 무엇을 할 수 있을지 알아보자. 각 토큰에 대한 개별 벡터 또는 전체 문장의 단일 벡터 표현을 얻고 싶지만, 입력의 각 토큰에 대해 각각 768 크기의 13개의 개별 벡터가 있다.
+
+개별 벡터를 얻으려면 일부 레이어 벡터를 결합해야한다. 그러나 어떤 레이어 또는 레이어 조합이 최상의 표현을 제공할까요?
+
+안타깝게도 쉬운 답은 없다. 하지만 몇 가지 합리적인 접근 방식을 시도해볼 수 있다. 그 후이 질문에 대해 자세히 살펴볼 수 있는 몇 가지 유용한 리소스가 있다.
+
+### Word Vectors
+몇 가지 예를 들어 두 가지 방법으로 단어 벡터를 만들 수 있다.
+
+먼저 마지막 4개의 레이어를 연결하여 토큰 당 단일 단어 벡터를 제공한다. 각 벡터의 길이는 ```4 x 768 = 3,072```입니다.
+```Python
+# Stores the token vectors, with shape [22 x 3,072]
+token_vecs_cat = []
+
+# `token_embeddings` is a [22 x 12 x 768] tensor.
+
+# For each token in the sentence...
+for token in token_embeddings:
+    
+    # `token` is a [12 x 768] tensor
+
+    # Concatenate the vectors (that is, append them together) from the last 
+    # four layers.
+    # Each layer vector is 768 values, so `cat_vec` is length 3,072.
+    cat_vec = torch.cat((token[-1], token[-2], token[-3], token[-4]), dim=0)
+    
+    # Use `cat_vec` to represent `token`.
+    token_vecs_cat.append(cat_vec)
+
+print ('Shape is: %d x %d' % (len(token_vecs_cat), len(token_vecs_cat[0])))
+```
+```
+Shape is: 28 x 3072
+```
+다른 방법으로 마지막 4개의 레이어를 합산하여 단어 벡터를 만든다.
+```Python
+# Stores the token vectors, with shape [22 x 768]
+token_vecs_sum = []
+
+# `token_embeddings` is a [22 x 12 x 768] tensor.
+
+# For each token in the sentence...
+for token in token_embeddings:
+
+    # `token` is a [12 x 768] tensor
+
+    # Sum the vectors from the last four layers.
+    sum_vec = torch.sum(token[-4:], dim=0)
+    
+    # Use `sum_vec` to represent `token`.
+    token_vecs_sum.append(sum_vec)
+
+print ('Shape is: %d x %d' % (len(token_vecs_sum), len(token_vecs_sum[0])))
+```
+```
+Shape is: 28 x 768
+```
+
+### Sentence Vectors
+전체 문장에 대한 단일 벡터를 얻기 위해 여러 application-dependent 전략이 있지만, 간단한 접근 방식은 단일 768 크기의 벡터를 생성하는 각 토큰의 두 번째에서 마지막 숨겨진 레이어를 평균내는 것이다.
+```Python
+# `hidden_states` has shape [13 x 1 x 22 x 768]
+
+# `token_vecs` is a tensor with shape [22 x 768]
+token_vecs = hidden_states[-2][0]
+
+# Calculate the average of all 22 token vectors.
+sentence_embedding = torch.mean(token_vecs, dim=0)
+```
+```
+Our final sentence embedding vector of shape: torch.Size([768])
+```
+
+## 3.4. Confirming contextually dependent vectors

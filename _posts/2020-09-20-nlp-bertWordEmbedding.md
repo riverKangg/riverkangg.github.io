@@ -8,6 +8,28 @@ BERT word Embedding 튜토리얼을 소개한다. 이번 포스팅에서는 [원
 # Contents
 - Contents
 - Introduction
+  - History
+  - What is BERT?
+  - Why BERT embeddings?
+- 1. Loading Pre-Trained BERT
+- 2. Input Formatting
+  - 2.1. Special Tokens
+  - 2.2. Tokenization
+  - 2.3. Segment ID
+- 3. Extracting Embeddings
+  - 3.1. Running BERT on our text
+  - 3.2. Understanding the Output
+  - 3.3. Creating word and sentence vectors from hidden states
+    - Word Vectors
+    - Sentence Vectors
+  - 3.4. Confirming contextually dependent vectors
+  - 3.5. Pooling Strategy & Layer Choice
+- 4. Appendix
+  - 4.1. Special tokens
+  - 4.2. Out of vocabulary words
+  - 4.3. Similarity metrics
+  - 4.4. Implementations
+    - Cite
 
 # Introduction
 
@@ -511,5 +533,5 @@ Han Xiao는 BERT를 사용하여 텍스트에 대한 단어 임베딩을 생성�
 그러나 공식 [tensorflow](https://github.com/google-research/bert/blob/master/extract_features.py)와 잘 알려진 [pytorch]()가 이미 존재한다.
 또한 [bert-as-a-service](https://github.com/hanxiao/bert-as-service)는이 작업을 고성능으로 실행하도록 특별히 설계된 우수한 도구다.
 작성자는 도구구현에 신경썼으며, 리소스 관리 및 풀링 전략과 같이, 사용자가 겪는 미묘한 문제를 해결하는데 도움이 되는 문서(일부는 이 가이드를 만드는데 사용됨)를 제공한다.
-#### Cite
+### Cite
 Chris McCormick and Nick Ryan. (2019, May 14). BERT Word Embeddings Tutorial. Retrieved from <http://www.mccormickml.com>

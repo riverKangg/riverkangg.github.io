@@ -97,7 +97,9 @@ print(tokenized_text)
 ['[CLS]', '이', '##ᆷ', '##베', '##디', '##ᆼ을', '시', '##도', '##할', 'ᄆ', '##ᅮᆫ', '##장이', '##다', '.', '[SEP]']
 ```
 
-BERT 토크나이저가 WordPiece 모델로 생성되었기 때문에 위와 같은 결과가 나온다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 이 어휘에는 다음 네 가지가 포함된다. :
+BERT 토크나이저가 WordPiece 모델로 생성되었기 때문에 위와 같은 결과가 나온다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 어휘를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 어휘 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 말뭉치에서 발견되는 ~ 30,000 개의 가장 일반적인 단어 및 하위 단어를 포함하는 어휘를 생성했습니다. 
+
+이 어휘에는 다음 네 가지가 포함된다. :
 
   1. 전체 단어
   2. 단어의 앞에 또는 분리되어 발생하는 하위 단어 ( "embeddings"에서와 같이 "em"에는 "go get em"에서와 같이 독립형 문자 "em"시퀀스와 동일한 벡터가 할당 됨)
@@ -418,3 +420,96 @@ Our final sentence embedding vector of shape: torch.Size([768])
 ```
 
 ## 3.4. Confirming contextually dependent vectors
+```Python
+for i, token_str in enumerate(tokenized_text):
+  print (i, token_str)
+```
+```
+# ------ output ------- #
+0 [CLS]
+1 ᄇ
+2 ##ᅢ를
+3 ᄐ
+4 ##ᅡ고
+5 ᄋ
+6 ##ᅧ
+7 ##행을
+8 가
+9 ##ᆫ다
+10 .
+11 ᄎ
+12 ##ᅮ
+13 ##석
+14 ##에
+15 ᄆ
+16 ##ᅥ
+17 ##ᆨ은
+18 ᄇ
+19 ##ᅢ
+20 ##가
+21 ᄆ
+22 ##ᅡ
+23 ##ᆺ이
+24 ##ᆻ
+25 ##었다
+26 .
+27 [SEP]
+```
+
+```Python
+print('First 5 vector values for each instance of "배".')
+print('')
+print("배를 타다   ", str(token_vecs_sum[6][:5]))
+print("배를 먹다  ", str(token_vecs_sum[10][:5]))
+print("바다에 있는 배   ", str(token_vecs_sum[19][:5]))
+```
+```
+First 5 vector values for each instance of "배".
+
+배를 타다    tensor([-0.1956,  0.6169, -1.2606,  3.6393,  0.2309])
+배를 먹다   tensor([-0.3030,  1.2585, -1.8328, -0.2811,  3.1500])
+바다에 있는 배    tensor([-0.2556, -1.8705,  1.2312,  0.0592, -1.1682])
+```
+값이 다른 것을 볼 수 있지만 더 정확한 비교를 위해 벡터 간의 코사인 유사성을 계산한다.
+
+
+## 3.5. Pooling Strategy & Layer Choice
+단어 임베딩을 위한 추가 리소스이다.
+
+**BERT Authors**
+BERT 작성자는 명명 된 개체 인식 작업에 사용되는 BiLSTM에 입력 기능으로 다양한 벡터 조합을 제공하고 결과 F1 점수를 관찰하여 단어 삽입 전략을 테스트한다. 
+[링크](http://jalammar.github.io/illustrated-bert/)
+
+마지막 4개 레이어를 연결하면이 특정 작업에서 최상의 결과를 얻을 수 있었지만 다른 많은 방법이 가까운 순간에 나오며 일반적으로 특정 애플리케이션에 대해 다른 버전을 테스트하는 것이 좋다. 결과는 다를 수 있다.
+
+이것은 BERT의 서로 다른 계층이 매우 다른 종류의 정보를 인코딩한다는 점을 지적함으로써 부분적으로 입증된다. 따라서 서로 다른 계층이 서로 다른 종류의 정보를 인코딩하기 때문에 애플리케이션에 따라 적절한 풀링 전략이 변경된다.
+
+**Han Xiao’s BERT-as-service**
+Han Xiao는 BERT를 사용하여 텍스트에 대한 단어 임베딩을 생성하기 위해 GitHub에서 [bert-as-service](https://github.com/hanxiao/bert-as-service)라는 오픈 소스 프로젝트를 만들었다. Han은 이러한 임베딩을 결합하는 다양한 접근 방식을 실험하고 프로젝트의 [FAQ](https://github.com/hanxiao/bert-as-service#speech_balloon-faq)에서 몇 가지 결론과 근거를 공유한다.
+
+```bert-as-service```는 기본적으로 모델의 마지막에서 두 번째 계층의 출력을 사용한다.
+
+요약하면 다음과 같다. :
+
+
+# 4. Appendix
+## 4.1. Special tokens
+```[CLS]```가 분류 작업에 대한 "aggregate representation" 역할을 하지만, 고품질 문장 임베딩 벡터를 위한 최선의 선택은 아니다. BERT 작성자 Jacob Devlin에 따르면: BERT는 의미있는 문장 벡터를 생성하지 않기 때문에, 벡터가 무엇을 의미하는지 확실하지 않다. 이것은 문장 벡터를 얻기 위해 단어 토큰에 대한 평균 풀링을 수행하는 것처럼 보이지만 이것이 의미있는 문장 표현을 생성한다는 말은 없었다.
+
+(그러나 [CLS] 토큰은 모델이 미세 조정 된 경우 의미가 있습니다. 여기서이 토큰의 마지막 은닉층은 시퀀스 분류를 위한 "문장 벡터"로 사용된다.)
+
+## 4.2. Out of vocabulary words
+여러 문장과 문자 수준 임베딩으로 구성된 oov(out of vocabulary) 어휘 중, 임베딩을 복구하는 방법을 찾는 문제가 있다. 임베딩 평균화는 가장 간단한 솔루션 (빠른 텍스트와 같은 하위 단어 어휘를 사용하는 유사한 임베딩 모델에 의존하는 솔루션)이지만, 하위 단어 임베딩의 합계와 단순히 마지막 토큰 임베딩 (벡터는 상황에 따라 다름)을 취하는 것도 방법이다.
+
+## 4.3. Similarity metrics
+이 임베딩은 문맥에 따라 달라지기 때문에, 단어 수준 유사성 비교가 BERT 임베딩에 적합하지 않다.
+
+사용된 유사성 메트릭(similarity metric)에 따라, 
+
+## 4.4. Implementations
+이 노트북의 코드를 자체 애플리케이션의 기초로 사용하여 텍스트에서 BERT 기능을 추출할 수 있다.
+그러나 공식 [tensorflow](https://github.com/google-research/bert/blob/master/extract_features.py)와 잘 알려진 [pytorch]()가 이미 존재한다.
+또한 [bert-as-a-service](https://github.com/hanxiao/bert-as-service)는이 작업을 고성능으로 실행하도록 특별히 설계된 우수한 도구다.
+작성자는 도구구현에 신경썼으며, 리소스 관리 및 풀링 전략과 같이, 사용자가 겪는 미묘한 문제를 해결하는데 도움이 되는 문서(일부는 이 가이드를 만드는데 사용됨)를 제공한다.
+#### Cite
+Chris McCormick and Nick Ryan. (2019, May 14). BERT Word Embeddings Tutorial. Retrieved from <http://www.mccormickml.com>

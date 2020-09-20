@@ -105,7 +105,7 @@ author:
       url: "mailto:riverKangg@gmail.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/riverKangg"  
+      url: "https://github.com/riverKangg"  
     - label: "Medium"
       icon: "fas fa-fw fa-link"
       # url: "https://medium.com/@riverkangg"

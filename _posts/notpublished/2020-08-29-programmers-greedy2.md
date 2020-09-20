@@ -4,7 +4,7 @@ date: 2020-08-29
 categories: python
 tags : 
 - 프로그래머스
-publised : false
+published : false
 ---
 
 탐욕법(Greedy)-lv2.큰 수 만들기

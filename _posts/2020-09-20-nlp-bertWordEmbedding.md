@@ -73,26 +73,43 @@ Google Colab에서 코드를 실행할 때, 다시 연결할 때만다 라이브
 
 이제 pytorch, pre-trained BERT, BERT tokenizer를 불러와야한다. 
 
-BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서가 10,000 개 이상 포함된 데이터 세트 인 Wikipedia, Book Corpus에서 긴 시간동안 학습된 것이다. 이 모델은 NLP의 여러 과제에서 최고 점수를 달성했다(약간의 모델 수정 필요). Google이 공개한 여러 개의 BERT 중 원문에서는 ```bert-base-uncased```를 사용했지만, 이 포스팅에서는 한국어 처리를 위해 ```bert-base-multilingual-uncased```를 선택했다. 더 다양한 모델을 확인하고 싶다면, [여기](https://huggingface.co/transformers/pretrained_models.html)를 참고하자.
+BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서가 10,000 개 이상 포함된 데이터 세트 인 Wikipedia, Book Corpus에서 긴 시간동안 학습된 것이다. 이 모델은 NLP의 여러 과제에서 최고 점수를 달성했다(약간의 모델 수정 필요). Google이 공개한 여러 개의 BERT 중 원문에서는 ```bert-base-uncased```를 사용했지만, 이 포스팅에서는 한국어 처리를 위해 ```bert-base-multilingual-cased```를 선택했다. 모델 설명은 [여기](https://github.com/google-research/bert/blob/master/multilingual.md)를 참고하자. 더 다양한 pre-trained 모델을 확인하고 싶다면, [여기](https://huggingface.co/transformers/pretrained_models.html)에 나와있다.
 
 ```transformers```는 BERT를 다른 작업(토큰 분류, 텍스트 분류 등)에 적용하기 위해 여러 클래스를 제공한다.
 이번 포스팅에서는 단어 임베딩이 목적이기 때문에, 출력이 없는 기본 ```BertModel```을 사용한다. 
 
+~~~Python
+import torch
+from transformers import BertTokenizer, BertModel
+
+# OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
+import logging
+#logging.basicConfig(level=logging.INFO)
+
+import matplotlib.pyplot as plt
+% matplotlib inline
+
+# Load pre-trained model tokenizer (vocabulary)
+tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
+~~~
+
+
 # 2. Input Formatting
 BERT는 특정 형식의 입력 데이터를 필요로 한다.
-1. **special token** ```[sep]``` : 문장의 끝을 표시하거나 두 문장의 분리
-2. **special token** ```[CLS]``` : 
-3. token : 
+
+1. **special token**```[sep]```은 문장의 끝을 표시하거나 두 문장의 분리할 때 사용한다.
+2. **special token**```[CLS]```은 문장 시작할 때 사용한다. 이 토큰은 분류 문제에 사용되지만, 어떤 문제를 풀더라도 입력해야한다.  
+3. BERT에서 사용되는 단어사전에 있는 토큰
+4. BERT 토크 나이저의 토큰에 대한 **Token ID**
+5. 시퀀스에서 어떤 요소가 토큰이고 패딩 요소인지를 나타내는 **Mask ID**
+6. 다른 문장을 구별하는데 사용되는 **Segment ID**
+7. 시퀀스 내에서 토큰 위치를 표시하는 데 사용되는 **Positional Embeddings**
 
 다행히도 ```transformers``` 인터페이스는 위의 모든 사항을 처리한다(tokenizer.encode_plus 함수 사용).
-하지만 이 포스팅은 BERT 작업을 소개하기 위한 것이므로 (대부분)수동으로 이러한 단계를 진행한다.
-
-```tokenizer.encode_plus```를 사용하는 예는 [여기](http://mccormickml.com/2019/07/22/BERT-fine-tuning/)에서 문장 분류에 대한 게시물을 참조하길 추천한다.
+하지만 이 포스팅은 BERT 작업을 소개하기 위한 것이므로 (대부분) 수동으로 이러한 단계를 진행한다.
 
 ## 2.1. Special Tokens
-BERT는 하나 또는 두 개의 문장을 입력으로 사용할 수 있으며 특수 토큰 ```[SEP]```을 사용하여 구분한다. ```[CLS]``` 토큰은 항상 텍스트 시작 부분에 나타나며 분류 작업에만 해당된다.
-
-그러나 두 개의 토큰은 항상 필요하다. 그러나 우리가 문장이 하나 뿐이고 분류에 BERT를 사용하지 않더라도 마찬가지다. 이것이 BERT가 사전 훈련된 방법이며 BERT가 기대하는 것이다.
+BERT는 하나 또는 두개의 문장을 입력으로 사용할 수 있고, 특수 토큰 ```[SEP]```으로 구분한다. ```[CLS]``` 토큰은 항상 텍스트 시작 부분에 나타나며 분류 문제를 해결할 때만 사용되지만, 다른 문제를 풀더라도 입력은 무조건 해야한다.
 
 **2 Sentence Input:**
 ```
@@ -103,10 +120,10 @@ BERT는 하나 또는 두 개의 문장을 입력으로 사용할 수 있으며 
 [CLS] 드디어 내일이 주말이다. [SEP]
 ```
 
+
 ## 2.2. Tokenization
 BERT는 자체 토크나이저를 제공한다. 원문에는 영어 텍스트를 사용하지만, 이 포스팅에서는 한국어 텍스트를 사용하며 영어와의 차이점을 짚어보고자 한다.
 
-#### 한국어
 ~~~Python
 text = "임베딩을 시도할 문장이다."
 marked_text = "[CLS] " + text + " [SEP]"
@@ -119,9 +136,9 @@ print(tokenized_text)
 ~~~
 ```
 # ------ output ------- #
-['[CLS]', '이', '##ᆷ', '##베', '##디', '##ᆼ을', '시', '##도', '##할', 'ᄆ', '##ᅮᆫ', '##장이', '##다', '.', '[SEP]']
+['[CLS]', '임', '##베', '##딩', '##을', '시', '##도', '##할', '문', '##장이', '##다', '.', '[SEP]']
 ```
-BERT의 토크나이저가 WordPiece 모델로 생성된다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 단어사전(원문에서는 vocabulary라고 표현했지만, 단어사전 더 정확한 표현)를 탐욕스럽게(greedily) 만든다. BERT 토크나이저 모델의 단어사전의 제한 크기가 30,000 개이므로 WordPiece 모델은 모든 영어 문자와 모델이 훈련된 영어 코퍼스에서 ~ 30,000개의 가장 일반적인 단어 및 하위 단어로 단어사전을 만든다.
+BERT의 토크나이저는 WordPiece 모델을 사용한다. 이 모델은 언어 데이터에 가장 적합한 개별 문자, 하위단어(subwords) 및 단어의 고정 크기 단어사전(원문에서는 vocabulary라고 표현했지만, 단어사전 더 정확한 표현)를 탐욕스럽게(greedily) 만든다. BERT 토크나이저는 30,000개로 단어사전의 크기를 제한하기 때문에, WordPiece 모델은 영어 코퍼스에서 최대 30,000개의 가장 일반적인 단어 및 하위 단어로 단어사전을 만든다.
 
   - 한국어의 경우 영어에 비해 학습된 텍스트의 갯수가 현저히 적다. 결과를 보면 "문장"이라는 간단한 단어도 인식하지 못하고 있다.
 
@@ -130,47 +147,45 @@ BERT의 토크나이저가 WordPiece 모델로 생성된다. 이 모델은 언�
   1. 전체 단어
   2. 단어의 앞에 또는 분리되어 발생하는 하위 단어 ( "embeddings"에서와 같이 "em"에는 "go get em"에서와 같이 독립형 문자 "em"시퀀스와 동일한 벡터가 할당 됨)
   3. 단어 앞에 있지 않은 하위 단어. 이 경우를 나타내기 위해 '##'이 앞에 붙는다.
-  4. 개별 문자(individual character)
+  4. 개별 문자
 
-이 모델에서 단어를 토큰화하기위해 토크나이저는 먼저 전체 단어가 어휘에 있는지 확인한다. 그렇지 않은 경우 단어를 어휘에 포함된 가능한 가장 큰 하위 단어로 나누고 마지막 수단으로 단어를 개별 문자로 분해한다. 이 때문에 우리는 항상 최소한 개별 문자의 모음으로 단어를 표현할 수 있다.
+이 모델에서 단어를 토큰화하기위해 토크나이저는 먼저 전체 단어가 어휘에 있는지 확인한다. 그렇지 않은 경우 단어를 어휘에 포함된 가능한 가장 큰 하위 단어로 나누고, 하위 단어로도 나뉘어지지 않는다면 개별 문자로 분해한다. 이 때문에 우리는 항상 최소한 개별 문자의 모음으로 단어를 표현할 수 있다.
 
-결과적으로 사전에 없는 단어를 'OOV' 또는 'UNK'와 같은 토큰을 주는 대신, 어휘에 포함되지 않은 단어는 사전에 있는 하위 단어 및 문자 토큰으로 분해된다.
+다시 말하자면, 사전에 없는 단어를 'OOV' 또는 'UNK'와 같은 토큰을 주는 대신, 어휘에 포함되지 않은 단어는 사전에 있는 하위 단어 및 문자 토큰으로 분해된다.
 
-따라서 단어사전에 없는 "임베딩"은 \['이', '##ᆷ', '##베', '##디', '##ᆼ을'\]로 분할된다. 이러한 하위 단어 임베딩 벡터를 평균하여 원래 단어에 대한 근사 벡터를 생성할 수도 있다. 
+위의 결과를 보면 단어사전에 없는 "임베딩"이라는 단어는 \['임', '##베', '##딩'\]으로 분할된다. 이러한 하위 단어 임베딩 벡터를 평균하여 원래 단어에 대한 근사 벡터를 생성할 수도 있다. 
 (WordPiece에 대한 자세한 내용은 [원본 논문](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf)과 Google의 [Neural Machine Translation System](https://arxiv.org/pdf/1609.08144.pdf)을 참고)
 
-예시를 통해 살펴보자. 두 개의 해시로 시작하는 토큰은 하위 단어 또는 개별 문자다.
-```Python
-list(tokenizer.vocab.keys())[20000:20020]
-```
+예시를 통해 살펴보자. 두 개의 해시로 시작하는 토큰은 하위 단어 또는 개별 문자다. multilingual 모델이기 때문에 다양한 언어가 포함되어 있다. 종종 한국어도 보인다. 
+~~~Python
+list(tokenizer.vocab.keys())[5000:5020]
+~~~
 ```
 # ------ output ------- #
-['weltkrieg',
- '##었다',
- 'dock',
- 'maakte',
- 'бас',
- 'mannschaft',
- '##ξη',
- '##list',
- 'holy',
- '##nze',
- 'dun',
- 'sien',
- 'hanet',
- 'општина',
- '2015년',
- 'dice',
- 'motion',
- 'ancienne',
- 'hora',
- 'lama']
+['33',
+ 'године',
+ '##ן',
+ 'three',
+ '1948',
+ 'fu',
+ '##ů',
+ 'invånare',
+ '##am',
+ 'kvadratkilometer',
+ '##ou',
+ '##4',
+ 'Earth',
+ '##ä',
+ 'anche',
+ 'ben',
+ '##от',
+ '1942',
+ '##는',
+ 'made']
 ```
-multilingual 모델이기 때문에 다양한 언어가 포함되어 있다. 종종 한국어도 보인다. 
 
 텍스트를 토큰으로 분리한 후, 토큰화된 문자 리스트를 숫자 리스트로 바꿔야한다.
-
-```Python
+~~~Python
 # Define a new example sentence with multiple meanings of the word "bank"
 text = "배를 타고 여행을 간다." \
        "추석에 먹은 배가 맛있었다."
@@ -187,35 +202,36 @@ indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
 # Display the words with their indeces.
 for tup in zip(tokenized_text, indexed_tokens):
     print('{:<12} {:>6,}'.format(tup[0], tup[1]))
-```
+~~~
 ```
 # ------ output ------- #
 [CLS]           101
-ᄇ             1,170
-##ᅢ를       73,446
-ᄐ             1,179
-##ᅡ고        67,384
-ᄋ             1,174
-##ᅧ          46,069
-##행을     91,480
-가           20,966
-##ᆫ다        32,407
+밥             9,327
+##을          10,622
+많이           47,058
+먹             9,266
+##어          12,965
+##서          12,424
+배             9,330
+##가          11,287
+부             9,365
+##르          31,401
+##다          11,903
 .               119
-ᄎ             1,177
-##ᅮ          46,188
-##석        40,482
-##에         10,609
-ᄆ             1,169
-##ᅥ          33,645
-##ᆨ은       34,653
-ᄇ             1,170
-##ᅢ          26,179
-##가         11,376
-ᄆ             1,169
-##ᅡ          25,539
-##ᆺ이        80,054
-##ᆻ          97,104
-##었다      20,001
+고             8,888
+##기          12,310
+##잡          119,199
+##이          10,739
+배             9,330
+##를          11,513
+타             9,845
+##고          11,664
+바             9,318
+##다          11,903
+##에          10,530
+나             8,982
+##간          18,784
+##다          11,903
 .               119
 [SEP]           102
 ```
@@ -224,36 +240,37 @@ for tup in zip(tokenized_text, indexed_tokens):
 BERT는 두 문장을 구별하기 위해 1과 0을 사용하여 문장 쌍을 학습하고 예상한다.
 즉, 토큰화된 텍스트의 각 토큰에 대해 어떤 문장에 속하는지 지정해야한다 : 문장 0(0 리스트) 또는 문장 1(1 리스트).
 우리의 목적을 위해 단일 문장 입력에는 1 리스트만 필요하므로 입력 문장의 각 토큰에 대해 1로 구성된 벡터를 생성한다.
-```Python
-# Mark each of the 22 tokens as belonging to sentence "1".
+~~~Python
+# Mark each of the 29 tokens as belonging to sentence "1".
 segments_ids = [1] * len(tokenized_text)
 
 print (segments_ids)
-```
+~~~
 ```
 # ------ output ------- #
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ```
 
 
 # 3. Extracting Embeddings
 ## 3.1. Running BERT on our text
-데이터를 토치 텐서(torch tensor)로 변환하고 BERT 모델을 호출해야한다. BERT PyTorch 인터페이스에서는 데이터가 Python 리스트 아닌 토치 텐서가 필요하므로 이번 장에서 변환한다. - 이것은 모양이나 데이터를 변경하지 않는다.
-```Python
+데이터를 토치 텐서(torch tensor)로 변환하고 BERT 모델을 호출해야한다. BERT PyTorch 인터페이스에서는 데이터 형태가 Python list가 아닌 토치 텐서가 필요하므로 이번 장에서 변환한다. - 이 작업은 형태나 데이터를 변경하지 않는다.
+~~~Python
 # Convert inputs to PyTorch tensors
 tokens_tensor = torch.tensor([indexed_tokens])
 segments_tensors = torch.tensor([segments_ids])
-```
-```from_pretrained```를 호출하면 웹에서 모델을 다운로드한다. ```bert-base-multilingual-uncased```를 로드하면 로깅에 인쇄된 모델의 정의를 볼 수 있다. 이 모델은 12개의 레이어로 구성된 심층 신경망이다! 레이어와 그 기능에 대한 설명은이 게시물의 범위를 벗어나므로 건너뛴다.
+~~~
+```from_pretrained```를 호출하면 웹에서 모델을 다운로드한다. ```bert-base-multilingual-cased```를 로드하면 로깅에 인쇄된 모델의 정의를 볼 수 있다. 이 모델은 12개의 레이어로 구성된 심층 신경망이다! 레이어와 그 기능에 대한 설명은 이 포스팅의 범위를 벗어나므로 건너뛴다.
 
 ```model.eval()```은 학습 모드가 아닌 평가 모드로 모델을 설정한다. 이 경우 평가 모드는 훈련에 사용되는 드롭아웃 정규화(dropout regularization)를 해제한다.
 
-*Note : 포스팅이 너무 길어져서 output을 삭제했다. 자세한 결과는 여기 [Colab notebook]()에 있다.*
+**Note : 포스팅이 너무 길어져서 output을 삭제했다. 관심이 있다면 [Colab notebook]()에서 확인하자!**
 
-다음으로 예제 텍스트에서 BERT를 평가하고 네트워크의 숨겨진 상태를 가져온다!
+다음으로 예제 텍스트에서 BERT를 평가하고 네트워크의 hidden state를 가져온다.
 
-```torch.no_grad```는 PyTorch가 순방향 패스(forward pass)동안 컴퓨팅 그래프를 구성하지 않도록 한다.(여기서는 backprop를 실행하지 않기 때문에).-이는 메모리 소비를 줄이고 작업 속도를 약간 높일뿐이다.
-```{Python}
+*Side note : ```torch.no_grad```는 PyTorch가 순방향 패스(forward pass)를 하는동안 컴퓨팅 그래프를 구성하지 않도록 한다(여기서는 backprop를 실행하지 않기 때문에).-메모리 소비를 줄이고 작업 속도를 약간 높일 수 있다.*
+
+~~~Python
 # Run the text through BERT, and collect all of the hidden states produced
 # from all 12 layers. 
 with torch.no_grad():
@@ -266,20 +283,20 @@ with torch.no_grad():
     # hidden states from all layers. See the documentation for more details:
     # https://huggingface.co/transformers/model_doc/bert.html#bertmodel
     hidden_states = outputs[2]
-```
+~~~
 
 
 ## 3.2. Understanding the Output
 ```hidden_states``` 개체에 저장된 이 모델의 전체 은닉층은 약간 복잡하다. 이 개체에는 다음 순서로 4개의 차원이 있다.
 
-  1. 레이어 번호 (13 레이어)
-  2. 배치 번호 (1 문장)
-  3. 단어 / 토큰 번호 (문장에서 22 개의 토큰)
-  4. 숨겨진 유닛 / 기능 번호 (768 개 기능)
+  1. The layer number (13 layers)
+  2. The batch number (1 sentence)
+  3. The word / token number (36 tokens in our sentence)
+  4. The hidden unit / feature number (768 features)
   
-잠깐 13 레이어? BERT에는 12 개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 출력이므로 13이다.
+잠깐 13 레이어? BERT에는 12개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 결과이므로 13이다.
 
-```Python
+~~~Python
 print ("Number of layers:", len(hidden_states), "  (initial embeddings + 12 BERT layers)")
 layer_i = 0
 
@@ -290,12 +307,12 @@ print ("Number of tokens:", len(hidden_states[layer_i][batch_i]))
 token_i = 0
 
 print ("Number of hidden units:", len(hidden_states[layer_i][batch_i][token_i]))
-```
+~~~
 ```
 # ------ output ------- #
 Number of layers: 13   (initial embeddings + 12 BERT layers)
 Number of batches: 1
-Number of tokens: 28
+Number of tokens: 36
 Number of hidden units: 768
 ```
 
@@ -312,8 +329,7 @@ plt.hist(vec, bins=200)
 plt.show()
 ```
 
-계층별로 값을 그룹화하는 것은 모델에 적합하지만 단어 임베딩을 위해 토큰별로 그룹화하는 것이 좋다.
-
+레이어별로 값을 그룹화하는 것이 모델에 적합하지만, 단어 임베딩을 위해 토큰별로 그룹화한다.   
 현재 차원 :
 ```
 [# layers, # batches, # tokens, # features]
@@ -326,40 +342,40 @@ plt.show()
 다행히 PyTorch에는 텐서 차원을 쉽게 재배열 할 수 있는 ```permute```함수가 포함되어있다.
 
 그러나 첫 번째 차원은 현재 Python list이다!
-```Python
+~~~Python
 # `hidden_states` is a Python list.
 print('      Type of hidden_states: ', type(hidden_states))
 
 # Each layer in the list is a torch tensor.
 print('Tensor shape for each layer: ', hidden_states[0].size())
-```
+~~~
 ```
 # ------ output ------- #
       Type of hidden_states:  <class 'tuple'>
-Tensor shape for each layer:  torch.Size([1, 28, 768])
+Tensor shape for each layer:  torch.Size([1, 36, 768])
 ```
 
 레이어를 결합해서 하나의 큰 텐서를 만든다.
-```Python
+~~~Python
 # Concatenate the tensors for all layers. We use `stack` here to
 # create a new dimension in the tensor.
 token_embeddings = torch.stack(hidden_states, dim=0)
 
 token_embeddings.size()
+~~~
 ```
-```
-torch.Size([13, 1, 28, 768])
+torch.Size([13, 1, 36, 768])
 ```
 
 "batches" 차원은 필요하지 않으므로 제거한다.
-```Python
+~~~Python
 # Remove dimension 1, the "batches".
 token_embeddings = torch.squeeze(token_embeddings, dim=1)
 
 token_embeddings.size()
+~~~
 ```
-```
-torch.Size([13, 28, 768])
+torch.Size([13, 36, 768])
 ```
 
 마지막으로 ```permute```를 사용하여 "layers" 및 "tokens" 차원을 전환할 수 있다.
@@ -370,18 +386,20 @@ token_embeddings = token_embeddings.permute(1,0,2)
 token_embeddings.size()
 ```
 ```
-torch.Size([28, 13, 768])
+torch.Size([36, 13, 768])
 ```
+
+
 
 ## 3.3. Creating word and sentence vectors from hidden states
 은닉층으로 무엇을 할 수 있을지 알아보자. 각 토큰에 대한 개별 벡터 또는 전체 문장의 단일 벡터 표현을 얻고 싶지만, 입력의 각 토큰에 대해 각각 768 크기의 13개의 개별 벡터가 있다.
 
-개별 벡터를 얻으려면 일부 레이어 벡터를 결합해야한다. 그러나 어떤 레이어 또는 레이어 조합이 최상의 표현을 제공할까요?
+개별 벡터를 얻으려면 일부 레이어 벡터를 결합해야한다. 어떤 레이어 또는 레이어 조합이 최상의 표현을 제공할 수 있을까?
 
-안타깝게도 쉬운 답은 없다. 하지만 몇 가지 합리적인 접근 방식을 시도해볼 수 있다. 그 후이 질문에 대해 자세히 살펴볼 수 있는 몇 가지 유용한 리소스가 있다.
+안타깝게도 명확한 답은 없다. 하지만 몇 가지 합리적인 접근 방식을 시도해보고, 추가로 살펴볼 수 있는 몇 가지 유용한 리소스를 소개한다.
 
 ### Word Vectors
-몇 가지 예를 들어 두 가지 방법으로 단어 벡터를 만들 수 있다.
+두 가지 방법으로 단어 벡터를 만들어보자.
 
 먼저 마지막 4개의 레이어를 연결하여 토큰 당 단일 단어 벡터를 제공한다. 각 벡터의 길이는 ```4 x 768 = 3,072```입니다.
 ```Python

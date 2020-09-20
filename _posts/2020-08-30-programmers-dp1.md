@@ -2,7 +2,9 @@
 title : "[Python/프로그래머스] 동적계획법-정수삼각형"
 date : 2020-08-30
 categroies : python
-tags :프로그래머스
+tags :
+- 프로그래머스
+published : false
 ---
 
 동적계획법(Dynamic Programming)-lv3.정수삼각형

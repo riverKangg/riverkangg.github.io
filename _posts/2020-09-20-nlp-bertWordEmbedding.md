@@ -54,26 +54,26 @@ BERT(Bidirectional Encoder Representations from Transformers)는 2018년 말에 
 
 BERT는 Word2Vec과 같은 모델에 비해 문맥을 고려한 임베딩이 된다는 장점이 있다. 
 Word2Vec은 단어가 나타나는 문맥에 관계없이 각 단어가 고정된 표현을 가지지만, BERT는 주변 단어에 의해 동적으로 변하는 단어 표현을 생성한다. 예를 들어 다음 두 문장이 주어진다면 :
+  
   - 배를 타고 여행을 간다.
   - 추석에 먹은 배가 맛있었다.
-Word2Vec은 두 문장의 "배"라는 단어에 대해 동일한 단어 임베딩을 생성하는 반면 BERT에서는 "배"에 대한 단어 임베딩이 문장마다 다르다.
-다의어를 포착하는 것 외에도 상황에 맞는 단어 임베딩은 더 정확한 feature representation을 생성하는 다른 형태의 정보를 포착하여 더 나은 성능을 낸다. 
+  
+Word2Vec은 두 문장의 "배"라는 단어에 대해 동일한 단어 임베딩을 생성하는 반면 BERT에서는 "배"에 대한 단어 임베딩이 문장마다 다르다. 다의어를 포착하는 것 외에도 문맥에 맞는 단어 임베딩은 다른 형태의 정보를 알아낸다. 결과적으로 더 정확한 feature representation이 가능하며 이에 따라 모델 성능이 향상된다.
 
 
 # 1. Loading Pre-Trained BERT
-Hugging Face로 BERT 용 PyTorch 인터페이스를 설치합니다. 
-(이 라이브러리에는 OpenAI의 GPT 및 GPT-2와 같은 사전 학습된 다른 언어 모델에 대한 인터페이스가 포함되어 있다.)
+Hugging Face(이 라이브러리에는 OpenAI의 GPT 및 GPT-2와 같은 사전 학습된 다른 언어 모델에 대한 인터페이스 포함)로 BERT 용 PyTorch 인터페이스를 설치한다.
 
-이 튜토리얼에서는 PyTorch를 사용한다. high-level API는 사용하기 쉽지만 작동 방식에 대한 통찰력을 제공하지 않고, tensorflow는 설정해야할 사항이 많다. 하지만 BERT를 사용하다보면 tensorflow를 사용할 일이 많다.
+이 튜토리얼에서는 PyTorch를 사용한다. high-level API는 사용하기 쉽지만 작동 방식에 대한 통찰력을 제공하지 않고, tensorflow는 설정해야할 사항이 많다(하지만 BERT를 더 사용하다보면 tensorflow를 사용할 일이 많다).
 
-Google Colab에서 코드를 실행할 때, 다시 연결할 때만다 라이브러리를 설치해야한다.
+Google Colab에서 코드를 실행할 때, 다시 연결할 때마다 라이브러리를 설치해야한다.
 ~~~Python
 !pip install transformers
 ~~~
 
 이제 pytorch, pre-trained BERT, BERT tokenizer를 불러와야한다. 
 
-BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서가 10,000 개 이상 포함된 데이터 세트 인 Wikipedia, Book Corpus에서 긴 시간동안 학습된 것이다. 이 모델은 NLP의 여러 과제에서 최고 점수를 달성했다(약간의 모델 수정 필요). Google이 공개한 여러 개의 BERT 중 원문에서는 ```bert-base-uncased```를 사용했지만, 이 포스팅에서는 한국어 처리를 위해 ```bert-base-multilingual-cased```를 선택했다. 모델 설명은 [여기](https://github.com/google-research/bert/blob/master/multilingual.md)를 참고하자. 더 다양한 pre-trained 모델을 확인하고 싶다면, [여기](https://huggingface.co/transformers/pretrained_models.html)에 나와있다.
+BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서가 10,000 개 이상 포함된 데이터 세트 인 Wikipedia, Book Corpus에서 긴 시간동안 학습된 것이다. 이 모델은 NLP의 여러 과제에서 최고 점수를 달성했다(약간의 모델 수정은 필요). Google이 공개한 여러 개의 BERT 중 원문에서는 ```bert-base-uncased```를 사용했지만, 이 포스팅에서는 한국어 처리를 위해 ```bert-base-multilingual-cased```를 사용한다. 모델 설명은 [여기](https://github.com/google-research/bert/blob/master/multilingual.md)를 참고하자. 더 다양한 pre-trained 모델을 확인하고 싶다면, [여기](https://huggingface.co/transformers/pretrained_models.html)에 나와있다.
 
 ```transformers```는 BERT를 다른 작업(토큰 분류, 텍스트 분류 등)에 적용하기 위해 여러 클래스를 제공한다.
 이번 포스팅에서는 단어 임베딩이 목적이기 때문에, 출력이 없는 기본 ```BertModel```을 사용한다. 

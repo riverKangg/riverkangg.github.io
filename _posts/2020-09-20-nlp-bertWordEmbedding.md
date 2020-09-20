@@ -67,7 +67,7 @@ Hugging Face(이 라이브러리에는 OpenAI의 GPT 및 GPT-2와 같은 사전 
 이 튜토리얼에서는 PyTorch를 사용한다. high-level API는 사용하기 쉽지만 작동 방식에 대한 통찰력을 제공하지 않고, tensorflow는 설정해야할 사항이 많다(하지만 BERT를 더 사용하다보면 tensorflow를 사용할 일이 많다).
 
 Google Colab에서 코드를 실행할 때, 다시 연결할 때마다 라이브러리를 설치해야한다.
-~~~Python
+~~~python
 !pip install transformers
 ~~~
 
@@ -78,7 +78,7 @@ BERT 모델은 Google의 사전 학습된 모델로 다양한 장르의 도서�
 ```transformers```는 BERT를 다른 작업(토큰 분류, 텍스트 분류 등)에 적용하기 위해 여러 클래스를 제공한다.
 이번 포스팅에서는 단어 임베딩이 목적이기 때문에, 출력이 없는 기본 ```BertModel```을 사용한다. 
 
-~~~Python
+~~~python
 import torch
 from transformers import BertTokenizer, BertModel
 
@@ -124,7 +124,7 @@ BERT는 하나 또는 두개의 문장을 입력으로 사용할 수 있고, 특
 ## 2.2. Tokenization
 BERT는 자체 토크나이저를 제공한다. 원문에는 영어 텍스트를 사용하지만, 이 포스팅에서는 한국어 텍스트를 사용하며 영어와의 차이점을 짚어보고자 한다.
 
-~~~Python
+~~~python
 text = "임베딩을 시도할 문장이다."
 marked_text = "[CLS] " + text + " [SEP]"
 
@@ -157,7 +157,7 @@ BERT의 토크나이저는 WordPiece 모델을 사용한다. 이 모델은 언�
 (WordPiece에 대한 자세한 내용은 [원본 논문](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf)과 Google의 [Neural Machine Translation System](https://arxiv.org/pdf/1609.08144.pdf)을 참고)
 
 예시를 통해 살펴보자. 두 개의 해시로 시작하는 토큰은 하위 단어 또는 개별 문자다. multilingual 모델이기 때문에 다양한 언어가 포함되어 있다. 종종 한국어도 보인다. 
-~~~Python
+~~~python
 list(tokenizer.vocab.keys())[5000:5020]
 ~~~
 ```
@@ -185,7 +185,7 @@ list(tokenizer.vocab.keys())[5000:5020]
 ```
 
 텍스트를 토큰으로 분리한 후, 토큰화된 문자 리스트를 숫자 리스트로 바꿔야한다.
-~~~Python
+~~~python
 # Define a new example sentence with multiple meanings of the word "bank"
 text = "배를 타고 여행을 간다." \
        "추석에 먹은 배가 맛있었다."
@@ -240,7 +240,7 @@ for tup in zip(tokenized_text, indexed_tokens):
 BERT는 두 문장을 구별하기 위해 1과 0을 사용하여 문장 쌍을 학습하고 예상한다.
 즉, 토큰화된 텍스트의 각 토큰에 대해 어떤 문장에 속하는지 지정해야한다 : 문장 0(0 리스트) 또는 문장 1(1 리스트).
 우리의 목적을 위해 단일 문장 입력에는 1 리스트만 필요하므로 입력 문장의 각 토큰에 대해 1로 구성된 벡터를 생성한다.
-~~~Python
+~~~python
 # Mark each of the 29 tokens as belonging to sentence "1".
 segments_ids = [1] * len(tokenized_text)
 
@@ -255,7 +255,7 @@ print (segments_ids)
 # 3. Extracting Embeddings
 ## 3.1. Running BERT on our text
 데이터를 토치 텐서(torch tensor)로 변환하고 BERT 모델을 호출해야한다. BERT PyTorch 인터페이스에서는 데이터 형태가 Python list가 아닌 토치 텐서가 필요하므로 이번 장에서 변환한다. - 이 작업은 형태나 데이터를 변경하지 않는다.
-~~~Python
+~~~python
 # Convert inputs to PyTorch tensors
 tokens_tensor = torch.tensor([indexed_tokens])
 segments_tensors = torch.tensor([segments_ids])
@@ -270,7 +270,7 @@ segments_tensors = torch.tensor([segments_ids])
 
 *Side note : ```torch.no_grad```는 PyTorch가 순방향 패스(forward pass)를 하는동안 컴퓨팅 그래프를 구성하지 않도록 한다(여기서는 backprop를 실행하지 않기 때문에).-메모리 소비를 줄이고 작업 속도를 약간 높일 수 있다.*
 
-~~~Python
+~~~python
 # Run the text through BERT, and collect all of the hidden states produced
 # from all 12 layers. 
 with torch.no_grad():
@@ -296,7 +296,7 @@ with torch.no_grad():
   
 잠깐 13 레이어? BERT에는 12개만 있지 않나? 첫 번째 요소는 입력 임베딩이고 나머지는 BERT의 12개 레이어 각각의 결과이므로 13이다.
 
-~~~Python
+~~~python
 print ("Number of layers:", len(hidden_states), "  (initial embeddings + 12 BERT layers)")
 layer_i = 0
 
@@ -317,7 +317,7 @@ Number of hidden units: 768
 ```
 
 주어진 레이어와 토큰에 대한 값의 범위를 간단히 살펴보자. 범위가 모든 레이어와 토큰에 대해 상당히 유사하다는 것을 알 수 있다.-대부분의 값이 [-2.5, 2.5] 사이에 있다.
-```Python
+~~~python
 # For the 5th token in our sentence, select its feature values from layer 5.
 token_i = 5
 layer_i = 5
@@ -327,7 +327,7 @@ vec = hidden_states[layer_i][batch_i][token_i]
 plt.figure(figsize=(10,10))
 plt.hist(vec, bins=200)
 plt.show()
-```
+~~~
 
 레이어별로 값을 그룹화하는 것이 모델에 적합하지만, 단어 임베딩을 위해 토큰별로 그룹화한다.   
 현재 차원 :
@@ -342,7 +342,7 @@ plt.show()
 다행히 PyTorch에는 텐서 차원을 쉽게 재배열 할 수 있는 ```permute```함수가 포함되어있다.
 
 그러나 첫 번째 차원은 현재 Python list이다!
-~~~Python
+~~~python
 # `hidden_states` is a Python list.
 print('      Type of hidden_states: ', type(hidden_states))
 
@@ -356,7 +356,7 @@ Tensor shape for each layer:  torch.Size([1, 36, 768])
 ```
 
 레이어를 결합해서 하나의 큰 텐서를 만든다.
-~~~Python
+~~~python
 # Concatenate the tensors for all layers. We use `stack` here to
 # create a new dimension in the tensor.
 token_embeddings = torch.stack(hidden_states, dim=0)
@@ -368,7 +368,7 @@ torch.Size([13, 1, 36, 768])
 ```
 
 "batches" 차원은 필요하지 않으므로 제거한다.
-~~~Python
+~~~python
 # Remove dimension 1, the "batches".
 token_embeddings = torch.squeeze(token_embeddings, dim=1)
 
@@ -379,12 +379,12 @@ torch.Size([13, 36, 768])
 ```
 
 마지막으로 ```permute```를 사용하여 "layers" 및 "tokens" 차원을 전환할 수 있다.
-```Python
+~~~python
 # Swap dimensions 0 and 1.
 token_embeddings = token_embeddings.permute(1,0,2)
 
 token_embeddings.size()
-```
+~~~
 ```
 torch.Size([36, 13, 768])
 ```
@@ -402,7 +402,7 @@ torch.Size([36, 13, 768])
 두 가지 방법으로 단어 벡터를 만들어보자.
 
 먼저 마지막 4개의 레이어를 **연결하여(concatenate)** 토큰 당 단일 단어 벡터를 제공한다. 각 벡터의 길이는 ```4 x 768 = 3,072```입니다.
-~~~Python
+~~~python
 # Stores the token vectors, with shape [36 x 3,072]
 token_vecs_cat = []
 
@@ -428,7 +428,7 @@ Shape is: 36 x 3072
 ```
 
 다른 방법으로 마지막 4개의 레이어를 **합산하여(summing)** 단어 벡터를 만든다.
-~~~Python
+~~~python
 # Stores the token vectors, with shape [36 x 768]
 token_vecs_sum = []
 
@@ -455,7 +455,7 @@ Shape is: 36 x 768
 ### Sentence Vectors
 전체 문장에 대한 단일 벡터를 얻기 위해 여러 application-dependent 전략이 있지만, 간단한 접근 방식은 단일 768 크기의 벡터를 생성하는 각 토큰의 두번째에서 마지막 숨겨진 레이어를 평균내는 것이다.
 
-~~~Python
+~~~python
 # `hidden_states` has shape [13 x 1 x 36 x 768]
 
 # `token_vecs` is a tensor with shape [36 x 768]
@@ -471,7 +471,7 @@ Our final sentence embedding vector of shape: torch.Size([768])
 ## 3.4. Confirming contextually dependent vectors
 이러한 벡터의 값이 실제로 상황에 따라 달라지는지 확인하기 위해, "배"라는 단어의 여러 인스턴스를 살펴보자.
 
-~~~Python
+~~~python
 for i, token_str in enumerate(tokenized_text):
   print (i, token_str)
 ~~~
@@ -526,7 +526,7 @@ First 5 vector values for each instance of "배".
 ```
 값이 다른 것을 볼 수 있지만 더 정확한 비교를 위해 벡터 간의 코사인 유사성을 계산한다.
 
-~~~Python
+~~~python
 from scipy.spatial.distance import cosine
 
 # Calculate the cosine similarity between the word 배 

@@ -469,6 +469,8 @@ Our final sentence embedding vector of shape: torch.Size([768])
 ```
 
 ## 3.4. Confirming contextually dependent vectors
+이러한 벡터의 값이 실제로 상황에 따라 달라지는지 확인하기 위해, "배"라는 단어의 여러 인스턴스를 살펴보자.
+
 ~~~Python
 for i, token_str in enumerate(tokenized_text):
   print (i, token_str)
@@ -505,22 +507,44 @@ for i, token_str in enumerate(tokenized_text):
 27 .
 28 [SEP]
 ```
+그들은 7, 17에 있다. 이 분석에서는 마지막 4 개의 레이어를 합산하여 만든 단어 벡터를 사용한다. 벡터를 출력하여 비교해 볼 수 있다.
+
 
 ```Python
 print('First 5 vector values for each instance of "배".')
 print('')
-print("배를 타다   ", str(token_vecs_sum[6][:5]))
-print("배를 먹다  ", str(token_vecs_sum[10][:5]))
+print("배가 부르다   ", str(token_vecs_sum[6][:5]))
+print("배를 타다  ", str(token_vecs_sum[10][:5]))
 print("바다에 있는 배   ", str(token_vecs_sum[19][:5]))
 ```
 ```
 First 5 vector values for each instance of "배".
 
-배를 타다    tensor([-0.1956,  0.6169, -1.2606,  3.6393,  0.2309])
-배를 먹다   tensor([-0.3030,  1.2585, -1.8328, -0.2811,  3.1500])
-바다에 있는 배    tensor([-0.2556, -1.8705,  1.2312,  0.0592, -1.1682])
+배가 부르다    tensor([-0.8614, -4.0202,  0.5175,  4.6752, -0.2508])
+배를 타다   tensor([-2.8054, -1.7042, -1.2464,  3.4185,  0.7771])
+바다에 있는 배    tensor([-3.5947, -1.6634, -1.4143,  4.9749,  2.1335])
 ```
 값이 다른 것을 볼 수 있지만 더 정확한 비교를 위해 벡터 간의 코사인 유사성을 계산한다.
+
+~~~Python
+from scipy.spatial.distance import cosine
+
+# Calculate the cosine similarity between the word 배 
+# in "배를 타다" vs "배를 먹다" (different meanings).
+diff_배 = 1 - cosine(token_vecs_sum[10], token_vecs_sum[19])
+
+# Calculate the cosine similarity between the word 배
+# in "배를 타다" vs "바다에 있는 배" (same meaning).
+same_배 = 1 - cosine(token_vecs_sum[10], token_vecs_sum[6])
+
+print('Vector similarity for  *similar*  meanings:  %.2f' % same_배)
+print('Vector similarity for *different* meanings:  %.2f' % diff_배)
+~~~
+```
+Vector similarity for  *similar*  meanings:  0.74
+Vector similarity for *different* meanings:  0.59
+```
+
 
 
 ## 3.5. Pooling Strategy & Layer Choice

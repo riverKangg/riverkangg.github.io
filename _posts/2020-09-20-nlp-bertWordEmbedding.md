@@ -11,25 +11,26 @@ BERT word Embedding 튜토리얼을 소개한다. 이번 포스팅에서는 [원
   - History
   - What is BERT?
   - Why BERT embeddings?
-- 1. Loading Pre-Trained BERT
-- 2. Input Formatting
-  - 2.1. Special Tokens
-  - 2.2. Tokenization
-  - 2.3. Segment ID
-- 3. Extracting Embeddings
-  - 3.1. Running BERT on our text
-  - 3.2. Understanding the Output
-  - 3.3. Creating word and sentence vectors from hidden states
-    - Word Vectors
-    - Sentence Vectors
-  - 3.4. Confirming contextually dependent vectors
-  - 3.5. Pooling Strategy & Layer Choice
-- 4. Appendix
-  - 4.1. Special tokens
-  - 4.2. Out of vocabulary words
-  - 4.3. Similarity metrics
-  - 4.4. Implementations
-    - Cite
+  
+1. Loading Pre-Trained BERT
+2. Input Formatting   
+    2.1. Special Tokens   
+    2.2. Tokenization   
+    2.3. Segment ID   
+3. Extracting Embeddings   
+    3.1. Running BERT on our text   
+    3.2. Understanding the Output   
+    3.3. Creating word and sentence vectors from hidden states   
+      - Word Vectors   
+      - Sentence Vectors  
+    3.4. Confirming contextually dependent vectors   
+    3.5. Pooling Strategy & Layer Choice   
+4. Appendix   
+    4.1. Special tokens   
+    4.2. Out of vocabulary words   
+    4.3. Similarity metrics   
+    4.4. Implementations   
+      - Cite
 
 # Introduction
 

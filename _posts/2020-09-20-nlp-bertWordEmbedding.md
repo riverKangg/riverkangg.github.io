@@ -145,7 +145,7 @@ BERT의 토크나이저는 WordPiece 모델을 사용한다. 이 모델은 언�
 단어사전에는 다음 네 가지가 포함된다. :
 
   1. 전체 단어
-  2. 단어의 앞에 또는 분리되어 발생하는 하위 단어 ( "embeddings"에서와 같이 "em"에는 "go get em"에서와 같이 독립형 문자 "em"시퀀스와 동일한 벡터가 할당 됨)
+  2. 단어의 앞에 또는 분리되어 발생하는 하위 단어 ("embeddings"에서와 같이 "em"에는 "go get em"에서와 같이 독립형 문자 "em"시퀀스와 동일한 벡터가 할당 됨)
   3. 단어 앞에 있지 않은 하위 단어. 이 경우를 나타내기 위해 '##'이 앞에 붙는다.
   4. 개별 문자
 
@@ -264,7 +264,7 @@ segments_tensors = torch.tensor([segments_ids])
 
 ```model.eval()```은 학습 모드가 아닌 평가 모드로 모델을 설정한다. 이 경우 평가 모드는 훈련에 사용되는 드롭아웃 정규화(dropout regularization)를 해제한다.
 
-**Note : 포스팅이 너무 길어져서 output을 삭제했다. 관심이 있다면 [Colab notebook]()에서 확인하자!**
+**Note : 포스팅이 너무 길어져서 모델 정의는 넣지 않았다. 관심이 있다면 [Colab notebook]()에서 확인하자!**
 
 다음으로 예제 텍스트에서 BERT를 평가하고 네트워크의 hidden state를 가져온다.
 
@@ -401,12 +401,12 @@ torch.Size([36, 13, 768])
 ### Word Vectors
 두 가지 방법으로 단어 벡터를 만들어보자.
 
-먼저 마지막 4개의 레이어를 연결하여 토큰 당 단일 단어 벡터를 제공한다. 각 벡터의 길이는 ```4 x 768 = 3,072```입니다.
-```Python
-# Stores the token vectors, with shape [22 x 3,072]
+먼저 마지막 4개의 레이어를 **연결하여(concatenate)** 토큰 당 단일 단어 벡터를 제공한다. 각 벡터의 길이는 ```4 x 768 = 3,072```입니다.
+~~~Python
+# Stores the token vectors, with shape [36 x 3,072]
 token_vecs_cat = []
 
-# `token_embeddings` is a [22 x 12 x 768] tensor.
+# `token_embeddings` is a [36 x 12 x 768] tensor.
 
 # For each token in the sentence...
 for token in token_embeddings:
@@ -422,16 +422,17 @@ for token in token_embeddings:
     token_vecs_cat.append(cat_vec)
 
 print ('Shape is: %d x %d' % (len(token_vecs_cat), len(token_vecs_cat[0])))
+~~~
 ```
+Shape is: 36 x 3072
 ```
-Shape is: 28 x 3072
-```
-다른 방법으로 마지막 4개의 레이어를 합산하여 단어 벡터를 만든다.
-```Python
-# Stores the token vectors, with shape [22 x 768]
+
+다른 방법으로 마지막 4개의 레이어를 **합산하여(summing)** 단어 벡터를 만든다.
+~~~Python
+# Stores the token vectors, with shape [36 x 768]
 token_vecs_sum = []
 
-# `token_embeddings` is a [22 x 12 x 768] tensor.
+# `token_embeddings` is a [36 x 12 x 768] tensor.
 
 # For each token in the sentence...
 for token in token_embeddings:
@@ -445,61 +446,64 @@ for token in token_embeddings:
     token_vecs_sum.append(sum_vec)
 
 print ('Shape is: %d x %d' % (len(token_vecs_sum), len(token_vecs_sum[0])))
+~~~
 ```
+Shape is: 36 x 768
 ```
-Shape is: 28 x 768
-```
+
 
 ### Sentence Vectors
-전체 문장에 대한 단일 벡터를 얻기 위해 여러 application-dependent 전략이 있지만, 간단한 접근 방식은 단일 768 크기의 벡터를 생성하는 각 토큰의 두 번째에서 마지막 숨겨진 레이어를 평균내는 것이다.
-```Python
-# `hidden_states` has shape [13 x 1 x 22 x 768]
+전체 문장에 대한 단일 벡터를 얻기 위해 여러 application-dependent 전략이 있지만, 간단한 접근 방식은 단일 768 크기의 벡터를 생성하는 각 토큰의 두번째에서 마지막 숨겨진 레이어를 평균내는 것이다.
 
-# `token_vecs` is a tensor with shape [22 x 768]
+~~~Python
+# `hidden_states` has shape [13 x 1 x 36 x 768]
+
+# `token_vecs` is a tensor with shape [36 x 768]
 token_vecs = hidden_states[-2][0]
 
-# Calculate the average of all 22 token vectors.
+# Calculate the average of all 36 token vectors.
 sentence_embedding = torch.mean(token_vecs, dim=0)
-```
+~~~
 ```
 Our final sentence embedding vector of shape: torch.Size([768])
 ```
 
 ## 3.4. Confirming contextually dependent vectors
-```Python
+~~~Python
 for i, token_str in enumerate(tokenized_text):
   print (i, token_str)
-```
+~~~
 ```
 # ------ output ------- #
 0 [CLS]
-1 ᄇ
-2 ##ᅢ를
-3 ᄐ
-4 ##ᅡ고
-5 ᄋ
-6 ##ᅧ
-7 ##행을
-8 가
-9 ##ᆫ다
-10 .
-11 ᄎ
-12 ##ᅮ
-13 ##석
-14 ##에
-15 ᄆ
-16 ##ᅥ
-17 ##ᆨ은
-18 ᄇ
-19 ##ᅢ
-20 ##가
-21 ᄆ
-22 ##ᅡ
-23 ##ᆺ이
-24 ##ᆻ
-25 ##었다
-26 .
-27 [SEP]
+1 밥
+2 ##을
+3 많이
+4 먹
+5 ##어
+6 ##서
+7 배
+8 ##가
+9 부
+10 ##르
+11 ##다
+12 .
+13 고
+14 ##기
+15 ##잡
+16 ##이
+17 배
+18 ##를
+19 타
+20 ##고
+21 바
+22 ##다
+23 ##에
+24 나
+25 ##간
+26 ##다
+27 .
+28 [SEP]
 ```
 
 ```Python

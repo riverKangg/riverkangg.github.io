@@ -1,5 +1,5 @@
 ---
-title : "BERT Word Embedding 튜토리얼 + 한국어처리"
+title : "BERT Word Embedding Tutorial(한국어)"
 date : 2020-09-20
 categories : nlp
 ---

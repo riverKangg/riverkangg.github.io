@@ -5,7 +5,9 @@ categories : 논문리뷰
 tags :
 - 추천알고리즘
 - 논문리뷰
-use_math: true
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 수정중

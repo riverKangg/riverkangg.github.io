@@ -1,8 +1,8 @@
 ---
 title : "BERT with sentencePiece"
 date : 2020-09-27
+description : "sentencePiece를 사용해서 BERT를 전이학습 시켜보자. "
 categories : nlp
-published : false
 ---
 
 sentencePiece를 사용해서 BERT를 전이학습 시켜보자.   

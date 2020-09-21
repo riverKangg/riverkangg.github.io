@@ -21,7 +21,7 @@ title                    : "Kang의 데이터사이언스"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Kang"
-description              : ""
+description              : "기록하고 공유하기"
 url                      : "https://riverkangg.github.io"
 baseurl                  : ""
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"

@@ -10,6 +10,9 @@ use_math: true
 
 2016년 구글 리서치가 공개한 논문이다. 이 논문에서는 YouTube라는 영상 플랫폼의 특징을 고려한 추천시스템을 설명하고 있다.
 
+중고거래 플랫폼 당근마켓은 상품 추천에 이 알고리즘을 사용하고 있다. 수많은 사용자에게 실시간 처리가 가능하도록 만들어졌기 때문에, 당근마켓 외에도 다양한 회사에서 사용될 것으로 생각된다.
+
+
 [논문 링크](http://research.google.com/pubs/pub45530.html?utm_content=bufferf6bbc&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
 
 # ABSTRACT

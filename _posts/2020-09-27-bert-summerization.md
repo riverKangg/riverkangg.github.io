@@ -9,3 +9,6 @@ published : false
 ---
 
 # ABSTRACT
+
+# METHODOLOGY
+## 3.1 Data Collection

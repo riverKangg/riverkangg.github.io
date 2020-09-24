@@ -12,3 +12,7 @@ published : false
 
 # METHODOLOGY
 ## 3.1 Data Collection
+
+- **CNN/DailyMail Dataset**
+- **Wikihow Dataset**
+- **How2 Dataset**

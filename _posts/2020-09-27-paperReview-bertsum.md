@@ -9,6 +9,13 @@ published : false
 ---
 
 # ABSTRACT
+요약은 흐름의 자발성, 유창하지 않음과 일반적으로 서면 텍스트에서 발생하지 않는 기타 문제로 인해 어려운 문제다. 우리의 연구는 BERTSum 모델을 대화 언어에 처음 적용한 것이다.
+정원 가꾸기 및 요리에서 소프트웨어 구성 및 스포츠에 이르기까지 다양한 주제에 대해 설명 된 교육용 비디오의 추상 요약을 생성한다.
+어휘를 풍부하게하기 위해 전이 학습을 사용하고 서면 및 구어체 영어로 된 몇 가지 대규모 교차 도메인 데이터 세트에서 모델을 사전 학습한다.
+
+#### CSS CONCEPTS
+- **Human-centered computing** &#8594; *Accessibility system and tools;*
+- **Computing methodologies** &#8594; **Information extraction*
 
 # METHODOLOGY
 ## 3.1 Data Collection

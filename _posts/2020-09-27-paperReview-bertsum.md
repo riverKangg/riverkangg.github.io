@@ -14,7 +14,7 @@ tags :
 
 #### CSS CONCEPTS
 - **Human-centered computing** &#8594; *Accessibility system and tools;*
-- **Computing methodologies** &#8594; **Information extraction*
+- **Computing methodologies** &#8594; **Information extraction**
 
 # METHODOLOGY
 ## 3.1 Data Collection

@@ -97,8 +97,7 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 ### 3.2.2 Regression
 가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)" 등급값 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{u,N}" title="R_{u,N}" /></a>
 을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a href="https://www.codecogs.com/eqnedit.php?latex=R^{'}_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}" title="R^{'}_{u,N}" /></a>
-을 사용한다. 대상 항목 i의 각 벡터와 유사한 항목 N을 R i 및 RN으로 표시하면 선형 회귀 모델을 1로 표현할 수 있다.
-
+을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{i}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{i}" title="R_{i}" /></a> 및 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{N}" title="R_{N}" /></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
 <p align="center">
 <a href="https://www.codecogs.com/eqnedit.php?latex=\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" target="_blank"><img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" title="\bar{R}^{'}_{N}=\alpha \bar{R}_{N}+\beta +\epsilon" /></a></p>
 

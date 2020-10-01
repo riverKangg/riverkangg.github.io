@@ -7,6 +7,10 @@ tags :
 - 논문리뷰
 ---
 
+<a href="https://www.codecogs.com/eqnedit.php?latex=\sqrt{3x-1}&plus;(1&plus;x)^2" target="_blank">
+  <img src="https://latex.codecogs.com/gif.latex?\sqrt{3x-1}&plus;(1&plus;x)^2" title="\sqrt{3x-1}+(1+x)^2" />
+</a>
+
 [논문링크](https://arxiv.org/pdf/2008.09676.pdf)
 
 # ABSTRACT

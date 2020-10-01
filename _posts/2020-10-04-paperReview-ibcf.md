@@ -4,13 +4,7 @@ date : 2020-10-04
 use_math : true
 published : false
 ---
-
-```math
-$ a^2+b^2=c^2 $
-
-```
-$$ a^2+b^2=c^2 $$
-
+$\sqrt{3x-1}+(1+x)^2$
 
 $$
 \lim_{x\to 0}{\frac{e^x-1}{2x}}

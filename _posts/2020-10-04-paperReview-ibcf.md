@@ -4,13 +4,6 @@ date : 2020-10-04
 use_math : true
 published : false
 ---
-$\sqrt{3x-1}+(1+x)^2$
-
-$$
-\lim_{x\to 0}{\frac{e^x-1}{2x}}
-\overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
-\lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
-$$
 
 [논문 링크](https://www.researchgate.net/publication/2369002_Item-based_Collaborative_Filtering_Recommendation_Algorithms)
 

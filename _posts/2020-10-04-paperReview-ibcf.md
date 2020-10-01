@@ -50,7 +50,7 @@ published : false
 
 
 # 3. Item-based Collaborative Filtering Algorithm
-이 장에서는 사용자에게 예측을 생성하기 위한 항목 기반 추천 알고리즘 클래스를 연구한다. 2장에서 논의된 사용자 기반 협업 필터링 알고리즘과 달리 항목 기반 접근 방식은 대상 사용자가 평가한 항목 집합을 조사하고 대상 항목 i와 얼마나 유사한지 계산한 다음 가장 유사한 항목 k 개를 선택한다{i1, i2, ..., ik}. 동시에 해당 유사성{si1, si2, ..., sik}도 계산된다. 가장 유사한 항목이 발견되면 이러한 유사한 항목에 대한 대상 사용자 평가의 가중 평균을 취하여 예측을 계산한다. 이 두 가지 측면, 즉 유사성 계산과 예측 생성에 대해 자세히 설명한다.
+이 장에서는 사용자에게 예측을 생성하기 위한 항목 기반 추천 알고리즘 클래스를 연구한다. 2장에서 논의된 사용자 기반 협업 필터링 알고리즘과 달리 항목 기반 접근 방식은 대상 사용자가 평가한 항목 집합을 조사하고 대상 항목 i와 얼마나 유사한지 계산한 다음 가장 유사한 항목 k개<a><img src="https://latex.codecogs.com/png.latex?\{i_{1},i_{2},\ldots,i_{k}\}"></a>를 선택하고, 동시에 해당 유사성<a><img src="https://latex.codecogs.com/png.latex?\{s_{i1},s_{i2},\ldots,s_{ik}\}"></a>를 계산한다. 가장 유사한 항목이 발견되면 이러한 유사한 항목에 대한 대상 사용자 평가의 가중 평균을 취하여 예측을 계산한다. 두가지 측면, 즉 유사성 계산과 예측 생성에 대해 자세히 설명한다.
 
 ## 3.1 Item Similarity Computation
 <p align="center">
@@ -84,7 +84,7 @@ published : false
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig3.png" width=800 alt='fig3'>
 </p>
 i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 
-<a><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}" /></a>
+<a><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}"></a>
 에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
 
 <p align="center"><a>
@@ -94,8 +94,8 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 기본적으로 이 접근 방식은 활성 사용자가 유사한 항목을 평가하는 방법을 포착한다. 가중 합계는 예측이 사전 정의된 범위 내에 있는지 확인하기 위해 유사성 항의 합한다.
 
 ### 3.2.2 Regression
-가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)" 등급값 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{u,N}" title="R_{u,N}" /></a>
-을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a href="https://www.codecogs.com/eqnedit.php?latex=R^{'}_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}" title="R^{'}_{u,N}" /></a>
+가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)" 등급값 <a><img src="https://latex.codecogs.com/png.latex?R_{u,N}"]></a>
+을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}"></a>
 을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a><img src="https://latex.codecogs.com/png.latex?R_{i}"></a> 및 <a><img src="https://latex.codecogs.com/png.latex?R_{N}"></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
 <p align="center"><a>
   <img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon">

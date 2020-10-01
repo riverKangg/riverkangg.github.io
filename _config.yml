@@ -180,15 +180,8 @@ encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
-# # Conversion
-# markdown: maruku
-# highlighter: rouge
-# lsi: false
-# excerpt_separator: "\n\n"
-# incremental: false
-
 # Conversion
-markdown: kramdown
+markdown: maruku
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"

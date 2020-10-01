@@ -1,8 +1,16 @@
 ---
 title : "Item-based Collaborative Filtering Recommendation Algorithms"
 date : 2020-10-04
+use_math : true
 published : false
 ---
+
+$$
+\lim_{x\to 0}{\frac{e^x-1}{2x}}
+\overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
+\lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
+$$
+
 [논문 링크](https://www.researchgate.net/publication/2369002_Item-based_Collaborative_Filtering_Recommendation_Algorithms)
 
 <file:///C:/Users/%EA%B0%95%EC%A7%80%EC%84%A0/Downloads/www10_sarwar.pdf>

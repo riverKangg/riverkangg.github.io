@@ -61,17 +61,40 @@ published : false
 
 ### 3.1.1 Cosine-based Similarity
 이 경우 두 항목은 m차원 사용자 공간에서 두개의 벡터로 간주된다. 이들 사이의 유사성은이 두 벡터 사이 각도의 코사인을 계산한다. 공식적으로 fig2의 m×n 등급 행렬에서 sim(i, j)로 표시된 항목 i와 j 사이의 유사성은 다음과 같다.
-여기서“·”는 두 벡터의 내적을 나타낸다.
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot&space;\vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" target="_blank">
+  <img src="https://latex.codecogs.com/png.latex?sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot&space;\vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" title="sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot \vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" />
+</a></p>
 
 ### 3.1.2 Correlation-based Similarity
 이 경우 두 항목 i와 j 사이의 유사성은 *Pearson-r* 상관 corri, j를 계산한다. 상관 관계 계산을 정확하게하기 위해 먼저fig 2와 같이 공동 평가 된 케이스 (즉, 사용자가 i와 j를 모두 평가한 케이스)를 분리해야한다. i와 j를 모두 평가하고 사용자 집합을 U로 표시한 다음 상관 유사성은 다음과 같이 주어진다.
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" title="sim(i,j)=\frac{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})} {\sqrt{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})^2} \sqrt{\sum _{u\in U}(R_{u,j}-\bar{R}_{j})^2}}" />
+  </a></p>
 
 ### 3.1.3 Adjusted Cosine Similarity
 사용자 기반 CF의 경우 유사성이 행렬의 행을 따라 계산되지만, 항목 기반 CF의 경우 유사성이 함께 계산된다. 즉 공동 등급 세트의 각 쌍은 다른 사용자에 해당한다(Fig 2). 항목 기반 사례에서 기본 코사인 측정값을 사용하여 유사성을 계산하면 한가지 중요한 단점이 있다. 다른 사용자 간의 평가 척도 차이는 고려되지 않는다. 수정된 코사인 유사성은 다음을 빼서이 단점을 상쇄한다.
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" title="sim(i,j)=\frac{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})} {\sqrt{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})^2} \sqrt{\sum _{u\in U}(R_{u,j}-\bar{R}_{j})^2}}" />
+  </a></p>
 
 ## 3.2 Prediction Computation
 협업 필터링 시스템에서 가장 중요한 단계는 예측 측면에서 출력 인터페이스를 생성하는 것이다. 유사성 측정값을 기반으로 가장 유사한 항목 집합을 분리한 후, 대상 사용자 등급을 조사하고 기술을 사용하여 예측한다. 여기서 두가지 방법을 고려한다.
 ### 3.2.1 Weighted Sum
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig3.png" width=800 alt='fig3'>
+</p>
+i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 
+<a href="https://www.codecogs.com/eqnedit.php?latex=s_{i,j}" target="_blank"><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}" /></a>
+에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측
+<a href="https://www.codecogs.com/eqnedit.php?latex=P_{u,i}" target="_blank"><img src="https://latex.codecogs.com/png.latex?P_{u,i}" title="P_{u,i}" /></a>
+를 다음과 같이 나타낼 수 있다.
+
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" target="_blank"><img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" title="P_{u,i}=\frac{\sum _{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum _{all\:similar\:item,N}(|S_{i,N}|)}" />
+</a></p>
+
+기본적으로 이 접근 방식은 활성 사용자가 유사한 항목을 평가하는 방법을 포착한다. 가중 합계는 예측이 사전 정의된 범위 내에 있는지 확인하기 위해 유사성 항의 합한다.
 
 ### 3.2.2 Regression
 가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)"등급 값 Ru, N을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 R u, N을 사용한다. 대상 항목 i의 각 벡터와 유사한 항목 N을 R i 및 RN으로 표시하면 선형 회귀 모델을 1로 표현할 수 있다.

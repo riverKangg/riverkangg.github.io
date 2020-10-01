@@ -86,9 +86,7 @@ published : false
 </p>
 i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 
 <a href="https://www.codecogs.com/eqnedit.php?latex=s_{i,j}" target="_blank"><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}" /></a>
-에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측
-<a href="https://www.codecogs.com/eqnedit.php?latex=P_{u,i}" target="_blank"><img src="https://latex.codecogs.com/png.latex?P_{u,i}" title="P_{u,i}" /></a>
-를 다음과 같이 나타낼 수 있다.
+에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
 
 <p align="center">
 <a href="https://www.codecogs.com/eqnedit.php?latex=P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" target="_blank"><img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" title="P_{u,i}=\frac{\sum _{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum _{all\:similar\:item,N}(|S_{i,N}|)}" />

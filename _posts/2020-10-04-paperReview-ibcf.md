@@ -61,22 +61,21 @@ published : false
 
 ### 3.1.1 Cosine-based Similarity
 이 경우 두 항목은 m차원 사용자 공간에서 두개의 벡터로 간주된다. 이들 사이의 유사성은이 두 벡터 사이 각도의 코사인을 계산한다. 공식적으로 fig2의 m×n 등급 행렬에서 sim(i, j)로 표시된 항목 i와 j 사이의 유사성은 다음과 같다.
-<p align="center">
-<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot&space;\vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" target="_blank">
-  <img src="https://latex.codecogs.com/png.latex?sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot&space;\vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" title="sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot \vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}" />
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?sim(i,j)=cos(\vec{i},\vec{j}))=\frac{\vec{i}\cdot&space;\vec{j}}{||\vec{i}||_{2}||\vec{j}||_{2}}">
 </a></p>
 
 ### 3.1.2 Correlation-based Similarity
 이 경우 두 항목 i와 j 사이의 유사성은 *Pearson-r* 상관 corri, j를 계산한다. 상관 관계 계산을 정확하게하기 위해 먼저fig 2와 같이 공동 평가 된 케이스 (즉, 사용자가 i와 j를 모두 평가한 케이스)를 분리해야한다. i와 j를 모두 평가하고 사용자 집합을 U로 표시한 다음 상관 유사성은 다음과 같이 주어진다.
-<p align="center">
-<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" title="sim(i,j)=\frac{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})} {\sqrt{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})^2} \sqrt{\sum _{u\in U}(R_{u,j}-\bar{R}_{j})^2}}" />
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}">
   </a></p>
 
 ### 3.1.3 Adjusted Cosine Similarity
 사용자 기반 CF의 경우 유사성이 행렬의 행을 따라 계산되지만, 항목 기반 CF의 경우 유사성이 함께 계산된다. 즉 공동 등급 세트의 각 쌍은 다른 사용자에 해당한다(Fig 2). 항목 기반 사례에서 기본 코사인 측정값을 사용하여 유사성을 계산하면 한가지 중요한 단점이 있다. 다른 사용자 간의 평가 척도 차이는 고려되지 않는다. 수정된 코사인 유사성은 다음을 빼서이 단점을 상쇄한다.
-<p align="center">
-<a href="https://www.codecogs.com/eqnedit.php?latex=sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}" title="sim(i,j)=\frac{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})} {\sqrt{\sum _{u\in U}(R_{u,i}-\bar{R}_{i})^2} \sqrt{\sum _{u\in U}(R_{u,j}-\bar{R}_{j})^2}}" />
-  </a></p>
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?sim(i,j)=\frac{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})(R_{u,j}-\bar{R}_{j})}&space;{\sqrt{\sum&space;_{u\in&space;U}(R_{u,i}-\bar{R}_{i})^2}&space;\sqrt{\sum&space;_{u\in&space;U}(R_{u,j}-\bar{R}_{j})^2}}">
+</a></p>
 
 ## 3.2 Prediction Computation
 협업 필터링 시스템에서 가장 중요한 단계는 예측 측면에서 출력 인터페이스를 생성하는 것이다. 유사성 측정값을 기반으로 가장 유사한 항목 집합을 분리한 후, 대상 사용자 등급을 조사하고 기술을 사용하여 예측한다. 여기서 두가지 방법을 고려한다.
@@ -85,11 +84,11 @@ published : false
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig3.png" width=800 alt='fig3'>
 </p>
 i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 
-<a href="https://www.codecogs.com/eqnedit.php?latex=s_{i,j}" target="_blank"><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}" /></a>
+<a><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}" /></a>
 에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
 
-<p align="center">
-<a href="https://www.codecogs.com/eqnedit.php?latex=P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" target="_blank"><img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}" title="P_{u,i}=\frac{\sum _{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum _{all\:similar\:item,N}(|S_{i,N}|)}" />
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}">
 </a></p>
 
 기본적으로 이 접근 방식은 활성 사용자가 유사한 항목을 평가하는 방법을 포착한다. 가중 합계는 예측이 사전 정의된 범위 내에 있는지 확인하기 위해 유사성 항의 합한다.
@@ -97,11 +96,12 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 ### 3.2.2 Regression
 가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)" 등급값 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{u,N}" title="R_{u,N}" /></a>
 을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a href="https://www.codecogs.com/eqnedit.php?latex=R^{'}_{u,N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}" title="R^{'}_{u,N}" /></a>
-을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{i}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{i}" title="R_{i}" /></a> 및 <a href="https://www.codecogs.com/eqnedit.php?latex=R_{N}" target="_blank"><img src="https://latex.codecogs.com/png.latex?R_{N}" title="R_{N}" /></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
-<p align="center">
-<a href="https://www.codecogs.com/eqnedit.php?latex=\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" target="_blank"><img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" title="\bar{R}^{'}_{N}=\alpha \bar{R}_{N}+\beta +\epsilon" /></a></p>
+을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a><img src="https://latex.codecogs.com/png.latex?R_{i}"></a> 및 <a><img src="https://latex.codecogs.com/png.latex?R_{N}"></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon">
+</a></p>
 
-회귀 모델 매개 변수 α 및 β는 두 등급 벡터를 모두 검토하여 결정된다. <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/png.latex?\epsilon" title="\epsilon" /></a>은 회귀 모델에서 오류를 나타낸다.
+회귀 모델 매개 변수 α 및 β는 두 등급 벡터를 모두 검토하여 결정된다. <a><img src="https://latex.codecogs.com/png.latex?\epsilon"></a>은 회귀 모델에서 오류를 나타낸다.
 
 ## 3.3 Performance Implications
 가장 큰 E-커머스 사이트는 협업 필터링의 직접적인 구현을 강조하는 규모로 운영된다. 이웃 기반 CF 시스템에서 이웃 형성 프로세스, 특히 사용자-사용자 유사성 계산 단계는 성능 병목 현상이 있어서 전체 프로세스가 실시간 추천 생성에 적합하지 않다. 높은 확장성을 보장하는 한가지 방법은 모델 기반 접근 방식을 사용하는 것이다. 모델 기반 시스템은 추천 시스템이 대규모로 작동하는데 기여할 수 있다. 여기서 주요 아이디어는 이웃 생성과 예측 생성 단계를 분리하는 것이다.
@@ -117,12 +117,19 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 실험 데이터를 사용하여 항목 기반 추천 알고리즘을 평가한다.
 
 #### Movie data
-MovieLens는 1997년 가을에 나온 웹 기반 연구 추천 시스템이다. 매주 수백명의 사용자가 MovieLens에서 영화 추천을 한다. 현재 이 사이트에는 3500개 이상의 다른 영화에 대한 의견을 표명한 43000명 이상의 사용자가 있다. 데이터베이스에서 100,000개의 평가를 얻을 수 있을만큼 충분한 사용자를 무작위로 선택했다(20개 이상의 영화를 평가한 사용자만 고려). 데이터베이스를 트레인 셋과 테스트 셋으로 나누었다. x는 트레인과 테스트 세트로 사용되는 데이터의 비율을 결정하는 변수다. 즉 x=0.8은 80%가 트레인 셋으로 사용되고 20%가 테스트 셋으로 사용되었다는 것이다. 데이터 셋는 943개의 행(943명의 사용자)과 1682개의 열(최소 한명의 사용자가 평가한 1682개의 영화)이 있는 사용자 항목 행렬 A로 변환되었다. 실험을 위해 데이터 세트의 *희소성 수준(sparsity level)* 이라는 또 다른 요소도 고려한다. 데이터 행렬 R의 경우 1 − nonzero_entries / total_entries로 정의된다. 따라서 Movie 데이터 세트의 희소성 수준은 1 − 100,000 / 943 × 1682이며 0.9369다. 이 논문 전체에서 이 데이터 셋을 ML이라고 한다.
+MovieLens는 1997년 가을에 나온 웹 기반 연구 추천 시스템이다. 매주 수백명의 사용자가 MovieLens에서 영화 추천을 한다. 현재 이 사이트에는 3500개 이상의 다른 영화에 대한 의견을 표명한 43000명 이상의 사용자가 있다. 데이터베이스에서 100,000개의 평가를 얻을 수 있을만큼 충분한 사용자를 무작위로 선택했다(20개 이상의 영화를 평가한 사용자만 고려). 데이터베이스를 트레인 셋과 테스트 셋으로 나누었다. x는 트레인과 테스트 세트로 사용되는 데이터의 비율을 결정하는 변수다. 즉 x=0.8은 80%가 트레인 셋으로 사용되고 20%가 테스트 셋으로 사용되었다는 것이다. 데이터 셋는 943개의 행(943명의 사용자)과 1682개의 열(최소 한명의 사용자가 평가한 1682개의 영화)이 있는 사용자 항목 행렬 A로 변환되었다. 실험을 위해 데이터 세트의 *희소성 수준(sparsity level)* 이라는 또 다른 요소도 고려한다. 데이터 행렬 R의 경우 
+<a><img src="https://latex.codecogs.com/png.latex?1-\frac{nonzero\:entries}{total\:entries}"></a>로 정의된다. 따라서 Movie 데이터 세트의 희소성 수준은 
+<a><img src="https://latex.codecogs.com/png.latex?1-\frac{100,000}{943\times 1682}=0.9369"></a>다. 이 논문 전체에서 이 데이터 셋을 ML이라고 한다.
 
 ## 4.2 Evaluation Metrics
 추천 시스템의 품질을 평가하기 위해 여러 유형의 metric을 사용했다. 주로 두 가지 클래스로 분류할 수 있다.
 
-- *통계적 정확도 메트릭(Statistical accuracy metrics)* 은 테스트 데이터 세트의 사용자 항목 쌍에 대한 실제 사용자 등급과 수치 추천 점수를 비교하여 시스템의 정확도를 평가한다. 평점과 예측 사이의 평균 절대 오차(MAE)는 널리 사용되는 측정 항목이다. MAE는 실제 사용자 지정값에서 추천 사항의 편차를 측정한 것이다. 각 등급-예측 쌍 <p i, qi>에 대해 이 메트릭은 둘 사이의 절대 오차를 구한다. 즉, | pi − qi |. MAE는 먼저 N개의 해당 등급-예측 쌍의 절대 오차를 합한 다음 평균을 계산하여 계산된다. 공식적으로,
+- *통계적 정확도 메트릭(Statistical accuracy metrics)* 은 테스트 데이터 세트의 사용자 항목 쌍에 대한 실제 사용자 등급과 수치 추천 점수를 비교하여 시스템의 정확도를 평가한다. 평점과 예측 사이의 평균 절대 오차(MAE)는 널리 사용되는 측정 항목이다. MAE는 실제 사용자 지정값에서 추천 사항의 편차를 측정한 것이다. 각 등급-예측 쌍 \<
+<a><img src="https://latex.codecogs.com/png.latex?p_{i},q_{i}"></a>
+\>에 대해 이 메트릭은 둘 사이의 절대 오차를 구한다. 즉, <a><img src="https://latex.codecogs.com/png.latex?|p_{i},q_{i}|"></a>. MAE는 먼저 N개의 해당 등급-예측 쌍의 절대 오차를 합한 다음 평균을 계산하여 계산된다. 공식적으로,
+<p align="center"><a>
+  <img src="https://latex.codecogs.com/png.latex?MAE=\frac{\sum_{N}^{i=1}|p_{i}-q_{i}|}{N}" >
+</a></p>
 
 MAE가 낮을수록 추천 엔진이 사용자 평점을 더 정확하게 예측한다. *RMSE(Root Mean Squared Error)* 와 *상관 관계(Correlation)* 는 통계적 정확도 메트릭으로도 사용된다.
 

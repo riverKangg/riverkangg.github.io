@@ -27,13 +27,12 @@ published : false
 
 ## 2.0.1 Overview of the Collaborative Filtering Process
 협업 필터링 알고리즘은 사용자가 이전에 좋아하는 것과 같은 취향을 가진 다른 사용자의 의견을 기반으로 새 항목을 제안하거나 특정 사용자에게 특정 항목의 유용성을 예측한다. 일반적인 CF 시나리오는 m명의 사용자 목록 <a><img src="https://latex.codecogs.com/png.latex?\upsilon=\{u_{1},u_{2},\ldots,u_{m}\}"></a> 및 n개의 항목 목록 
-<a><img src="https://latex.codecogs.com/png.latex?I=\{i_{1},i_{2},\ldots,i_{n}\}"></a>이 있다. 각 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_i"></a>에는 사용자가 자신의 의견을 표현한 항목 목록<a><img src="https://latex.codecogs.com/png.latex?I_{u_i}"></a>이 있다. 의견은 일반적으로 특정 수치 척도 내에서 평점 점수로 사용자에 의해 명시적으로 제공되거나, 타이밍 로그 분석, 웹 하이퍼 링크 마이닝 등을 통해 구매 기록에서 암시적으로 도출될 수 있다. <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}\subset I"></a>나 <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}=\varnothing"></a> 될 수 있다. 두 가지 형태의 항목 유사성을 찾는 것이 협업 필터링 알고리즘의 임무인 활성 사용자라고 하는 고유 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a\in\upsilon"></a>가 있다.
+<a><img src="https://latex.codecogs.com/png.latex?I=\{i_{1},i_{2},\ldots,i_{n}\}"></a>이 있다. 각 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_i"></a>에는 사용자가 자신의 의견을 표현한 항목 목록<a><img src="https://latex.codecogs.com/png.latex?I_{u_i}"></a>이 있다. 의견은 일반적으로 특정 수치 척도 내에서 평점 점수로 사용자에 의해 명시적으로 제공되거나, 타이밍 로그 분석, 웹 하이퍼 링크 마이닝 등을 통해 구매 기록에서 암시적으로 도출될 수 있다. <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}\subsetv&space;I"></a>나 <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}=\varnothing"></a> 될 수 있다. 두 가지 형태의 항목 유사성을 찾는 것이 협업 필터링 알고리즘의 임무인 활성 사용자라고 하는 고유 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a\in\upsilon"></a>가 있다.
 
-- **예측**은 활성 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에 대한 항목 <a><img src="https://latex.codecogs.com/png.latex?i_j\notin I_{u_a}"></a>의 예측 가능성을 나타내는 값 <a><img src="https://latex.codecogs.com/png.latex?P_{a,j}"></a>다. 이 예측값 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에서 제공하는 의견값과 동일한 척도(1에서 5까지) 내에 있다.
+- **예측**은 활성 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에 대한 항목 <a><img src="https://latex.codecogs.com/png.latex?i_j\notin\mathbb{I}_{u_a}"></a>의 예측 가능성을 나타내는 값 <a><img src="https://latex.codecogs.com/png.latex?P_{a,j}"></a>다. 이 예측값 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에서 제공하는 의견값과 동일한 척도(1에서 5까지) 내에 있다.
 
 - **추천**은 활성 사용자가 가장 좋아할 N개 항목<a><img src="https://latex.codecogs.com/png.latex?I_r\subset\mathbb{I}"></a>이다. 추천 목록은 활성 사용자가 아직 구매하지 않은 항목(ex.
-<a><img src="https://latex.codecogs.com/png.latex?I_r\cap I_{u_a}=\varnothing"></a>)에 있어야 한다. 이 CF 알고리즘 인터페이스는 *Top-N Recommendation*이라고도 한다.
-
+<a><img src="https://latex.codecogs.com/png.latex?I_r\cap&space;I_{u_a}=\varnothing"></a>)에 있어야 한다. 이 CF 알고리즘 인터페이스는 *Top-N Recommendation*이라고도 한다.
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig1.png" width=800 alt='Fig1 CF algorithm'>
 </p>

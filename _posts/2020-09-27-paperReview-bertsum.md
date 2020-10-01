@@ -76,11 +76,11 @@ BertSum 모델은 CNN/DailyMail 데이터 셋에서 가장 좋은 성능을 냈�
 추출 요약 모델은 사전 학습된 BERT 인코더와 무작위로 초기화 된 Transformer 디코더를 합친 인코더-디코더 구조를 사용한다. 인코더 부분이 매우 낮은 학습률로 거의 동일하게 유지되는 특수 기술을 사용하고 디코더가 더 잘 학습할 수 있도록 별도의 학습률을 생성한다. 일반화 가능한 추상 모델을 만들기 위해 먼저 대규모 뉴스 코퍼스를 학습하여, 구조화 된 텍스트를 이해하도록 했다. 그런 다음 모델을 How-To 도메인에 노출하는 Wikihow를 도입했다. 마지막으로 How2 데이터 세트에 대해 학습하고 검증하여 모델의 초점을 선택적으로 구조화된 형식으로 좁혔다. 순서가 지정된 훈련 외에도 무작위로 균질한 샘플 세트를 사용하여 모델 훈련을 실험했다. 순서가 지정된 샘플로 훈련하는 것이 무작위 샘플보다 더 좋은 결과를 냈다.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-27-fig4.png" width=400, alt='fig4:Cross Entropy:Training vs Validation'>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-27-fig4.png" width=500 alt='fig4:Cross Entropy:Training vs Validation'>
 </p>
 위 교차 엔트로피 차트를 보면, 과적합이나 과소적합되지 않았음을 확인할 수 있다. 훈련 및 검증 라인의 수렴으로 좋은 적합성을 나타낸다.
 <p align="center">
-  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-27-fig4.png" width=400, alt='fig5:Accuracy:Training vs Validation'>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-09-27-fig4.png" width=500 alt='fig5:Accuracy:Training vs Validation'>
 </p>
 위 그림은 훈련 및 검증 세트에 대한 모델의 정확도 메트릭을 보여준다. 모델은 훈련 데이터에 대해 How2 데이터로 검증한다. 모델은 더 많은 단계를 통해 예상대로 향상한다.
 

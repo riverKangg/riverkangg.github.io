@@ -97,7 +97,10 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 ### 3.2.2 Regression
 가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)"등급 값 Ru, N을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 R u, N을 사용한다. 대상 항목 i의 각 벡터와 유사한 항목 N을 R i 및 RN으로 표시하면 선형 회귀 모델을 1로 표현할 수 있다.
 
-회귀 모델 매개 변수 α 및 β는 두 등급 벡터를 모두 검토하여 결정됩니다. e는 회귀 모델의 오류입니다.
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" target="_blank"><img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon" title="\bar{R}^{'}_{N}=\alpha \bar{R}_{N}+\beta +\epsilon" /></a></p>
+
+회귀 모델 매개 변수 α 및 β는 두 등급 벡터를 모두 검토하여 결정된다. <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/png.latex?\epsilon" title="\epsilon" /></a>은 회귀 모델에서 오류를 나타낸다.
 
 ## 3.3 Performance Implications
 가장 큰 E-커머스 사이트는 협업 필터링의 직접적인 구현을 강조하는 규모로 운영된다. 이웃 기반 CF 시스템에서 이웃 형성 프로세스, 특히 사용자-사용자 유사성 계산 단계는 성능 병목 현상이 있어서 전체 프로세스가 실시간 추천 생성에 적합하지 않다. 높은 확장성을 보장하는 한가지 방법은 모델 기반 접근 방식을 사용하는 것이다. 모델 기반 시스템은 추천 시스템이 대규모로 작동하는데 기여할 수 있다. 여기서 주요 아이디어는 이웃 생성과 예측 생성 단계를 분리하는 것이다.

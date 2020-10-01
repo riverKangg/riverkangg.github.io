@@ -35,8 +35,7 @@ published : false
 추천 시스템은 좋음 가능성 점수나 지정된 사용자에 대한 상위 N개 추천 항목 목록을 생성하여 E-커머스에서 구매하려는 항목을 찾을 수 있도록 돕는다. 항목 추천은 다른 방법을 사용하여 만들 수 있다. 사용자의 인구 통계, 전체적으로 가장 많이 팔리는 항목, 사용자의 과거 구매 습관을 예측 변수로 사용할 수 있다. CF(Collaborative Filtering)는 현재까지 가장 성공적인 추천 기법이다. CF 기반 알고리즘의 기본 아이디어는 같은 취향을 가진 다른 사용자의 의견을 기반으로 항목 추천이나 예측을 제공한다. 사용자의 의견은 사용자로부터 명시적으로나 일부 암시적 조치를 사용하여 얻을 수 있다.
 
 ## 2.0.1 Overview of the Collaborative Filtering Process
-협업 필터링 알고리즘은 사용자가 이전에 좋아하는 것과 같은 취향을 가진 다른 사용자의 의견을 기반으로 새 항목을 제안하거나 특정 사용자에게 특정 항목의 유용성을 예측한다. 일반적인 CF 시나리오는 m명의 사용자 목록 <a><img src="https://latex.codecogs.com/png.latex?\mathbb{U}=\{u_{1},u_{2},\ldots,u_{m}\}"></a> 및 n개의 항목 목록 
-<a><img src="https://latex.codecogs.com/png.latex?\mathbb{I}=\{i_{1},i_{2},\ldots,i_{n}\}"></a>이 있다. 각 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_i"></a>에는 사용자가 자신의 의견을 표현한 항목 목록<a><img src="https://latex.codecogs.com/png.latex?I_{u_i}"></a>이 있다. 의견은 일반적으로 특정 수치 척도 내에서 평점 점수로 사용자에 의해 명시적으로 제공되거나, 타이밍 로그 분석, 웹 하이퍼 링크 마이닝 등을 통해 구매 기록에서 암시적으로 도출될 수 있다. <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}\subset\mathbb{I}"></a>나 <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}=\varnothing"></a> 될 수 있다. 두 가지 형태의 항목 유사성을 찾는 것이 협업 필터링 알고리즘의 임무인 활성 사용자라고 하는 고유 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a\in\mathbb{U}"></a>가 있다.
+협업 필터링 알고리즘은 사용자가 이전에 좋아하는 것과 같은 취향을 가진 다른 사용자의 의견을 기반으로 새 항목을 제안하거나 특정 사용자에게 특정 항목의 유용성을 예측한다. 일반적인 CF 시나리오는 m명의 사용자 목록 <a><img src="https://latex.codecogs.com/png.latex?\mathbb{U}=\{u_{1},u_{2},\ldots,u_{m}\}"></a> 및 n개의 항목 목록 <a><img src="https://latex.codecogs.com/png.latex?\mathbb{I}=\{i_{1},i_{2},\ldots,i_{n}\}"></a>이 있다. 각 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_i"></a>에는 사용자가 자신의 의견을 표현한 항목 목록<a><img src="https://latex.codecogs.com/png.latex?I_{u_i}"></a>이 있다. 의견은 일반적으로 특정 수치 척도 내에서 평점 점수로 사용자에 의해 명시적으로 제공되거나, 타이밍 로그 분석, 웹 하이퍼 링크 마이닝 등을 통해 구매 기록에서 암시적으로 도출될 수 있다. <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}\subset\mathbb{I}"></a>나 <a><img src="https://latex.codecogs.com/png.latex?I_{u_i}=\varnothing"></a> 될 수 있다. 두 가지 형태의 항목 유사성을 찾는 것이 협업 필터링 알고리즘의 임무인 활성 사용자라고 하는 고유 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a\in\mathbb{U}"></a>가 있다.
 
 - **예측**은 활성 사용자 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에 대한 항목 <a><img src="https://latex.codecogs.com/png.latex?i_j\notin\mathbb{I}_{u_a}"></a>의 예측 가능성을 나타내는 값 <a><img src="https://latex.codecogs.com/png.latex?P_{a,j}"></a>다. 이 예측값 <a><img src="https://latex.codecogs.com/png.latex?u_a"></a>에서 제공하는 의견값과 동일한 척도(1에서 5까지) 내에 있다.
 
@@ -96,9 +95,7 @@ published : false
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig3.png" width=800 alt='fig3'>
 </p>
-i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 
-<a><img src="https://latex.codecogs.com/png.latex?s_{i,j}" title="s_{i,j}"></a>
-에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
+i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 <a><img src="https://latex.codecogs.com/png.latex?s_{i,j}"></a>에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
 
 <p align="center"><a>
   <img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}">
@@ -108,8 +105,7 @@ i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계�
 
 ### 3.2.2 Regression
 가중 합계 방법과 유사하지만 유사한 항목의 등급을 직접 사용하는 대신 회귀 모델을 기반으로 한 등급의 근사치를 사용한다. 코사인과 상관 측정을 사용하여 계산된 유사성은 두 등급 벡터가 멀리 떨어져있을 수 있지만(유클리드 관점에서) 매우 높은 유사성을 가질 수 있다는 점에서 오해의 소지가 있을 수 있다. 이 경우 "소위" 유사한 항목의 원시 등급을 사용하면 예측이 좋지 않을 수 있다. 기본 아이디어는 가중 합계 기법과 동일한 공식을 사용하는 것이지만 유사한 항목 N의 "원시(raw)" 등급값 <a><img src="https://latex.codecogs.com/png.latex?R_{u,N}"></a>
-을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}"></a>
-을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a><img src="https://latex.codecogs.com/png.latex?R_{i}"></a> 및 <a><img src="https://latex.codecogs.com/png.latex?R_{N}"></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
+을 사용하는 대신이 모델은 선형 회귀를 기반으로 한 근사값 <a><img src="https://latex.codecogs.com/png.latex?R^{'}_{u,N}"></a>을 사용한다. 목표 항목 i와 유사한 항목 N의 각 벡터를 <a><img src="https://latex.codecogs.com/png.latex?R_{i}"></a> 및 <a><img src="https://latex.codecogs.com/png.latex?R_{N}"></a>으로 표시하면 선형 회귀 모델을 다음과 같이 표현할 수 있다.
 <p align="center"><a>
   <img src="https://latex.codecogs.com/png.latex?\bar{R}^{'}_{N}=\alpha&space;\bar{R}_{N}&plus;\beta&space;&plus;\epsilon">
 </a></p>
@@ -135,9 +131,7 @@ MovieLens는 1997년 가을에 나온 웹 기반 연구 추천 시스템이다. 
 ## 4.2 Evaluation Metrics
 추천 시스템의 품질을 평가하기 위해 여러 유형의 metric을 사용했다. 주로 두 가지 클래스로 분류할 수 있다.
 
-- *통계적 정확도 메트릭(Statistical accuracy metrics)* 은 테스트 데이터 세트의 사용자 항목 쌍에 대한 실제 사용자 등급과 수치 추천 점수를 비교하여 시스템의 정확도를 평가한다. 평점과 예측 사이의 평균 절대 오차(MAE)는 널리 사용되는 측정 항목이다. MAE는 실제 사용자 지정값에서 추천 사항의 편차를 측정한 것이다. 각 등급-예측 쌍 \<
-<a><img src="https://latex.codecogs.com/png.latex?p_{i},q_{i}"></a>
-\>에 대해 이 메트릭은 둘 사이의 절대 오차를 구한다. 즉, <a><img src="https://latex.codecogs.com/png.latex?|p_{i},q_{i}|"></a>. MAE는 먼저 N개의 해당 등급-예측 쌍의 절대 오차를 합한 다음 평균을 계산하여 계산된다. 공식적으로,
+- *통계적 정확도 메트릭(Statistical accuracy metrics)* 은 테스트 데이터 세트의 사용자 항목 쌍에 대한 실제 사용자 등급과 수치 추천 점수를 비교하여 시스템의 정확도를 평가한다. 평점과 예측 사이의 평균 절대 오차(MAE)는 널리 사용되는 측정 항목이다. MAE는 실제 사용자 지정값에서 추천 사항의 편차를 측정한 것이다. 각 등급-예측 쌍 \< <a><img src="https://latex.codecogs.com/png.latex?p_{i},q_{i}"></a> \>에 대해 이 메트릭은 둘 사이의 절대 오차를 구한다. 즉, <a><img src="https://latex.codecogs.com/png.latex?|p_{i},q_{i}|"></a>. MAE는 먼저 N개의 해당 등급-예측 쌍의 절대 오차를 합한 다음 평균을 계산하여 계산된다. 공식적으로,
 <p align="center"><a>
   <img src="https://latex.codecogs.com/png.latex?MAE=\frac{\sum_{N}^{i=1}|p_{i}-q_{i}|}{N}" >
 </a></p>

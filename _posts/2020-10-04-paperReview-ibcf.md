@@ -66,7 +66,7 @@ use_math : true
 
 ## 3.1 Item Similarity Computation
 <p align="center">
-  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig2.png" width=700 alt='Fig2 : Isolation of the co-rated items and similarity computation'>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig2.png" width=600 alt='Fig2 : Isolation of the co-rated items and similarity computation'>
 </p>
 항목 기반 협업 필터링 알고리즘의 중요한 단계 중 하나는 항목 간의 유사성을 계산한 다음 가장 유사한 항목을 선택한다. 두 항목 i와 j의 유사성 계산의 기본 아이디어는 먼저 이러한 항목을 모두 평가한 사용자를 분리한 다음 유사성을 계산하여 유사성 <a><img src="https://latex.codecogs.com/png.latex?s_{i,j}"></a>를 결정한다. 위 그림은 이 프로세스를 보여준다. 여기서 행렬 행은 사용자를 나타내고 열은 항목을 나타낸다.   
 항목 간의 유사성을 계산하는 세가지  소개한다.: 코사인 기반 유사성, 상관 기반 유사성, 수정된 코사인 유사성
@@ -156,7 +156,7 @@ MAE는 가장 일반적으로 사용되고 직접 해석하기 쉽기 때문에 
 ### 4.3.1 Effect of Similarity Algorithms
 3.1절에 설명된대로 세가지 유사성 알고리즘의 기본 코사인, 수정된 코사인, 상관 관계를 구현하여 테스트했다. 각 유사성 알고리즘에 대해 이웃을 계산하는 알고리즘을 구현하고 가중 합계 알고리즘을 사용하여 예측을 생성했다. 트레인 데이터에 대해 실험을 실행하고 테스트 세트를 사용하여 평균 절대 오차(MAE)를 계산했다. 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig4.png" width=800 alt='Fig4'>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig4.png" width=500 alt='Fig4'>
 </p>
 위 fig4는 실험 결과를 보여준다. 이 경우 MAE가 상당히 낮기 때문에 코사인 유사성 계산에 대한 사용자 평균을 상쇄하는 것이 분명한 이점이 있다. 따라서 나머지 실험에 대해 수정된 코사인 유사성을 선택한다.
 
@@ -184,7 +184,7 @@ MAE는 가장 일반적으로 사용되고 직접 해석하기 쉽기 때문에 
 ## 4.4 Sensitivity of the Model size
 모델 크기가 예측 품질에 미치는 영향을 실험적을 통해 결정하기 위해 유사성 계산에 사용할 항목 수를 25개에서 200개까지 25개씩 늘렸다. 모델 크기 l은 l만 고려했음을 의미한다. 모델 구축에 대한 최상의 유사성 값은 나중에 예측 생성 프로세스에 사용된 k에서 k<l입니다. 트레인 데이터 셋을 사용하여 서로 다른 모델 크기를 사용하여 항목 유사성을 미리 계산한 다음 가중 합계 예측 생성 기술 만 사용하여 예측을 제공했다. 그런 다음 테스트 데이터 세트를 사용하여 MAE를 계산하고 값을 플로팅했다. 전체 모델 크기(모델 크기=항목 수)와 비교하기 위해 모든 유사성 값을 고려하여 동일한 테스트를 실행하고 예측 생성을 위해 최상의 k를 선택했다. 세가지 x 값(트레인/테스트 비율)에 대해 전체 프로세스를 반복했다. 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig7.png" width=800 alt='Fig7'>
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig7.png" width=500 alt='Fig7'>
 </p>
 위는 서로 다른 x값에 대한 그래프를 보여준다. 모델 크기를 늘리면 MAE값이 좋아진다. 초반에는 개선 폭이 크지만, 모델 크기를 늘리면 점차적으로 느려진다. 이 그래프에서 항목의 일부만 사용하여 높은 정확도를 얻을 수 있다는 것을 보인다. 예를 들어, x=0.3에서 전체 item-item은 MAE가 0.7873이지만, 모델 크기를 25로만 사용하여 MAE값이 0.842이다. x=0.8에서 더 좋은 결과를 낸다. MAE는 0.726이었지만, 모델 크기가 25이면 MAE는 0.754이고, 모델 크기가 50이면 MAE가 0.738이다. 즉, x=0.8에서 각각 1.9%와 3%의 아이템만을 사용하여 전체 item-item 체계의 정확도의 96%와 98.3%의 결과를 낼 수 있었다!
 

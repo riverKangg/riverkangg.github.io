@@ -1,5 +1,5 @@
 ---
-title : "Item-based Collaborative Filtering Recommendation Algorithms"
+title : "[논문리뷰]Item-based Collaborative Filtering Recommendation Algorithms"
 date : 2020-10-04
 categories : 논문리뷰
 tage : 

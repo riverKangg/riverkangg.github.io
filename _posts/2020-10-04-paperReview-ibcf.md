@@ -1,8 +1,11 @@
 ---
 title : "Item-based Collaborative Filtering Recommendation Algorithms"
 date : 2020-10-04
+categories : 논문리뷰
+tage : 
+- 논문리뷰
+- 추천알고리즘
 use_math : true
-published : false
 ---
 
 [논문 링크](https://www.researchgate.net/publication/2369002_Item-based_Collaborative_Filtering_Recommendation_Algorithms)
@@ -203,3 +206,6 @@ item-item 협업 필터링의 실험적 평가에서 몇 가지 중요한 관찰
 # 5 Conclusion
 추천 시스템은 사용자 데이터베이스에서 비즈니스를 위한 부가가치를 창출할 수 있는 기술이다. 사용자가 좋아하는 항목을 찾아서 사용자에게 도움이 되고, 반대로 더 많은 판매를 하여 비즈니스를 돕는다. 추천 시스템은 웹에서 E-커머스에서 중요한 도구가 되고 있다. 추천 시스템은 기존 기업 데이터베이스에 있는 방대한 양의 사용자 데이터로 인해 스트레스를 받고 있으며 웹에서 사용할 수 있는 사용자 데이터의 양이 증가함에 따라 더욱 스트레스를 받을 것이다. 추천 시스템의 확장성을 획기적으로 향상시킬 수 있는 새로운 기술이 필요하다.
 이 논문에서 CF 기반 추천 시스템을 위한 새로운 알고리즘을 제시하고 평가했다. 결과는 항목 기반 기술이 CF 기반 알고리즘을 대규모로 확장하는 동시에 고품질 추천 사항을 생성한다.
+
+# Code
+[코드 링크](https://colab.research.google.com/drive/1rQXdGFtPqRCdkWLNaEQJsmFOmltXNTMn#scrollTo=XaOf4LJRkAHv)

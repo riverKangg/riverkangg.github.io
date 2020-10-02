@@ -96,7 +96,7 @@ use_math : true
 <p align="center">
   <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-04-ibcf-fig3.png" width=800 alt='fig3'>
 </p>
-i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 <a><img src="https://latex.codecogs.com/png.latex?s_{i,j}"></a>에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
+i와 유사한 항목에 대해 사용자가 부여한 평점의 합계를 계산하여 사용자 u에 대한 항목 i에 대한 예측을 계산한다. 각 등급은 항목 i와 j 사이의 해당 유사성 <a><img src="https://latex.codecogs.com/png.latex?s_{i,j}"></a> 에 의해 가중치를 부여한다. 공식적으로 위 그림에 표시된 개념을 사용하여 예측을 다음과 같이 나타낼 수 있다.
 
 <p align="center"><a>
   <img src="https://latex.codecogs.com/png.latex?P_{u,i}=\frac{\sum&space;_{all\:similar\:item,N}(S_{i,N}*R_{u,N})}{\sum&space;_{all\:similar\:item,N}(|S_{i,N}|)}">

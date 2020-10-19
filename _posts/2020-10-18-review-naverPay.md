@@ -6,7 +6,8 @@ tags :
 - 사용후기
 - 네이버 멤버십
 ---
-## 네이버플러스 멤버십 후기
+
+## 네이버플러스 멤버십 후기 <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-10-review-naverPay-1.jpg" width=70 alt='Fig : 네이버플러스멤버십 아이콘'>
 
 월 4,500원을 내고 네이버플러스 멤버십을 사용 중이다. 아래처럼 네이버플러스가 붙은 제품을 구매할 경우, 추가로 적립해주는 멤버십이다.
 <p align="center">

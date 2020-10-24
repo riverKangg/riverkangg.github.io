@@ -49,4 +49,5 @@ published : false
 
 
 ### 참고사이트
-<https://news.joins.com/article/23858904>
+- 기사 [유튜브로 읽는 코로나시대 "사람들이 '나'를 돌보기 시작했다"](https://news.joins.com/article/23858904)
+- 듣똑라 [지금, 유튜브는](https://podcasts.apple.com/am/podcast/119-%EC%A7%80%EA%B8%88-%EC%9C%A0%ED%8A%9C%EB%B8%8C%EB%8A%94-f-%EA%B9%80%EC%A0%95%EB%AF%BC-it-%EA%B8%B0%EC%9E%90/id982902899?i=1000491210475)

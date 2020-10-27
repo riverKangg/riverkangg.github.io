@@ -7,7 +7,9 @@ tags :
 - 유튜브
 published : false
 ---
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-10-24-review-youyube-1.jpg" width=300 alt='Fig : 유튜브 프리미엄'>
+</p>
 내가 꾸준히 제일 오래 사용하고 있는 구독 서비스는 유튜브 프리미엄이다. 웹으로 결제시 8,690원(부가세 포함)이다. 앱을 통해 결제하면 더 비싸다!!! 초반에 앱으로 결제했는데, 이 사실을 알고 얼마나 배가 아프던지!
 
 유튜브에 대한 쓸데없지만 재미난 사실들을 정리해봤다. 이 사실들은 대부분 듣똑라를 통해 알게 되었다.
@@ -35,6 +37,7 @@ published : false
 
 ### TMI 내가 구독하는 채널
 #### 여락이들
+
 여행 유튜버이다. 인도 영상으로 처음 입문하게 됐는데 힘들지만 즐기면서 여행하는 모습이 재밌다. 나는 여행을 귀찮아하는 스타일이라서 대리만족하는 중이다.
 
 #### 디에디트

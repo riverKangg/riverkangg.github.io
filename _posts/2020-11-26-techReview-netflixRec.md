@@ -34,7 +34,7 @@ use_math : true
 일단 영상을 그룹화한다. 메타 데이터(ex. 장르, 하위 장르, 출시 날짜)로 그룹을 만들 수도 있고, 협업 필터링 알고리즘처럼 행동 정보(ex. 시청할 가능성이 있는 영상, 친구가 시청한 영상)로 그룹을 만들 수도 있다. 넷플릭스는 지속적으로 새로운 방법으로 영상 그룹화하며, 개인화된 홈페이지를 만들고 있다.
 
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-4.png" width=300 alt='Fig : 행을 만들고 선택하는 방법'> <br/>
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-4.png" width=500 alt='Fig : 행을 만들고 선택하는 방법'> <br/>
 행을 만들고 선택하는 방법
 </p>
 
@@ -42,7 +42,7 @@ use_math : true
 
 ### Page-level algorithmic challenge
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-5.png" width=300 alt='Fig : 페이지 레벨의 개인화된 화면'> <br/>
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-5.png" width=800 alt='Fig : 페이지 레벨의 개인화된 화면'> <br/>
 </p>
 개인화된 화면이란, 수천개의 영상에서 유저/기기 당 하나의 페이지를 만드는 것을 말한다. 여러 요소의 균형을 맞춰서 한 화면 공간을 구성해야한다. 넷플릭스가 원하는 조건은 다음과 같다.
  - 새로운 취향을 발견할 수 있도록 하면서도, 다음 에피소드를 보거나 과거에 보았던 것을 다시 볼 수 있도록 한다. 
@@ -91,13 +91,13 @@ use_math : true
 ### Page-level metrics
 모든 알고리즘이 그렇듯 적절한 메트릭을 선택하는 것이 중요하다. 근본적으로 중요한 것은 오프라인 실험 중에  알고리즘이 생성한 페이지의 품질을 평가하는 방법이다. A/B테스트에서 알고리즘 개선 사항을 온라인으로 테스트 하지만, 페이지의 품질을 향상시킬 수 있는 알고리즘에 A/B테스트 리소스를 집중해야 한다. 또한 A/B테스트 전에 알고리즘의 매개 변수를 조정할 수 있어야 한다. 이를 통해 페이지 품질에 대한 좋은 메트릭을 선택한다면, 데이터로 새로운 알고리즘에서 가상의 페이지를 만들 수 있다.
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-8.png" width=500 alt='Fig : 재현율 예시'> <br/>
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-8.png" width=800 alt='Fig : 재현율 예시'> <br/>
  2차원 재현율 예시
 </p>
 
 페이지 수준의 메트릭을 만들기 위해, 1차원 리스트에 대한 순위 메트릭(정보 검색에서 많이 사용됨.[참고](https://nlp.stanford.edu/IR-book/pdf/08eval.pdf))에서 영감을 얻어 2차원 레이아웃에서 작동하는 메트릭을 만들었다. 예를 들어, 상위 n개의 관련 항목 수를 관련 항목의 총 수로 나눈 값을 측정하는 Recall@n과 같은 간단한 메트릭을 고려해보자. Recall@m-by-n이 되도록 2차원으로 확장할 수 있다. 즉, 처음 m개 행과 n개 열의 관련 항목 수를 총 관련 항목 수로 나눈 값을 계산한다. 따라서 Recall@3x4는 처음에 한 번에 3개의 행과 4개의 영상을 표시할 수 있는 장치의 뷰포트에 표시되는 영상의 품질을 나타낼 수 있다. 이러한 방식으로 정의된 recall은 중복된 영상이나 짧은 행과 같은 코너-케이스(corner-cases)를 자동으로 처리 할 수 있다. 또한 n이나 m값 중 하나를 고정하고 다른 값을 스윕하여 유저가 페이지를 아래로 스크롤 할 때 뷰포트에서 recall이 어떻게 증가하는지 계산할 수 있다.
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-9.png" width=500 alt='Fig : 알고리즘 결과 비교'> <br/>
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-9.png" width=800 alt='Fig : 알고리즘 결과 비교'> <br/>
  빨간선은 기존의 규칙 기반 접근 방식이고, 파란선은 개인화된 레이아웃의 결과다.
 </p>
 

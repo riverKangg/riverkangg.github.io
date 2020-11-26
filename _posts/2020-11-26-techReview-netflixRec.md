@@ -24,7 +24,7 @@ use_math : true
 
 현재 대부분의 기기에서 넷플릭스 홈페이지는 2차원 레이아웃으로 보여진다. 행은 같은 주제로 구성된 영상(영화나 TV 프로그램)로 구성되어 있다. 유저는 행에서 가로로 스크롤하여 동일 주제의 영상을 보거나, 세로로 스크롤하여 다른 주제의 영상을 볼 수 있다. 따라서 개인화의 핵심은 화면에 표시할 행을 구성하는 것이다. 행 구성에는 각 유저와 가장 관련이 있는 행을 선택하는 방법, 해당 행을 채우는 방법, 시청할 영상을 직관적으로 선택할 수 있도록 정렬하는 방법이 포함된다.
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-2.png" width=800 alt='Fig : 개인화 접근방식 변화'> <br/>
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-2.png" width=700 alt='Fig : 개인화 접근방식 변화'> <br/>
 
 </p>
 

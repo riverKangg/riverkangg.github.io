@@ -1,15 +1,14 @@
 ---
-title : "넷플릭스의 "
-date : 2020-11-13
+title : "넷플릭스의 추천시스템"
+date : 2020-11-26
 categories : 기술리뷰
 tags :
 - 추천알고리즘
 - 기술리뷰
 use_math : true
-published : False
 ---
-Learning a Personalized Homepage
-넷플릭스는 개인마다 다른 영상 추천 화면을 보여준다. [넷플릭스 리서치]()에 넷플릭스가 어떻게 화면을 개인화하는지를 공개해 놨다. 이번 포스팅에서는 [넷플릭스 아티클1](https://netflixtechblog.com/learning-a-personalized-homepage-aa8ec670359a)를 번역하며, 넷플릭스의 개인화 방식에 대해 알아보고자 한다.
+
+넷플릭스는 개인마다 다른 영상 추천 화면을 보여준다. [넷플릭스 리서치](https://research.netflix.com)에 넷플릭스가 어떻게 화면을 개인화하는지를 공개해 놨다. 이번 포스팅에서는 [Learning a Personalized Homepage](https://netflixtechblog.com/learning-a-personalized-homepage-aa8ec670359a)를 번역하며, 넷플릭스의 개인화 방식에 대해 알아보고자 한다.
 
 넷플릭스는 한 페이지에 표시할 수 있는 것보다 더 많은 영상 콘텐츠가 있고, 각 유저마다 고유한 관심사를 가지고 있다고 가정한다. 따라서 홈페이지는 개인의 관심사와 의도를 다루면서도 다른 콘텐츠를 탐색할 수 있도록 해야한다.
 

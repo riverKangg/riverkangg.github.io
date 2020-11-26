@@ -18,8 +18,7 @@ use_math : true
 
 이러한 문제는 넷플릭스에만 국한된 것이 아니라 뉴스 사이트, 검색 엔진, 온라인 쇼핑몰에서도 해결하고자 한다. 이 사이트들의 공통점은 많은 항목 중에서 몇가지를 선택하여, 일관되고 탐색하기 쉬운 방식으로 제시해야한다. 물론 넷플릭스는 인터페이스 제약이나 다른 미디어에 비해 영화나 TV가 소비되는 방식의 차이와 같은 넷플릭스만의 특수성도 있다.
 <p align="center">
- <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-1.png" width=300 alt='Fig : 넷플릭스 화면 예시'>
-
+ <img src="https://raw.githubusercontent.com/riverKangg/riverkangg.github.io/master/_posts/image/2020-11-26-netflix-1.png" width=300 alt='Fig : 넷플릭스 화면 예시'> <br/>
 넷플릭스의 개인화된 화면 예시
 </p>
 

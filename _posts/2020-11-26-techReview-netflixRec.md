@@ -19,14 +19,14 @@ tags :
 추천으로 화면을 구성하는 서비스는 뉴스 사이트, 검색 엔진, 온라인 쇼핑몰에서도 중요하다. 이 사이트들의 공통점은 많은 항목 중에서 몇가지를 선택하여, 일관되고 탐색하기 쉬운 방식으로 보여주고자 한다. 물론 넷플릭스만의 특수성도 있다.(ex. 인터페이스 제약, 기존의 미디어와 영화나 TV가 소비되는 방식의 차이)
 
 <p align="center">
- <img src="C:\fmclip\11606438830.png" width=300 alt='Fig : 넷플릭스 화면 예시'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-1.png" width=300 alt='Fig : 넷플릭스 화면 예시'> <br/>
 넷플릭스의 개인화된 화면 예시
 </p>
 
 현재 대부분의 기기에서 넷플릭스 홈페이지는 2차원 레이아웃으로 보여진다. 행은 같은 주제로 구성된 영상(영화나 TV 프로그램)로 구성되어 있다. 유저는 행에서 가로로 스크롤하여 동일 주제의 영상을 보거나, 세로로 스크롤하여 다른 주제의 영상을 볼 수 있다. 따라서 개인화의 핵심은 _**화면에 표시할 행을 구성하는 것**_ 이다. 행 구성에는 유저와 가장 관련이 있는 행을 선택하는 방법, 해당 행을 채우는 방법, 시청할 영상을 직관적으로 선택할 수 있도록 정렬하는 방법이 포함된다.
 
 <p align="center">
- <img src="C:\fmclip\21606438830.png" width=600 alt='Fig : 개인화 접근방식 변화'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-2.png" width=500 alt='Fig : 개인화 접근방식 변화'> <br/>
 </p>
 
 # Why Rows Anyway?
@@ -35,7 +35,7 @@ tags :
 
 지금부터 행 단위로 화면을 구성하는 과정을 살펴보자.
 <p align="center">
- <img src="C:\fmclip\31606438830.png" width=500 alt='Fig : 행을 만들고 선택하는 방법'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-4.png" width=500 alt='Fig : 행을 만들고 선택하는 방법'> <br/>
 행을 만들고 선택하는 방법
 </p>
 
@@ -48,7 +48,7 @@ tags :
 
 # Page-level algorithmic challenge
 <p align="center">
- <img src="C:\fmclip\41606438830.png" width=700 alt='Fig : 페이지 레벨의 개인화된 화면'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-5.png" width=700 alt='Fig : 페이지 레벨의 개인화된 화면'> <br/>
 </p>
 
 개인화된 화면이란, 수천개의 영상에서 몇 개의 영상을 골라 유저/기기 당 하나의 페이지를 만드는 것을 말한다. 여러 요소의 균형을 맞춰서 한 화면 공간을 구성해야 하는데, 이 때 넷플릭스가 원하는 조건은 다음과 같다.
@@ -60,7 +60,10 @@ tags :
 
 각 장치마다 표시되는 영상의 수, 행의 수, 전체 페이지의 크기가 다르다. 따라서 페이지 생성 프로세스는 행 수, 행의 최소와 최대 길이, 페이지에서 보이는 부분의 크기와 같은 페이지를 생성에 대한 제약 조건을 알고 있어야 한다.
 
-앞서 언급했듯이 추천 시스템에서는 다양한 항목을 보여주는 것이 중요하다. 2차원 탐색 레이아웃을 제공함으로써 유저는 수직으로 스크롤하여 현재 의도와 일치하지 않는 전체 콘텐츠 그룹을 쉽게 건너뛰고, 더 관련성이 높은 집합을 찾은 다음 가로로 스크롤하여 더 많은 추천 항목을 볼 수 있다. 이를 통해 전체 페이지에 표시되는 영상의 다양성을 유지하면서, 관련성이 높은 개별 행을 선택할 수 있다.
+<p align="center">
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-6.png" width=700 alt='Fig : 페이지 레벨의 개인화된 화면'> <br/>
+</p>
+ 추천 시스템에서는 다양한 항목을 보여주는 것이 중요하다. 2차원 탐색 레이아웃을 제공함으로써 유저는 수직으로 스크롤하여 현재 의도와 일치하지 않는 전체 콘텐츠 그룹을 쉽게 건너뛰고, 더 관련성이 높은 집합을 찾은 다음 가로로 스크롤하여 더 많은 추천 항목을 볼 수 있다. 이를 통해 전체 페이지에 표시되는 영상의 다양성을 유지하면서, 관련성이 높은 개별 행을 선택할 수 있다.
 
 
 # Building a page algorithmically
@@ -100,22 +103,18 @@ tags :
  - 먼저 **페이지 편향 문제**가 있다. 유저는 보여지는 행에서만 시청할 수 있으며, 이는 학습 데이터에 큰 영향을 미칠 수 있다. 더 복잡한 것은 페이지에서 행의 위치가 그 행에서 재생을 선택하는지 여부에 큰 영향을 줄 수 있다. 이러한 페이지에 대한 편향을 처리하려면, 학습 데이터를 잘 선정해야한다.
  - 다음으로 **모델에서 어트리뷰션이 허용되는 방식**에 대한 문제도 있다. 특정 행에서 재생된 영상이 다른 행의 첫번째 위치에 배치 되었다면 유저가 똑같이 선택했을까? 행의 제목이 "Critically Acclaimed Documentaries"인 것이 시청의 원인이었을 수도 있다. 반면에 더 좋은 위치에 있더라도 "New Releases"은 다른 정보 없이는 선택되지 않을 가능성이 크다. 잠재적 행의 공간은 크지만, 페이지의 나머지 부분(또는 이미 선택한 행)의 공간은 훨씬 더 크기 때문에, 다양성을 설명하는 피처를 학습시키는 것도 어려울 수 있다.
 
-<p align="center">
- <img src="C:\fmclip\51606438830.png" width=300 alt='Fig : 화면예시'> <br/>
-</p>
-
 
 # Page-level metrics
 모든 알고리즘이 그렇듯 적절한 메트릭을 선택하는 것이 중요하다.
 <p align="center">
- <img src="C:\fmclip\61606438830.png" width=600 alt='Fig : 재현율 예시'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-8.png" width=600 alt='Fig : 재현율 예시'> <br/>
  2차원 재현율 예시
 </p>
 
 페이지 수준의 메트릭을 만들기 위해, 1차원 리스트에 대한 순위 메트릭(정보 검색에서 많이 사용됨 [참고](https://nlp.stanford.edu/IR-book/pdf/08eval.pdf))을 확장하여 2차원 메트릭을 만들었다. 상위 n개의 관련 항목 수를 관련 항목의 총 수로 나눈 값을 측정하는 Recall@n 메트릭을 2차원인 Recall@m-by-n으로 확장한다. 즉, 처음 m개 행과 n개 열의 관련 항목 수를 총 관련 항목 수로 나눈 값을 계산한다. 다시 말하자면, Recall@3x4는 한 번에 3개의 행과 4개의 영상을 표시할 수 있는 장치의 품질을 측정한다. 이렇게 정의된 recall은 중복된 영상이나 짧은 행과 같은 코너-케이스(corner-cases)를 자동으로 처리한다. 또한 n이나 m값 중 하나를 고정하고 다른 값을 스윕하여 유저가 페이지를 아래로 스크롤 할 때, recall이 어떻게 증가하는지 계산할 수 있다.
 
 <p align="center">
- <img src="C:\fmclip\71606438830.png" width=600 alt='Fig : 알고리즘 결과 비교'> <br/>
+ <img src="https://github.com/riverKangg/riverkangg.github.io/blob/master/_posts/image/2020-11-26-netflix-9.png" width=600 alt='Fig : 알고리즘 결과 비교'> <br/>
  빨간선은 기존의 규칙 기반 접근 방식이고, 파란선은 개인화된 레이아웃의 결과다.
 </p>
 

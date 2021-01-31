@@ -24,7 +24,7 @@ tags :
   
 ### □ 사전 설정
 이 코드 실행 전, 크롤링하고자 하는 카페의 접근권한을 가진 네이버 아이디가 필요하다. 또 글을 볼 수 있는 등급이 되어야 한다.
-네이버 로그인에 대해서는 [이 포스트](https://riverkangg.github.io/python/crawling-1naverLogin/)를 참고하하면 된다.
+네이버 로그인에 대해서는 [이 포스트](https://riverkangg.github.io/python/crawling-1naverLogin/)를 참고하면 된다.
 
 ### □ input
 - 저장 경로

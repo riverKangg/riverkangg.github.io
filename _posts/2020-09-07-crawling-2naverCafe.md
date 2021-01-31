@@ -223,7 +223,3 @@ print("수집 데이터 : ", contents_df.shape)
 # 에러 난 게시글 : error_list
 print("에러 게시글 수 : ", len(error_list))
 ```
-
-
-# ▷ 코드 다운로드
-[코드 다운로드 링크](https://github.com/riverKangg/riverkangg.github.io/blob/master/code/2020-09-04-crawling-2naverCafe.py)

@@ -1,5 +1,5 @@
 ---
-title : "[Python] geojson 다뤄보기 (1)"
+title : "[Python/시각화] geojson 다뤄보기 (1)"
 date : 2021-03-13
 categories : python
 published : false

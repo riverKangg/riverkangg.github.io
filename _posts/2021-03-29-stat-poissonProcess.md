@@ -2,7 +2,6 @@
 title : "Poisson Process 시뮬레이션"
 date : 2021-03-29
 categories : Python
-published : False
 tags :
 - 추천알고리즘
 - 기술리뷰

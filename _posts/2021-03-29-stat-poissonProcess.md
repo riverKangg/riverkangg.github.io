@@ -25,6 +25,7 @@ tags :
 기본적인 포아송 과정에서 도착과 시간은 독립이지만, 현실에서는 그럴 수 가 없습니다. 그래서 시간에 영향을 받는 강도 함수(intensity function) &lambda;&lpar;t&rpar;를 넣어주는 것이 비동질적 포아송 과정입니다. 
 
 
+
 ### Reference
 **[1]** https://towardsdatascience.com/the-poisson-process-everything-you-need-to-know-322aa0ab9e9a </br>
 **[]** https://fromosia.wordpress.com/2017/03/19/stochastic-poisson-process/ </br>

@@ -15,10 +15,10 @@ tags :
 
 # Poisson Process(포아송 과정)
 포아송 과정은 포아송 분포의 독립적인 결합으로 만들어집니다. 포아송 과정의 정의는 다음과 같습니다.
-> (1) N(0)=0
-> (2) 독립 증분(Independent Increment) 
-> (3) 정상 증분(Stationary Increments) 이 식을 풀어서 해석해보면, 도착 시간의 분포는 오직 구간의 길이에만 영향을 받는다는 의미입니다. 예를 들면, 1시부터 1시간 이내에 도착한 손님의 분포나 4시부터 1시간 동안 도착한 손님의 분포는 동일해야 한다는거죠.(하지만 현실은 그렇지 않죠! &rightarrow; non-homogeneous poisson process)
-> (4) No counted occurrence are simultaneous
+> (1) N(0)=0   <br />
+> (2) 독립 증분(Independent Increment)   <br />
+> (3) 정상 증분(Stationary Increments) 이 식을 풀어서 해석해보면, 도착 시간의 분포는 오직 구간의 길이에만 영향을 받는다는 의미입니다. 예를 들면, 1시부터 1시간 이내에 도착한 손님의 분포나 4시부터 1시간 동안 도착한 손님의 분포는 동일해야 한다는거죠.(하지만 현실은 그렇지 않죠! &rightarrow; non-homogeneous poisson process)   <br />
+> (4) No counted occurrence are simultaneous   <br />
 
 
 # Non-homogeneous Poisson Process(비동질적 포아송 과정)

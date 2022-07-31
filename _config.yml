@@ -10,17 +10,17 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-# theme                  : "minimal-mistakes-jekyll"
+# theme: "minimal-mistakes-jekyll"
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale: "en-US"
-title: "Kang의 데이터사이언스"
+title: "Data Science"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "Kang"
-description: "기록하고 공유하기"
+name: "riverKangg"
+description: "Data Science with riverKangg"
 url: "https://riverkangg.github.io"
 baseurl: ""
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -93,7 +93,7 @@ analytics:
 
 # Site Author
 author:
-  name: "Kang"
+  name: "riverKangg"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: "Data Scientist in S.Korea"
   location: "Seoul, S.Korea"
